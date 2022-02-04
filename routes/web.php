@@ -59,6 +59,7 @@ Route::post('/change/user/password', [IndexController::class, 'ChangeUserPasswor
 //Admin Brand Routes
 Route::prefix('brand')->group(function(){
 Route::get('/view', [BrandController::class, 'ViewBrand'])->name('all.brands');
+Route::post('/store', [BrandController::class, 'StoreBrand'])->name('store.brand');
 
 
 });
