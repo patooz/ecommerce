@@ -40,8 +40,9 @@
                               <td>{{$item->brand_name_swa}}</td>
                               <td> <img src="{{asset($item->brand_image)}}" style="height: 90px; width: 120px;" >  </td>
                               <td>
-                                  <a href="{{ route('edit.brand',$item->id) }}" class="btn btn-info" >Edit</a>
-                                  <a href="" class="btn btn-danger" >Delete</a>
+                                  <a href="{{ route('edit.brand',$item->id) }}" class="btn btn-info" title="Edit Brand" ><i class="fa fa-pencil"></i></a>
+                                  <a href="{{ route('delete.brand',$item->id) }}" id="delete" class="btn btn-danger" title="Delete Brand"
+                                    ><i class="fa fa-trash" ></i></a>
                               </td>
 
                           </tr>

@@ -62,6 +62,7 @@ Route::get('/view', [BrandController::class, 'ViewBrand'])->name('all.brands');
 Route::post('/store', [BrandController::class, 'StoreBrand'])->name('store.brand');
 Route::get('/edit/{id}', [BrandController::class, 'EditBrand'])->name('edit.brand');
 Route::post('/update', [BrandController::class, 'UpdateBrand'])->name('brand.update');
+Route::get('/delete/{id}', [BrandController::class, 'DeleteBrand'])->name('delete.brand');
 
 
 });
