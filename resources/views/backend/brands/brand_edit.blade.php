@@ -13,70 +13,29 @@
 
 
 
-          <div class="col-8">
-
-           <div class="box">
-              <div class="box-header with-border">
-                <h3 class="box-title">Brand List</h3>
-              </div>
-              <!-- /.box-header -->
-              <div class="box-body">
-                  <div class="table-responsive">
-                    <table id="example1" class="table table-bordered table-striped">
-                      <thead>
-                          <tr>
-                              <th>English</th>
-                              <th>Kiswahili</th>
-                              <th>Brand Image</th>
-                              <th>Action</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          @foreach ($brands as $item )
-
-
-                          <tr>
-                              <td>{{$item->brand_name_en}}</td>
-                              <td>{{$item->brand_name_swa}}</td>
-                              <td> <img src="{{asset($item->brand_image)}}" style="height: 90px; width: 120px;" >  </td>
-                              <td>
-                                  <a href="{{ route('edit.brand',$item->id) }}" class="btn btn-info" >Edit</a>
-                                  <a href="" class="btn btn-danger" >Delete</a>
-                              </td>
-
-                          </tr>
-                          @endforeach
-
-                      </tbody>
-
-                    </table>
-                  </div>
-              </div>
-              <!-- /.box-body -->
-            </div>
-
-          </div>
-          <!-- /.col -->
 
           {{-- Add Brand --}}
-          <div class="col-4">
+          <div class="col-10">
 
             <div class="box">
                <div class="box-header with-border">
-                 <h3 class="box-title">Add Brand</h3>
+                 <h3 class="box-title">Edit Brand</h3>
                </div>
                <!-- /.box-header -->
                <div class="box-body">
                    <div class="table-responsive">
 
-                    <form action="{{ route('store.brand') }}" method="POST" enctype="multipart/form-data" >
+                    <form action="{{ route('brand.update',$brand->id) }}" method="POST" enctype="multipart/form-data" >
                         @csrf
+                        <input type="hidden" name="id" id="id" value="{{ $brand->id }}">
+                        <input type="hidden" name="old_image" value="{{ $brand->brand_image }}">
+
 
 
                                     <div class="form-group">
                                         <h5>Brand Name in English <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="brand_name_en" class="form-control">
+                                            <input type="text" name="brand_name_en" class="form-control" value="{{ $brand->brand_name_en }}">
                                             @error('brand_name_en')
                                         <span class="text-danger">{{ $message }}</span>
 
@@ -88,7 +47,7 @@
                                     <div class="form-group">
                                         <h5>Brand Name in Swahili <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="brand_name_swa" class="form-control">
+                                            <input type="text" name="brand_name_swa" class="form-control" value="{{ $brand->brand_name_swa }}">
                                             @error('brand_name_swa')
                                         <span class="text-danger">{{ $message }}</span>
 
@@ -112,7 +71,7 @@
 
 
                            <div class="text-xs-right">
-                               <input type="submit" value="Add Brand" class="btn btn-rounded btn-primary mb-5" >
+                               <input type="submit" value="Update Brand" class="btn btn-rounded btn-primary mb-5" >
                            </div>
                        </form>
 
