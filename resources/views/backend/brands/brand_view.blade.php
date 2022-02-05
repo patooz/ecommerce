@@ -25,8 +25,8 @@
                     <table id="example1" class="table table-bordered table-striped">
                       <thead>
                           <tr>
-                              <th>Brand Name En</th>
-                              <th>Brand Name Swa</th>
+                              <th>English</th>
+                              <th>Kiswahili</th>
                               <th>Brand Image</th>
                               <th>Action</th>
                           </tr>
@@ -38,7 +38,7 @@
                           <tr>
                               <td>{{$item->brand_name_en}}</td>
                               <td>{{$item->brand_name_swa}}</td>
-                              <td> <img src="{{asset($item->brand_image)}}" style="height: 70px; width:40px;" >  </td>
+                              <td> <img src="{{asset($item->brand_image)}}" style="height: 70px; width: 40px;" >  </td>
                               <td>
                                   <a href="" class="btn btn-info" >Edit</a>
                                   <a href="" class="btn btn-danger" >Delete</a>
@@ -77,29 +77,42 @@
                                         <h5>Brand Name in English <span class="text-danger">*</span></h5>
                                         <div class="controls">
                                             <input type="text" name="brand_name_en" class="form-control">
+                                            @error('brand_name_en')
+                                        <span class="text-danger">{{ $message }}</span>
+
+                                        @enderror
                                         </div>
+
                                     </div>
 
                                     <div class="form-group">
                                         <h5>Brand Name in Swahili <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="brand_name_swa" class="form-control"
+                                            <input type="text" name="brand_name_swa" class="form-control">
+                                            @error('brand_name_swa')
+                                        <span class="text-danger">{{ $message }}</span>
 
-                                             > </div>
+                                        @enderror
+                                            </div>
+
                                     </div>
 
                                     <div class="form-group">
                                         <h5>Brand Image <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="file" name="brand_image" class="form-control"
+                                            <input type="file" name="brand_image" class="form-control">
+                                            @error('brand_image')
+                                        <span class="text-danger">{{ $message }}</span>
 
-                                             > </div>
+                                        @enderror
+                                         </div>
+
                                     </div>
 
 
 
                            <div class="text-xs-right">
-                               <input type="submit" value="Update" class="btn btn-rounded btn-primary mb-5" >
+                               <input type="submit" value="Add Brand" class="btn btn-rounded btn-primary mb-5" >
                            </div>
                        </form>
 

@@ -17,6 +17,8 @@ use Laravel\Fortify\Contracts\LogoutResponse;
 use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Http\Requests\LoginRequest;
+use RealRashid\SweetAlert\Facades\Alert;
+
 
 class AdminController extends Controller
 {
@@ -42,6 +44,7 @@ class AdminController extends Controller
     public function loginForm()
     {
        return view('auth.admin_login', ['guard'=>'admin']);
+
     }
 
     /**
@@ -64,8 +67,11 @@ class AdminController extends Controller
     public function store(LoginRequest $request)
     {
         return $this->loginPipeline($request)->then(function ($request) {
+            Alert::toast('Logged In Successfully!', 'success');
             return app(LoginResponse::class);
+
         });
+
     }
 
     /**
@@ -109,6 +115,7 @@ class AdminController extends Controller
         $request->session()->invalidate();
 
         $request->session()->regenerateToken();
+        Alert::toast('Logged Out Successfully!', 'success');
 
         return app(LogoutResponse::class);
     }
