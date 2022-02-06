@@ -44,4 +44,28 @@ class CategoryController extends Controller
         return redirect()->back();
 
     }
+
+    public function EditCategory($id)
+    {
+        $category=Category::findOrFail($id);
+        return view('backend.category.category_edit',compact('category'));
+    }
+
+    public function UpdateCategory(Request $request)
+    {
+        $cat_id=$request->id;
+
+        Category::findOrFail($cat_id)->update([
+            'category_name_en'=>$request->category_name_en,
+            'category_name_swa'=>$request->category_name_swa,
+            'category_slug_en'=>strtolower(str_replace(' ', '-', $request->category_name_en)),
+            'category_slug_swa'=>strtolower(str_replace(' ', '-', $request->category_name_swa)),
+            'category_icon'=>$request->category_icon,
+
+
+
+        ]);
+        Alert::toast('Category Updated Successfully!', 'success');
+        return redirect()->route('all.categories');
+    }
 }
