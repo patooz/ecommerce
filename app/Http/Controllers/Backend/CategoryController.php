@@ -68,4 +68,11 @@ class CategoryController extends Controller
         Alert::toast('Category Updated Successfully!', 'success');
         return redirect()->route('all.categories');
     }
+
+    public function DeleteCategory($id)
+    {
+        Category::findOrFail($id)->delete();
+        Alert::toast('Category Deleted Successfully!', 'success');
+            return redirect()->back();
+    }
 }
