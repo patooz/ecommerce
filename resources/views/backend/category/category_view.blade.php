@@ -25,9 +25,9 @@
                     <table id="example1" class="table table-bordered table-striped">
                       <thead>
                           <tr>
-                              <th>Category Icon</th>
-                              <th>Category English</th>
-                              <th>Category Kiswahili</th>
+                              <th>Icon</th>
+                              <th>Category En</th>
+                              <th>Category Swa</th>
                               <th>Action</th>
                           </tr>
                       </thead>
@@ -41,8 +41,8 @@
                               <td>{{$item->category_name_swa}}</td>
 
                               <td>
-                                  <a href="{{ route('edit.brand',$item->id) }}" class="btn btn-info" title="Edit Brand" ><i class="fa fa-pencil"></i></a>
-                                  <a href="{{ route('delete.brand',$item->id) }}" id="delete" class="btn btn-danger" title="Delete Brand"
+                                  <a href="{{ route('edit.category',$item->id) }}" class="btn btn-info" title="Edit Category" ><i class="fa fa-pencil"></i></a>
+                                  <a href="{{ route('delete.category',$item->id) }}" id="delete" class="btn btn-danger" title="Delete Category"
                                     ><i class="fa fa-trash" ></i></a>
                               </td>
 
@@ -71,7 +71,7 @@
                <div class="box-body">
                    <div class="table-responsive">
 
-                    <form action="{{ route('store.brand') }}" method="POST" >
+                    <form action="{{ route('store.category') }}" method="POST" >
                         @csrf
 
 
