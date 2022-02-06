@@ -26,8 +26,8 @@
                       <thead>
                           <tr>
                               <th>Category</th>
-                              <th>Subcategory En</th>
-                              <th>Subcategory Swa</th>
+                              <th>English</th>
+                              <th>Kiswahili</th>
                               <th>Action</th>
                           </tr>
                       </thead>
@@ -36,13 +36,13 @@
 
 
                           <tr>
-                              <td>{{$item->category_id}}</td>
+                              <td>{{$item['category']['category_name_en']}}</td>
                               <td>{{$item->subcategory_name_en}}</td>
                               <td>{{$item->subcategory_name_swa}}</td>
 
                               <td>
                                   <a href="{{ route('edit.subcategory',$item->id) }}" class="btn btn-info" title="Edit Category" ><i class="fa fa-pencil"></i></a>
-                                  <a href="{{ route('delete.category',$item->id) }}" id="delete" class="btn btn-danger" title="Delete Category"
+                                  <a href="{{ route('delete.subcategory',$item->id) }}" id="delete" class="btn btn-danger" title="Delete Category"
                                     ><i class="fa fa-trash" ></i></a>
                               </td>
 

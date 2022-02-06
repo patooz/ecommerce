@@ -24,8 +24,9 @@
                <div class="box-body">
                    <div class="table-responsive">
 
-                    <form action="{{ route('store.subcategory') }}" method="POST" >
+                    <form action="{{ route('update.subcategory') }}" method="POST" >
                         @csrf
+                        <input type="hidden" name="id" value="{{ $subcategory->id }}">
 
 
                         <div class="form-group">
