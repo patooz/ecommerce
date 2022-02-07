@@ -1,5 +1,6 @@
 @extends('admin.admin_master')
 @section('admin')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <!-- Content Wrapper. Contains page content -->
 
@@ -17,7 +18,7 @@
 
            <div class="box">
               <div class="box-header with-border">
-                <h3 class="box-title">Subcategory List</h3>
+                <h3 class="box-title">Sub-Subcategory List</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -25,20 +26,20 @@
                     <table id="example1" class="table table-bordered table-striped">
                       <thead>
                           <tr>
-                              <th>Category</th>
-                              <th>Subcategory in Eng</th>
-                              <th>Subcategory in Swa</th>
+                              <th>Category Name</th>
+                              <th>Subcategory Name</th>
+                              <th>Sub-Subcategory in Eng</th>
                               <th>Action</th>
                           </tr>
                       </thead>
                       <tbody>
-                          @foreach ($subcategory as $item )
+                          @foreach ($subsubcategory as $item )
 
 
                           <tr>
                               <td>{{$item['category']['category_name_en']}}</td>
-                              <td>{{$item->subcategory_name_en}}</td>
-                              <td>{{$item->subcategory_name_swa}}</td>
+                              <td>{{$item['subcategory']['subcategory_name_en']}}</td>
+                              <td>{{$item->subsubcategory_name_en}}</td>
 
                               <td width="30%" >
                                   <a href="{{ route('edit.subcategory',$item->id) }}" class="btn btn-info" title="Edit Category" ><i class="fa fa-pencil"></i></a>
@@ -65,13 +66,13 @@
 
             <div class="box">
                <div class="box-header with-border">
-                 <h3 class="box-title">Add Subcategory</h3>
+                 <h3 class="box-title">Add Sub-Subcategory</h3>
                </div>
                <!-- /.box-header -->
                <div class="box-body">
                    <div class="table-responsive">
 
-                    <form action="{{ route('store.subcategory') }}" method="POST" >
+                    <form action="{{ route('store.subsubcategory') }}" method="POST" >
                         @csrf
 
 
@@ -81,8 +82,6 @@
                                 <select name="category_id"  class="form-control">
                                     <option value="" selected="" disabled="" >Select Category</option>
                                     @foreach ($categories as $category )
-
-
                                     <option value="{{$category->id}}">{{$category->category_name_en}}</option>
                                     @endforeach
                                 </select>
@@ -93,11 +92,25 @@
                             </div>
                         </div>
 
+                        <div class="form-group">
+                            <h5> Select Subcategory <span class="text-danger">*</span></h5>
+                            <div class="controls">
+                                <select name="sub_category_id"  class="form-control">
+                                    <option value="" selected="" disabled="" >Select Subcategory</option>
+
+                                </select>
+                                @error('sub_category_id')
+                                        <span class="text-danger">{{ $message }}</span>
+
+                                        @enderror
+                            </div>
+                        </div>
+
                                     <div class="form-group">
-                                        <h5>Subcategory Name in English <span class="text-danger">*</span></h5>
+                                        <h5>Sub-Subcategory Name in English <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="subcategory_name_en" class="form-control">
-                                            @error('subcategory_name_en')
+                                            <input type="text" name="subsubcategory_name_en" class="form-control">
+                                            @error('subsubcategory_name_en')
                                         <span class="text-danger">{{ $message }}</span>
 
                                         @enderror
@@ -106,10 +119,10 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <h5>Subcategory Name in Swahili  <span class="text-danger">*</span></h5>
+                                        <h5>Sub-Subcategory Name in Swahili  <span class="text-danger">*</span></h5>
                                         <div class="controls">
-                                            <input type="text" name="subcategory_name_swa" class="form-control">
-                                            @error('subcategory_name_swa')
+                                            <input type="text" name="subsubcategory_name_swa" class="form-control">
+                                            @error('subsubcategory_name_swa')
                                         <span class="text-danger">{{ $message }}</span>
 
                                         @enderror
@@ -149,6 +162,33 @@
     </div>
 
 <!-- /.content-wrapper -->
+
+<script type="text/javascript" >
+    $(document).ready(function(){
+        $('select[name="category_id"]').on('change', function(){
+            var category_id = $(this).val();
+            if (category_id) {
+                $.ajax({
+                    url: "{{ url('/category/subcategory/ajax') }}/"+category_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data){
+                        var d =$('select[name="sub_category_id"]').empty();
+                        $.each(data, function(key, value){
+                            $('select[name="sub_category_id"]').append('<option value="'+ value.id +'">' + value.subcategory_name_en + '</option>');
+                        });
+                    },
+                });
+
+            } else {
+                alert('danger');
+
+            }
+        });
+    });
+
+
+</script>
 
 
 @endsection
