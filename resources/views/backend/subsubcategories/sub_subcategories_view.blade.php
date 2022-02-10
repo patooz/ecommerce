@@ -38,7 +38,8 @@
 
                           <tr>
                               <td>{{$item['category']['category_name_en']}}</td>
-                              <td>{{$item['subcategory']['subcategory_name_en']}}</td>
+                              <td>
+                              @if(isset($item['subcategory']['subcategory_name_en']))   {{ $item['subcategory']['subcategory_name_en'] }} </td>  @endif
                               <td>{{$item->subsubcategory_name_en}}</td>
 
                               <td width="30%" >
