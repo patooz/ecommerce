@@ -87,9 +87,15 @@ class ProductController extends Controller
          //end multi-image upload
 
         Alert::toast('Product Created Successfully!', 'success');
-            return redirect()->back();
+            return redirect()->route('manage.products');
 
 
+    }
+
+    public function ManageProduct()
+    {
+       $products=Product::latest()->get();
+       return view('backend.products.view_product',compact('products'));
     }
 
 }

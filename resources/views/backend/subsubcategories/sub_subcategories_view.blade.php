@@ -20,38 +20,38 @@
               <div class="box-header with-border">
                 <h3 class="box-title">Sub-Subcategory List</h3>
               </div>
-              <!-- /.box-header -->
-              <div class="box-body">
-                  <div class="table-responsive">
-                    <table id="example1" class="table table-bordered table-striped">
-                      <thead>
-                          <tr>
-                              <th>Category Name</th>
-                              <th>Subcategory Name</th>
-                              <th>Sub-Subcategory in English</th>
-                              <th>Action</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          @foreach ($subsubcategory as $item )
+<!-- /.box-header -->
+<div class="box-body">
+<div class="table-responsive">
+<table id="example1" class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Category Name</th>
+            <th>Subcategory Name</th>
+            <th>Sub-Subcategory in English</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($subsubcategory as $item )
 
 
-                          <tr>
-                              <td>{{$item['category']['category_name_en']}}</td>
-                              <td>
-                              @if(isset($item['subcategory']['subcategory_name_en']))   {{ $item['subcategory']['subcategory_name_en'] }} </td>  @endif
-                              <td>{{$item->subsubcategory_name_en}}</td>
+        <tr>
+            <td>{{$item['category']['category_name_en']}}</td>
+            <td>
+            @if(isset($item['subcategory']['subcategory_name_en']))   {{ $item['subcategory']['subcategory_name_en'] }} </td>  @endif
+            <td>{{$item->subsubcategory_name_en}}</td>
 
-                              <td width="30%" >
-                                  <a href="{{ route('edit.subsubcategory',$item->id) }}" class="btn btn-info" title="Edit Category" ><i class="fa fa-pencil"></i></a>
-                                  <a href="{{ route('delete.subsubcategory',$item->id) }}" id="delete" class="btn btn-danger" title="Delete Category"
-                                    ><i class="fa fa-trash" ></i></a>
-                              </td>
+            <td width="30%" >
+                <a href="{{ route('edit.subsubcategory',$item->id) }}" class="btn btn-info" title="Edit Category" ><i class="fa fa-pencil"></i></a>
+                <a href="{{ route('delete.subsubcategory',$item->id) }}" id="delete" class="btn btn-danger" title="Delete Category"
+                ><i class="fa fa-trash" ></i></a>
+            </td>
 
-                          </tr>
-                          @endforeach
+        </tr>
+        @endforeach
 
-                      </tbody>
+    </tbody>
 
                     </table>
                   </div>

@@ -105,7 +105,7 @@ Route::prefix('category')->group(function(){
 
 //Admin Products Routes
 Route::prefix('product')->group(function(){
-    Route::get('/view', [BrandController::class, 'ViewBrand'])->name('all.products');
+    Route::get('/manage', [ProductController::class, 'ManageProduct'])->name('manage.products');
     Route::get('/add', [ProductController::class, 'AddProduct'])->name('add.product');
     Route::post('/store', [ProductController::class, 'StoreProduct'])->name('store.product');
     Route::get('/edit/{id}', [BrandController::class, 'EditBrand'])->name('edit.brand');

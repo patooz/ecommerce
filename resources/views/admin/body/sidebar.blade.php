@@ -74,7 +74,7 @@
           </a>
           <ul class="treeview-menu">
             <li class="{{($route=='add.product') ? 'active' : ''}}"><a href="{{route ('add.product')}}"><i class="ti-more"></i>Add Product</a></li>
-            <li class="{{($route=='all.products') ? 'active' : ''}}"><a href="{{route ('all.products')}}"><i class="ti-more"></i>Manage Products</a></li>
+            <li class="{{($route=='manage.products') ? 'active' : ''}}"><a href="{{route ('manage.products')}}"><i class="ti-more"></i>Manage Products</a></li>
 
           </ul>
         </li>
