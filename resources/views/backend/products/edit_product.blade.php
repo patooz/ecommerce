@@ -489,6 +489,59 @@
         <!-- /.box -->
 
       </section>
+
+      {{-- Multi image update Area start--}}
+      <section class="content">
+          <div class="row">
+
+            <div class="col-md-12">
+				<div class="box bt-3 border-info">
+				  <div class="box-header">
+					<h4 class="box-title">Multiple Image <strong>Update</strong></h4>
+				  </div>
+
+                  <form action="" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row row-sm">
+                        @foreach ($multi_imgs as $img )
+                        <div class="col-md-3">
+
+                <div class="card">
+                    <img src="{{asset($img->photo_name)}}" class="card-img-top" style="width: 200px; height: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="" class="btn btn-sm btn-danger" id="delete" title="Delete Data"><i class="fa fa-trash"></i></a></h5>
+                        <p class="card-text">
+                            <div class="form-group">
+                                <label class="form-control-lable">Change Image <span class="text-danger">*</span></label>
+                                <input type="file" class="form-control" name="multi_img[$img->id]">
+                            </div>
+                        </p>
+                    </div>
+                    </div>
+
+                        </div>{{--end col md-3--}}
+                        @endforeach
+                    </div>
+
+                    <div class="text-xs-right">
+                        <input type="submit" class="btn btn-rounded btn-primary mb-5 " value="Update Images">
+                        <br>
+                    </div>
+
+
+                </form>
+
+
+				</div>
+			  </div>
+
+
+          </div>{{-- end row --}}
+
+      </section>
+
+
+
       <!-- /.content -->
     </div>
 
