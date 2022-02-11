@@ -98,5 +98,19 @@ class ProductController extends Controller
        return view('backend.products.view_product',compact('products'));
     }
 
+    public function EditProduct($id)
+    {
+        $categories=Category::latest()->get();
+        $brands=Brand::latest()->get();
+        $subcategories=SubCategory::latest()->get();
+        $subsubcategories=SubSubCategory::latest()->get();
+        $products=Product::findOrFail($id);
+
+        return view('backend.products.edit_product', compact('categories', 'brands', 'subcategories', 'subsubcategories', 'products'));
+
+
+
+    }
+
 }
 

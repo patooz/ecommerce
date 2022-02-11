@@ -14,7 +14,7 @@
        <!-- Basic Forms -->
         <div class="box">
           <div class="box-header with-border">
-            <h4 class="box-title">Add Product</h4>
+              <h4 class="box-title">Edit Product</h4>
 
           </div>
           <!-- /.box-header -->
@@ -35,7 +35,7 @@
         <select name="brand_id"  class="form-control" required data-validation-required-message="This field is required">
             <option value="" selected="" disabled="" >Select Brand</option>
             @foreach ($brands as $brand )
-            <option value="{{$brand->id}}">{{$brand->brand_name_en}}</option>
+            <option value="{{$brand->id}}" {{$brand->id == $products->brand_id? 'selected': ''}} >{{$brand->brand_name_en}}</option>
             @endforeach
         </select>
         @error('brand_id')
@@ -55,7 +55,7 @@
             <select name="category_id"  class="form-control" required data-validation-required-message="This field is required">
                 <option value="" selected="" disabled="" >Select Category</option>
                 @foreach ($categories as $category )
-                <option value="{{$category->id}}">{{$category->category_name_en}}</option>
+                <option value="{{$category->id}}" {{$category->id == $products->category_id? 'selected': ''}}>{{$category->category_name_en}}</option>
                 @endforeach
             </select>
             @error('category_id')
@@ -74,6 +74,9 @@
         <div class="controls">
             <select name="subcategory_id"  class="form-control" required data-validation-required-message="This field is required">
                 <option value="" selected="" disabled="" >Select Subcategory</option>
+                @foreach ($subcategories as $sub )
+                <option value="{{$sub->id}}" {{$sub->id == $products->subcategory_id? 'selected': ''}}>{{$sub->subcategory_name_en}}</option>
+                @endforeach
 
             </select>
             @error('subcategory_id')
@@ -106,6 +109,9 @@
     <div class="controls">
         <select name="subsubcategory_id"  class="form-control"required data-validation-required-message="This field is required">
             <option value="" selected="" disabled="" >Select Sub-Subcategory</option>
+            @foreach ($subsubcategories as $subsub )
+            <option value="{{$subsub->id}}" {{$subsub->id == $products->subsubcategory_id? 'selected': ''}}>{{$subsub->subsubcategory_name_en}}</option>
+            @endforeach
 
         </select>
         @error('subsubcategory_id')
@@ -123,7 +129,7 @@
     <div class="form-group">
         <h5>Product Name in English <span class="text-danger">*</span></h5>
         <div class="controls">
-            <input type="text" name="product_name_en" class="form-control" required data-validation-required-message="This field is required">
+            <input type="text" name="product_name_en" class="form-control" required data-validation-required-message="This field is required" value="{{ $products->product_name_en }}">
             @error('product_name_en')
             <span class="text-danger">{{ $message }}</span>
 
@@ -138,7 +144,7 @@
         <div class="form-group">
             <h5>Product Name in Swahili <span class="text-danger">*</span></h5>
             <div class="controls">
-                <input type="text" name="product_name_swa" class="form-control" required data-validation-required-message="This field is required">
+                <input type="text" name="product_name_swa" class="form-control" required data-validation-required-message="This field is required" value="{{ $products->product_name_swa }}" >
                 @error('product_name_swa')
                 <span class="text-danger">{{ $message }}</span>
 
@@ -168,7 +174,7 @@
     <div class="form-group">
         <h5>Product Code <span class="text-danger">*</span></h5>
         <div class="controls">
-            <input type="text" name="product_code" class="form-control" required data-validation-required-message="This field is required">
+            <input type="text" name="product_code" class="form-control" required data-validation-required-message="This field is required" value="{{ $products->product_code }}">
             @error('product_code')
             <span class="text-danger">{{ $message }}</span>
 
@@ -184,7 +190,7 @@
     <div class="form-group">
         <h5>Product Quantity <span class="text-danger">*</span></h5>
         <div class="controls">
-            <input type="text" name="product_qty" class="form-control" required="">
+            <input type="text" name="product_qty" class="form-control" required="" value="{{ $products->product_qty }}">
             @error('product_qty')
             <span class="text-danger">{{ $message }}</span>
 
@@ -199,7 +205,7 @@
         <div class="form-group">
             <h5>Product Tags in English <span class="text-danger">*</span></h5>
             <div class="controls">
-                <input type="text" name="product_tags_en" class="form-control" required data-validation-required-message="This field is required" value="Lorem,Ipsum,Amet" data-role="tagsinput" placeholder="add tags">
+                <input type="text" name="product_tags_en" class="form-control" required data-validation-required-message="This field is required" value="{{ $products->product_tags_en }}" data-role="tagsinput" placeholder="add tags">
                 @error('product_tags_en')
                 <span class="text-danger">{{ $message }}</span>
 
@@ -230,7 +236,7 @@
     <div class="form-group">
         <h5>Product Tags in Swahili <span class="text-danger">*</span></h5>
         <div class="controls">
-            <input type="text" name="product_tags_swa" class="form-control" required data-validation-required-message="This field is required" value="Lorem,Ipsum,Amet" data-role="tagsinput" placeholder="Ongeza Lebo">
+            <input type="text" name="product_tags_swa" class="form-control" required data-validation-required-message="This field is required" value="{{ $products->product_tags_swa }}" data-role="tagsinput" placeholder="Ongeza Lebo">
             @error('product_tags_swa')
             <span class="text-danger">{{ $message }}</span>
 
@@ -247,7 +253,7 @@
     <div class="form-group">
         <h5>Product Size in English <span class="text-danger">*</span></h5>
         <div class="controls">
-            <input type="text" name="product_size_en" class="form-control" required data-validation-required-message="This field is required" value="Small,Medium,Large" data-role="tagsinput" placeholder="Add Size Tags">
+            <input type="text" name="product_size_en" class="form-control" required data-validation-required-message="This field is required" value="{{ $products->product_size_en }}" data-role="tagsinput" placeholder="Add Size Tags">
             @error('product_size_en')
             <span class="text-danger">{{ $message }}</span>
 
@@ -262,7 +268,7 @@
             <div class="form-group">
                 <h5>Product Size in Swahili <span class="text-danger">*</span></h5>
                 <div class="controls">
-                    <input type="text" name="product_size_swa" class="form-control" required data-validation-required-message="This field is required" value="Ndogo, Kati, Kubwa" data-role="tagsinput" placeholder="Ongeza Lebo za Ukubwa">
+                    <input type="text" name="product_size_swa" class="form-control" required data-validation-required-message="This field is required" value="{{ $products->product_size_swa }}" data-role="tagsinput" placeholder="Ongeza Lebo za Ukubwa">
                     @error('product_size_swa')
                     <span class="text-danger">{{ $message }}</span>
 
@@ -280,11 +286,11 @@
 
 
         <div class="row"> {{-- start 5th row  --}}
-            <div class="col-md-4">
+            <div class="col-md-6">
     <div class="form-group">
         <h5>Product Color in English <span class="text-danger">*</span></h5>
         <div class="controls">
-            <input type="text" name="product_color_en" class="form-control" required data-validation-required-message="This field is required" value="Red,Black,White" data-role="tagsinput" placeholder="Add Color Tags">
+            <input type="text" name="product_color_en" class="form-control" required data-validation-required-message="This field is required" value="{{ $products->product_color_en }}" data-role="tagsinput" placeholder="Add Color Tags">
             @error('product_color_en')
             <span class="text-danger">{{ $message }}</span>
 
@@ -292,14 +298,14 @@
             </div>
     </div>
 
-            </div>   {{-- end col-md-4 --}}
+            </div>   {{-- end col-md-6 --}}
 
-            <div class="col-md-4">
+            <div class="col-md-6">
 
     <div class="form-group">
         <h5>Product Color in Swahili <span class="text-danger">*</span></h5>
         <div class="controls">
-            <input type="text" name="product_color_swa" class="form-control" required data-validation-required-message="This field is required" value="Nyekundu,Nyeusi,Nyeupe" data-role="tagsinput" placeholder="Ongeza Lebo za Rangi">
+            <input type="text" name="product_color_swa" class="form-control" required data-validation-required-message="This field is required" value="{{ $products->product_color_swa }}" data-role="tagsinput" placeholder="Ongeza Lebo za Rangi">
             @error('product_color_swa')
             <span class="text-danger">{{ $message }}</span>
 
@@ -307,38 +313,40 @@
             </div>
     </div>
 
-        </div>   {{-- end col-md-4 --}}
+        </div>   {{-- end col-md-6 --}}
 
-        <div class="col-md-4">
+
+        </div>   {{-- end 5th row --}}
+
+
+
+        <div class="row"> {{-- start 6th row  --}}
+
+        <div class="col-md-6">
 
             <div class="form-group">
                 <h5>Product Selling Price <span class="text-danger">*</span></h5>
                 <div class="controls">
-                    <input type="text" name="selling_price" class="form-control" required data-validation-required-message="This field is required">
+                    <input type="text" name="selling_price" class="form-control" required data-validation-required-message="This field is required" value="{{ $products->selling_price }}">
                     @error('selling_price')
                     <span class="text-danger">{{ $message }}</span>
 
                     @enderror
                     </div>
             </div>
-        </div>   {{-- end col-md-4 --}}
-
-        </div>   {{-- end 5th row --}}
 
 
+        </div>   {{-- end col-md-6 --}}
 
 
 
 
 
-
-
-        <div class="row"> {{-- start 6th row  --}}
-            <div class="col-md-4">
+            <div class="col-md-6">
     <div class="form-group">
         <h5>Product Discount Price <span class="text-danger">*</span></h5>
         <div class="controls">
-            <input type="text" name="discount_price" class="form-control" required data-validation-required-message="This field is required">
+            <input type="text" name="discount_price" class="form-control" required data-validation-required-message="This field is required" value="{{ $products->discount_price }}">
             @error('discount_price')
             <span class="text-danger">{{ $message }}</span>
 
@@ -346,43 +354,9 @@
             </div>
     </div>
 
-    </div>   {{-- end col-md-4 --}}
-
-    <div class="col-md-4">
-
-            <div class="form-group">
-                <h5>Product Main Thumbnail <span class="text-danger">*</span></h5>
-                <div class="controls">
-                    <input type="file" name="product_thumbnail" class="form-control" required data-validation-required-message="This field is required" onchange="mainThumbUrl(this)">
-                    @error('product_thumbnail')
-                    <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                    <img src="" id="mainThmb">
-                    </div>
-            </div>
-
-    </div>   {{-- end col-md-4 --}}
-
-    <div class="col-md-4">
-            <div class="form-group">
-                <h5>Product Images <span class="text-danger">*</span></h5>
-                <div class="controls">
-                    <input type="file" name="multi_img[]" class="form-control" required data-validation-required-message="This field is required" multiple="" id="multiImg" >
-                    @error('multi_img')
-                    <span class="text-danger">{{ $message }}</span>
-                    @enderror
-                    <div class="row" id="preview_img" >
-
-                    </div>
-                    </div>
-            </div>
-
-    </div>   {{-- end col-md-4 --}}
+    </div>   {{-- end col-md-6 --}}
 
     </div>   {{-- end 6th row --}}
-
-
-
 
 
 
@@ -392,7 +366,9 @@
             <h5>Product Short Desccription in English <span class="text-danger">*</span></h5>
             <div class="controls">
                 <div class="controls">
-                    <textarea name="short_description_en" id="textarea" class="form-control" required data-validation-required-message="This field is required" required placeholder="Short Description"></textarea>
+                    <textarea name="short_description_en" id="textarea" class="form-control" required data-validation-required-message="This field is required" required placeholder="Short Description">
+                        {!! $products->short_description_en !!}
+                    </textarea>
                 </div>
 
                 </div>
@@ -406,7 +382,9 @@
                 <h5>Product Short Desccription in Swahili <span class="text-danger">*</span></h5>
                 <div class="controls">
                     <div class="controls">
-                        <textarea name="short_description_swa" id="textarea" class="form-control" required data-validation-required-message="This field is required" required placeholder="Maelezo Fupi"></textarea>
+                        <textarea name="short_description_swa" id="textarea" class="form-control" required data-validation-required-message="This field is required" required placeholder="Maelezo Fupi">
+                            {!! $products->short_description_swa !!}
+                        </textarea>
                     </div>
 
                     </div>
@@ -430,6 +408,7 @@
             <div class="controls">
                 <div class="controls">
                     <textarea id="editor1" name="long_description_en" rows="10" required data-validation-required-message="This field is required" cols="80"   >
+                        {!! $products->long_description_en !!}
 
                     </textarea>
                 </div>
@@ -446,6 +425,7 @@
                 <div class="controls">
                     <div class="controls">
                         <textarea id="editor2" name="long_description_swa" required data-validation-required-message="This field is required" rows="10" cols="80"  >
+                            {!! $products->long_description_swa !!}
 
                         </textarea>
                     </div>
@@ -466,11 +446,11 @@
 
         <div class="controls">
         <fieldset>
-            <input type="checkbox" id="checkbox_2" name="hot_deals" value="1">
+            <input type="checkbox" id="checkbox_2" name="hot_deals" value="1" {{$products->hot_deals == 1 ? 'checked' : ''}}>
             <label for="checkbox_2">Hot Deals</label>
         </fieldset>
         <fieldset>
-            <input type="checkbox" id="checkbox_3" name="featured" value="1">
+            <input type="checkbox" id="checkbox_3" name="featured" value="1" {{$products->featured == 1 ? 'checked' : ''}}>
             <label for="checkbox_3">Featured Products</label>
         </fieldset>
         </div>
@@ -481,11 +461,11 @@
 
         <div class="controls">
     <fieldset>
-        <input type="checkbox" id="checkbox_4" name="special_offer" value="1">
+        <input type="checkbox" id="checkbox_4" name="special_offer" value="1" {{$products->special_offer == 1 ? 'checked' : ''}}>
         <label for="checkbox_4">Special Offer</label>
     </fieldset>
     <fieldset>
-        <input type="checkbox" id="checkbox_5" name="special_deals" value="1">
+        <input type="checkbox" id="checkbox_5" name="special_deals" value="1" {{$products->special_deals == 1 ? 'checked' : ''}}>
         <label for="checkbox_5">Special Deals</label>
     </fieldset>
         </div>
@@ -494,7 +474,7 @@
 </div>
 </div>
 <div class="text-xs-right">
-    <input type="submit" class="btn btn-rounded btn-primary mb-5 " value="Add Product">
+    <input type="submit" class="btn btn-rounded btn-primary mb-5 " value="Update Product">
 </div>
 </form>
 
