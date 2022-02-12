@@ -151,5 +151,62 @@ class ProductController extends Controller
 
     }
 
+
+    public function UpdateProductMulti_image(Request $request)
+    {
+        $imgs=$request->multi_img;
+        foreach ($imgs as $id => $img) {
+            $image_delete=MultiImg::findOrFail($id);
+            unlink($image_delete->photo_name);
+
+
+
+            $make_name=hexdec(uniqid()). '.'.$img->getClientOriginalExtension();
+            Image::make($img)->resize(917,1000)->save('upload/products/multi_images/'.$make_name);
+            $uploadPath='upload/products/multi_images/'.$make_name;
+            MultiImg::where('id',$id)->update([
+                'photo_name'=>$uploadPath,
+                'updated_at'=>Carbon::now(),
+            ]);
+            }
+
+        Alert::toast('Product Multi Images Updated Successfully!', 'info');
+        return redirect()->back();
+
+
+    }
+
+    public function UpdateProductThumb_nail(Request $request)
+    {
+       $product_id=$request->id;
+       $old_img=$request->old_image;
+       unlink($old_img);
+
+       $image=$request->file('product_thumbnail');
+        $name_gen=hexdec(uniqid()). '.'.$image->getClientOriginalExtension();
+        Image::make($image)->resize(917,1000)->save('upload/products/thumbnails/'.$name_gen);
+        $save_url='upload/products/thumbnails/'.$name_gen;
+
+        Product::findOrFail($product_id)->update([
+            'product_thumbnail'=>$save_url,
+            'updated_at'=>Carbon::now(),
+        ]);
+
+        Alert::toast('Product Thumbnail Updated Successfully!', 'info');
+        return redirect()->back();
+
+    }
+
+    public function DeleteProductMulti_Img($id)
+    {
+       $old_img=MultiImg::findOrFail($id);
+       unlink($old_img->photo_name);
+       MultiImg::findOrFail($id)->delete();
+
+       Alert::toast('Product Image Deleted Successfully!', 'success');
+       return redirect()->back();
+    }
+
+
 }
 
