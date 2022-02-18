@@ -28,4 +28,16 @@ class Subcategory extends Model
     {
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
+
+    /**
+     * Get the user that owns the Subcategory
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function products(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+
 }

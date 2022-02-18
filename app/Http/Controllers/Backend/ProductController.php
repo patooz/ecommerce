@@ -95,7 +95,7 @@ class ProductController extends Controller
     public function ManageProduct()
     {
        $products=Product::latest()->get();
-       return view('backend.products.view_product',compact('products'));
+       return view('backend.products.view_products',compact('products'));
     }
 
     public function EditProduct($id)
@@ -207,6 +207,53 @@ class ProductController extends Controller
        return redirect()->back();
     }
 
+    public function ViewProduct($id)
+    {
+        $products=Product::findOrFail($id);
+        $multi_imgs=MultiImg::where('product_id',$id)->get();
+        $brands=Brand::first();
+        $categories=Category::first();
+        $subcategories=Subcategory::first();
+        $subsubcategories=SubSubCategory::first();
+        $all_products=Product::first();
+
+
+        return view('backend.products.test', compact('products', 'multi_imgs','brands','categories','subcategories','subsubcategories','all_products'));
+    }
+
+    public function InactiveProduct($id)
+    {
+        Product::findOrFail($id)->update(['status'=>0]);
+
+        Alert::toast('Product Inactive!', 'success');
+        return redirect()->back();
+
+    }
+
+    public function ActiveProduct($id)
+    {
+        Product::findOrFail($id)->update(['status'=>1]);
+
+        Alert::toast('Product Active!', 'success');
+        return redirect()->back();
+    }
+
+    public function DeleteProduct($id)
+    {
+        $product=Product::findOrFail($id);
+        unlink($product->product_thumbnail);
+        Product::findOrfail($id)->delete();
+
+        $images=MultiImg::where('product_id',$id)->get();
+            foreach($images as $image){
+                unlink($image->photo_name);
+                MultiImg::where('product_id',$id)->delete();
+            }
+
+            Alert::toast('Product Deleted Successfully!', 'success');
+            return redirect()->back();
+
+    }
 
 }
 

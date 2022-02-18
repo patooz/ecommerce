@@ -36,7 +36,7 @@
 
 
                           <tr>
-                              <td>{{$item['category']['category_name_en']}}</td>
+                              <td>{{isset($item['category']['category_name_en'])}}</td>
                               <td>{{$item->subcategory_name_en}}</td>
                               <td>{{$item->subcategory_name_swa}}</td>
 

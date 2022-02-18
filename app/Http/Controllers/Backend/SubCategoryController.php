@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Subcategory;
 use App\Models\Category;
+use App\Models\Product;
 use Alert;
 
 class SubCategoryController extends Controller
@@ -13,6 +14,7 @@ class SubCategoryController extends Controller
     public function ViewSubcategories()
     {
         $categories= Category::orderBy('category_name_en', 'ASC')->get();
+        $products= Product::orderBy('product_name_en', 'ASC')->get();
         $subcategory=Subcategory::latest()->get();
         return view('backend.subcategories.subcategory_view',compact('subcategory', 'categories'));
     }
@@ -50,6 +52,7 @@ class SubCategoryController extends Controller
     public function EditSubCategory($id)
     {
         $categories= Category::orderBy('category_name_en', 'ASC')->get();
+        $products= Product::orderBy('product_name_en', 'ASC')->get();
         $subcategory=Subcategory::findOrFail($id);
         return view('backend.subcategories.subcategory_edit',compact('categories', 'subcategory'));
     }

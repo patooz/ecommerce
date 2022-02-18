@@ -16,4 +16,14 @@ class Category extends Model
         'category_icon',
     ];
 
+    /**
+     * Get the subcategory associated with the Category
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function subcategory(): HasOne
+    {
+        return $this->hasOne(Subcategory::class);
+    }
+
 }
