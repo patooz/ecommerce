@@ -10,6 +10,7 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Frontend\LanguageController;
 use App\Models\User;
 
 
@@ -31,9 +32,13 @@ Route::group(['prefix'=> 'admin', 'middleware'=> ['admin:admin']], function(){
     Route::post('/login', [AdminController::class, 'store'])->name('admin.login');
 } );
 
+Route::middleware(['auth:admin'])->group(function () {
+
+
+
 Route::middleware(['auth:sanctum,admin', 'verified'])->get('/admin/dashboard', function () {
     return view('admin.index');
-})->name('admin.dashboard');
+})->name('admin.dashboard')->middleware('auth:admin');
 
 ##Admin all routes
 Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
@@ -44,11 +49,13 @@ Route::get('/change/admin/password', [AdminProfileController::class, 'ChangeAdmi
     ->name('change.admin.password');
 Route::post('update/admin/password', [AdminProfileController::class, 'UpdateAdminPassword'])->name('update.admin.password');
 
+});
+
 //all user routes
 
 
 
-Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
+Route::middleware(['auth:sanctum,web', 'verified'])->get('/web/dashboard', function () {
     $id=Auth::user()->id;
     $user=User::find($id);
     return view('dashboard', compact('user'));
@@ -135,6 +142,12 @@ Route::prefix('slider')->group(function(){
 
 
     });
+
+    //Admin Multilanguage Routes
+    Route::get('/kiswahili/language', [LanguageController::class, 'Kiswahili'])->name('swa.language');
+    Route::get('/english/language', [LanguageController::class, 'English'])->name('en.language');
+
+
 
 
 

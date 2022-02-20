@@ -8,13 +8,16 @@ use Auth;
 use App\Models\User;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Category;
+use App\Models\Subcategory;
 
 
 class IndexController extends Controller
 {
     public function index()
     {
-        return view('frontend.index');
+        $categories=Category::orderBy('category_name_en','ASC')->get();
+        return view('frontend.index',compact('categories'));
     }
 
     public function UserLogout()
