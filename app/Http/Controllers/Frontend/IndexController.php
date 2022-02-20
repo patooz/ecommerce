@@ -10,6 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Models\Slider;
 
 
 class IndexController extends Controller
@@ -17,7 +18,8 @@ class IndexController extends Controller
     public function index()
     {
         $categories=Category::orderBy('category_name_en','ASC')->get();
-        return view('frontend.index',compact('categories'));
+        $sliders=Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
+        return view('frontend.index',compact('categories','sliders'));
     }
 
     public function UserLogout()
