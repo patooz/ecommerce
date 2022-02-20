@@ -35,10 +35,6 @@ class IndexController extends Controller
 
        return view('frontend.profile.user_profile', compact('user'));
 
-
-
-
-
     }
 
     public function UpdateUserProfile(Request $request)
