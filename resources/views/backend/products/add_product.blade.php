@@ -338,11 +338,8 @@
     <div class="form-group">
         <h5>Product Discount Price <span class="text-danger">*</span></h5>
         <div class="controls">
-            <input type="text" name="discount_price" class="form-control" required data-validation-required-message="This field is required">
-            @error('discount_price')
-            <span class="text-danger">{{ $message }}</span>
+            <input type="text" name="discount_price" class="form-control">
 
-            @enderror
             </div>
     </div>
 

@@ -14,8 +14,8 @@
 
 
 
-         
-         
+
+
 
           {{-- Add Category --}}
           <div class="col-10">
@@ -56,12 +56,10 @@
                                     <option value="" selected="" disabled="" >Select Subcategory</option>
 
 
-                                    @foreach ($subcategories as $subsub )
-                                    <option value="{{$subsub->id}}" {{$subsub->id == $subsubcategories->sub_category_id ? 'selected' : ''  }} >{{$subsub->subcategory_name_en}}</option>
+                                    @foreach ($subcategories as $sub )
+                                    <option value="{{$sub->id}}" {{$sub->id == $subsubcategories->sub_category_id ? 'selected' : ''  }} >{{$sub->subcategory_name_en}}</option>
                                     @endforeach
 
-
-                                    
                                 </select>
                                 @error('sub_category_id')
                                         <span class="text-danger">{{ $message }}</span>
