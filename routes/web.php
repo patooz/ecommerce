@@ -147,6 +147,12 @@ Route::prefix('slider')->group(function(){
     Route::get('/kiswahili/language', [LanguageController::class, 'Kiswahili'])->name('swa.language');
     Route::get('/english/language', [LanguageController::class, 'English'])->name('en.language');
 
+    //Frontend Product Details page
+    Route::get('product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+
+
+
+
 
 
 

@@ -964,7 +964,7 @@ $subcategories=App\Models\Subcategory::where('category_id',$category->id)->order
         <div class="products">
             <div class="product">
             <div class="product-image">
-                <div class="image"> <a href="detail.html"><img  src="{{asset($product->product_thumbnail)}}" alt=""></a> </div>
+                <div class="image"> <a href="{{url('product/details/'.$product->id)}}"><img  src="{{asset($product->product_thumbnail)}}" alt=""></a> </div>
 
         @php
             $amount=$product->selling_price - $product->discount_price;
@@ -976,7 +976,7 @@ $subcategories=App\Models\Subcategory::where('category_id',$category->id)->order
             <div class="tag new"><span>new</span></div>
 
             @else
-            <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+            <div class="tag hot"><span>{{ round($discount) }}%<br></span></div>
 
             @endif
         </div>
@@ -986,7 +986,7 @@ $subcategories=App\Models\Subcategory::where('category_id',$category->id)->order
             <!-- /.product-image -->
 
     <div class="product-info text-left">
-        <h3 class="name"><a href="detail.html">
+        <h3 class="name"><a href="{{url('product/details/'.$product->id.'/'.$product->product_slug_en)}}">
             @if (session()->get('language') == 'Kiswahili'){{ $product->product_name_swa}} @else {{ $product->product_name_en }} @endif
               </a></h3>
         <div class="rating rateit-small"></div>
@@ -1068,7 +1068,7 @@ $subcategories=App\Models\Subcategory::where('category_id',$category->id)->order
                 <div class="tag new"><span>new</span></div>
 
                 @else
-                <div class="tag hot"><span>{{ round($discount) }}%</span></div>
+                <div class="tag hot"><span>{{ round($discount) }}% </span></div>
 
                 @endif
             </div>
