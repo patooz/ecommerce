@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Slider;
 use App\Models\Product;
+use App\Models\MultiImg;
 
 
 class IndexController extends Controller
@@ -90,7 +91,8 @@ class IndexController extends Controller
     public function ProductDetails($id,$slug)
     {
        $product=Product::findOrFail($id);
-       return view('frontend.products.product_details',compact('product'));
+       $multimg=MultiImg::where('product_id',$id)->get();
+       return view('frontend.products.product_details',compact('product','multimg'));
 
     }
 }
