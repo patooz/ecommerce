@@ -175,7 +175,7 @@
     <div class="form-group">
         <h5>Product Code <span class="text-danger">*</span></h5>
         <div class="controls">
-            <input type="text" name="product_code" class="form-control" required data-validation-required-message="This field is required" value="{{ $products->product_code }}">
+            <input type="text" name="product_code" class="form-control" required data-validation-required-message="This field is required" value="{{ $products->product_code }}" readonly>
             @error('product_code')
             <span class="text-danger">{{ $message }}</span>
 

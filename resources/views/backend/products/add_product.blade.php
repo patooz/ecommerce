@@ -1,6 +1,7 @@
 @extends('admin.admin_master')
 @section('admin')
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{asset ('frontend/assets/js/jquery.min.js')}}"></script>
 
 <!-- Content Wrapper. Contains page content -->
 
@@ -168,7 +169,30 @@
     <div class="form-group">
         <h5>Product Code <span class="text-danger">*</span></h5>
         <div class="controls">
-            <input type="text" name="product_code" class="form-control" required data-validation-required-message="This field is required">
+
+            @php
+                $products=DB :: table('products') -> get();
+
+                @endphp
+                @if (!$products)
+                   <input type="text" name="product_code" class="form-control" required data-validation-required-message="This field is required" value="1001" readonly>
+               @else
+                    @foreach ($products as $value)
+                    @endforeach
+
+                    @php
+                      $code = $value->product_code +1;
+                    @endphp
+
+
+
+                    <input type="text" name="product_code" class="form-control" required data-validation-required-message="This field is required" value="{{$code}}" readonly>
+                @endif
+
+
+
+
+
             @error('product_code')
             <span class="text-danger">{{ $message }}</span>
 
@@ -199,10 +223,9 @@
         <div class="form-group">
             <h5>Product Tags in English <span class="text-danger">*</span></h5>
             <div class="controls">
-                <input type="text" name="product_tags_en" class="form-control" required data-validation-required-message="This field is required" value="Lorem,Ipsum,Amet" data-role="tagsinput" placeholder="add tags">
+                <input type="text" name="product_tags_en" class="form-control" required data-validation-required-message="This field is required" value="" data-role="tagsinput" placeholder="add tags">
                 @error('product_tags_en')
                 <span class="text-danger">{{ $message }}</span>
-
                 @enderror
                 </div>
         </div>
@@ -230,7 +253,7 @@
     <div class="form-group">
         <h5>Product Tags in Swahili <span class="text-danger">*</span></h5>
         <div class="controls">
-            <input type="text" name="product_tags_swa" class="form-control" required data-validation-required-message="This field is required" value="Lorem,Ipsum,Amet" data-role="tagsinput" placeholder="Ongeza Lebo">
+            <input type="text" name="product_tags_swa" class="form-control" required data-validation-required-message="This field is required" value="" data-role="tagsinput" placeholder="Ongeza Lebo">
             @error('product_tags_swa')
             <span class="text-danger">{{ $message }}</span>
 

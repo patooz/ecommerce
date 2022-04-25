@@ -11,6 +11,7 @@ use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\LanguageController;
+use App\Http\Controllers\Frontend\TagsController;
 use App\Models\User;
 
 
@@ -149,6 +150,15 @@ Route::prefix('slider')->group(function(){
 
     //Frontend Product Details page
     Route::get('product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
+
+    //Frontend Product tags page
+    Route::get('/product/tag/{tag}', [TagsController::class, 'TagWiseProducts']);
+
+    //Frontend Subcategorywise Data
+    Route::get('/product/subcat/{subcatId}/{slug}', [TagsController::class, 'SubCatWiseProducts']);
+
+    //Frontend Subsubcategorywise Data
+    Route::get('/product/subsubcat/{subsubcatId}/{slug}', [TagsController::class, 'SubSubCatWiseProducts']);
 
 
 

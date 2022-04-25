@@ -49,6 +49,15 @@
                 @endif
             </a></li>
 
+            <li><a href="{{ route('admin.login') }}" target="_blank"><i class="icon fa fa-user" ></i>
+                @if (session()->get('language') == 'Kiswahili')
+                Kiingilio Cha Wakubwa
+
+                    @else
+                    Admin Login
+                    @endif
+                </a></li>
+
             @endauth
 
           </ul>
@@ -221,9 +230,10 @@
 
 
                 <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
+                    <a href="{{url('product/subcat/'.$subcategory->id.'/'.$subcategory->subcategory_slug_en)}}">
                 <h2 class="title">
     @if (session()->get('language') == 'Kiswahili'){{$subcategory->subcategory_name_swa}} @else {{$subcategory->subcategory_name_en}} @endif
-                    </h2>
+                    </h2></a>
 
                      {{-- get sub-subcategories table data --}}
                 @php
@@ -233,7 +243,7 @@
                 @foreach ($sub_subcategories as $sub_subcategory )
 
                 <ul class="links">
-                    <li><a href="#">
+                    <li><a href="{{url('product/subsubcat/'.$sub_subcategory->id.'/'.$sub_subcategory->subsubcategory_slug_en)}}">
 @if (session()->get('language') == 'Kiswahili'){{$sub_subcategory->subsubcategory_name_swa}} @else {{$sub_subcategory->subsubcategory_name_en}} @endif
                         </a></li>
                 </ul>
