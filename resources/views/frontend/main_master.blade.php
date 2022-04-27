@@ -57,6 +57,9 @@
 <script src="{{asset ('frontend/assets/js/bootstrap-select.min.js')}}"></script>
 <script src="{{asset ('frontend/assets/js/wow.min.js')}}"></script>
 <script src="{{asset ('frontend/assets/js/scripts.js')}}"></script>
+<script src="{{asset ('frontend/assets/js/sweetalert2.all.min.js')}}"></script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!--Add to cart product Modal START -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -248,7 +251,31 @@
             url: "/store/cart/data/"+id,
             success:function (data) {
                 $('#closeModel').click();
-                console.log(data);
+                // console.log(data);
+
+                const Toast=Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success
+                        })
+
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error
+                        })
+
+                    }
+
+
 
             }
 
