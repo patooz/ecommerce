@@ -164,6 +164,9 @@ Route::prefix('slider')->group(function(){
     //Product View Modal with Ajax
     Route::get('/product/view/modal/{id}', [IndexController::class, 'AjaxProductsView']);
 
+    //Add to cart store data
+    Route::post('/store/cart/data/{id}', [CartController::class, 'AddToCart']);
+
 
 
 
