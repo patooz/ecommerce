@@ -254,11 +254,8 @@
     <div class="form-group">
         <h5>Product Size in English <span class="text-danger">*</span></h5>
         <div class="controls">
-            <input type="text" name="product_size_en" class="form-control" required data-validation-required-message="This field is required" value="{{ $products->product_size_en }}" data-role="tagsinput" placeholder="Add Size Tags">
-            @error('product_size_en')
-            <span class="text-danger">{{ $message }}</span>
+            <input type="text" name="product_size_en" class="form-control"  value="{{ $products->product_size_en }}" data-role="tagsinput" placeholder="Add Size Tags">
 
-            @enderror
             </div>
     </div>
 
@@ -269,11 +266,8 @@
             <div class="form-group">
                 <h5>Product Size in Swahili <span class="text-danger">*</span></h5>
                 <div class="controls">
-                    <input type="text" name="product_size_swa" class="form-control" required data-validation-required-message="This field is required" value="{{ $products->product_size_swa }}" data-role="tagsinput" placeholder="Ongeza Lebo za Ukubwa">
-                    @error('product_size_swa')
-                    <span class="text-danger">{{ $message }}</span>
-
-                    @enderror
+                    <input type="text" name="product_size_swa" class="form-control"  value="{{ $products->product_size_swa }}" data-role="tagsinput" placeholder="Ongeza Lebo za Ukubwa">
+                   
                     </div>
             </div>
 

@@ -5,6 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <meta name="description" content="">
+<meta name="csrf-token" content="{{csrf_token()}}">
 <meta name="author" content="">
 <meta name="keywords" content="MediaCenter, Template, eCommerce">
 <meta name="robots" content="all">
@@ -62,7 +63,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel"><strong><span id="pname"></span></strong></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -72,12 +73,8 @@
                 <div class="col-md-4">
 
                     <div class="card" style="width: 18rem;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                          <h5 class="card-title">Card title</h5>
-                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                          <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
+                        <img src="" class="card-img-top" alt="..." style="height: 220px; width: 200px;" id="pimage" >
+
                       </div>
 
                 </div>
@@ -86,11 +83,15 @@
                 <div class="col-md-4">
 
                     <ul class="list-group">
-                        <li class="list-group-item">An item</li>
-                        <li class="list-group-item">A second item</li>
-                        <li class="list-group-item">A third item</li>
-                        <li class="list-group-item">A fourth item</li>
-                        <li class="list-group-item">And a fifth one</li>
+                        <li class="list-group-item"> Price: <strong class="text-danger" >Ksh <span id="pprice"></span> </strong>
+                            <del id="p_oldprice">  Ksh <span>  </span> </del>
+                        </li>
+                        <li class="list-group-item"> Code: <strong id="pcode"> </strong></li>
+                        <li class="list-group-item"> Category: <strong id="pcat"> </strong></li>
+                        <li class="list-group-item"> Brand: <strong id="pbrand"> </strong></li>
+                        <li class="list-group-item"> Stock: <strong> <span class="badge badge-pill badge-success" id="available" style="background: green; color: white;" ></span>
+                            <span class="badge badge-pill badge-danger" id="unavailable" style="background: red; color: white;" ></span>
+                        </strong></li>
                       </ul>
 
                 </div>
@@ -99,15 +100,30 @@
                 <div class="col-md-4">
 
                     <div class="form-group">
-                        <label for="exampleFormControlSelect1">Example select</label>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                          <option>1</option>
-                          <option>2</option>
-                          <option>3</option>
-                          <option>4</option>
-                          <option>5</option>
+                        <label for="color">Choose Color</label>
+                        <select class="form-control" id="color" name="color">
+
+
                         </select>
                       </div>
+
+                      <div class="form-group" id="sizeArea">
+                        <label for="size">Choose Size</label>
+                        <select class="form-control" id="size" name="size">
+
+
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="qty">Quantity</label>
+                        <input type="number" class="form-control" id="qty" value="1" min="1">
+                      </div>
+
+                      <div class="col-sm-7">
+                          <input type="hidden" id="productId">
+                        <button class="btn btn-primary" type="submit" onclick="addToCart()"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</button>
+                    </div>
 
                 </div>
                 {{-- end col md 4 --}}
@@ -127,6 +143,125 @@
   </div>
   <!--Add to cart product Modal END -->
 
+
+  <script >
+      $.ajaxSetup({
+          headers:{
+              'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
+          }
+      })
+
+    //  product view with modal start
+    function productView(id) {
+        // alert(id)
+        $.ajax({
+            type:'GET',
+            url:'/product/view/modal/'+id,
+            dataType:'json',
+            success: function (data) {
+                // console.log(data);
+
+                $('#pname').text(data.product.product_name_en);
+                $('#price').text(data.product.selling_price);
+                $('#pcode').text(data.product.product_code);
+                $('#pcat').text(data.product.categories.category_name_en);
+                $('#pbrand').text(data.product.brands.brand_name_en);
+                $('#pstock').text(data.product.product_qty);
+                $('#pimage').attr('src','/'+data.product.product_thumbnail);
+
+
+                $('#productId').val(id);
+                $('#qty').val(1);
+
+
+                // product price
+                if (data.product.discount_price == null) {
+
+                    $('#pprice').text('');
+                    $('#p_oldprice').text('');
+                    $('#pprice').text(data.product.selling_price);
+
+                } else {
+                    $('#pprice').text(data.product.discount_price);
+                    $('#p_oldprice').text(data.product.selling_price);
+
+                } // end product price
+
+                //color
+                $('select[name="color"]').empty();
+                $.each(data.color, function (key,value) {
+                  $('select[name="color"]').append('<option value=" '+value+' ">'+value+'</option>')
+
+                }) //end color
+
+                //// start stock option ////
+
+                if (data.product.product_qty > 0) {
+
+                    $('#available').text('');
+                    $('#unavailable').text('');
+                    $('#available').text('Available');
+                } else {
+
+                    $('#available').text('');
+                    $('#unavailable').text('');
+                    $('#unavailable').text('Out of Stock');
+
+                }
+
+                //size
+                $('select[name="size"]').empty();
+                $.each(data.size, function (key,value) {
+                  $('select[name="size"]').append('<option value=" '+value+' ">'+value+'</option>')
+
+                  if (data.size == "") {
+                      $('#sizeArea').hide();
+                  } else {
+                    $('#sizeArea').show();
+
+                  }
+
+                }) //end size
+
+
+            }
+        })
+
+    }
+    //  product view with modal end
+
+
+    //add to cart start product
+
+    function addToCart() {
+        var product_name=$('#pname').text();
+        var id=$('#productId').val();
+        var color=$('#color option:selected').text();
+        var size=$('#size option:selected').text();
+        var quantity=$('#qty').val();
+        $.ajax({
+            type: "post",
+            dataType: 'json',
+            data: {
+                color:color, size:size, quantity:quantity, product_name:product_name
+            },
+            url: "/store/cart/data/"+id,
+            success:function (data) {
+                console.log(data);
+
+            }
+
+        })
+
+    }
+
+
+
+
+    //add to cart end product
+
+
+  </script>
 
 </body>
 </html>

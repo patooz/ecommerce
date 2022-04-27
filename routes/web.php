@@ -12,6 +12,7 @@ use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\TagsController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Models\User;
 
 
@@ -159,6 +160,9 @@ Route::prefix('slider')->group(function(){
 
     //Frontend Subsubcategorywise Data
     Route::get('/product/subsubcat/{subsubcatId}/{slug}', [TagsController::class, 'SubSubCatWiseProducts']);
+
+    //Product View Modal with Ajax
+    Route::get('/product/view/modal/{id}', [IndexController::class, 'AjaxProductsView']);
 
 
 
