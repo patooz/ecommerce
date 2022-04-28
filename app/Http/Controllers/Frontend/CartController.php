@@ -17,14 +17,14 @@ class CartController extends Controller
         if ($product->discount_price == null) {
             Cart::add([
             'id' => $id,
-             'name' => $request->product_name,
-              'qty' => $request->quantity,
-               'price' => $product->selling_price,
-                'weight' => 1,
-                 'options' => [
-                     'image' => $product->product_thumbnail,
-                     'color' => $request->color,
-                     'size' => $request->size,
+            'name' => $request->product_name,
+            'qty' => $request->quantity,
+            'price' => $product->selling_price,
+            'weight' => 1,
+            'options' => [
+                'image' => $product->product_thumbnail,
+                'color' => $request->color,
+                'size' => $request->size,
                      ]
                 ]);
 
@@ -33,14 +33,14 @@ class CartController extends Controller
         } else {
             Cart::add([
                 'id' => $id,
-                 'name' => $request->product_name,
-                  'qty' => $request->quantity,
-                   'price' => $product->discount_price,
-                    'weight' => 1,
-                     'options' => [
-                         'image' => $product->product_thumbnail,
-                         'color' => $request->color,
-                         'size' => $request->size,
+                'name' => $request->product_name,
+                'qty' => $request->quantity,
+                'price' => $product->discount_price,
+                'weight' => 1,
+                'options' => [
+                    'image' => $product->product_thumbnail,
+                    'color' => $request->color,
+                    'size' => $request->size,
                          ]
                     ]);
 
