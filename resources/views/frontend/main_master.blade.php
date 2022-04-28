@@ -254,7 +254,7 @@
                 // console.log(data);
 
                 const Toast=Swal.mixin({
-                        toast: true,
+                        // toast: true,
                         position: 'top-end',
                         icon: 'success',
                         showConfirmButton: false,
