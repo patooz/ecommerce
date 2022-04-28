@@ -170,6 +170,9 @@ Route::prefix('slider')->group(function(){
     //get mini cart data
     Route::get('/product/mini/cart', [CartController::class, 'MiniCart']);
 
+    //remove items from minicart
+    Route::get('/mini/cart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCartItems']);
+
 
 
 

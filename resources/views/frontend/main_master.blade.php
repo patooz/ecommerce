@@ -254,12 +254,14 @@
                 $('#closeModel').click();
                 // console.log(data);
 
+
+                // start sweetalert message
                 const Toast=Swal.mixin({
                         // toast: true,
                         position: 'top-end',
                         icon: 'success',
                         showConfirmButton: false,
-                        timer: 3000
+                        timer: 2000
                     })
 
                     if ($.isEmptyObject(data.error)) {
@@ -275,6 +277,8 @@
                         })
 
                     }
+
+                    // end sweetalert message
 
 
 
@@ -309,7 +313,9 @@
                                 <h3 class="name"><a href="index.php?page-detail">${value.name}</a></h3>
                                 <div class="price">Ksh ${value.price}  (${value.qty}) </div>
                             </div>
-                            <div class="col-xs-1 action"> <a href="#"><i class="fa fa-trash"></i></a> </div>
+                            <div class="col-xs-1 action">
+                                 <button type="submit" id="${value.rowId}" onClick="removeMiniCart(this.id)" ><i class="fa fa-trash"></i></button>
+                                 </div>
                             </div>
                         </div>
                         <!-- /.cart-item -->
@@ -326,6 +332,46 @@
       }
 
       miniCart();
+
+      //remove items from minicart start
+
+      function removeMiniCart(rowId) {
+        $.ajax({
+            type: 'GET',
+            url: '/mini/cart/product-remove/'+rowId,
+            dataType: 'json',
+            success: function (data) {
+                miniCart();
+
+                //start sweetalert message
+
+                const Toast=Swal.mixin({
+                        // toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success
+                        })
+
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error
+                        })
+
+                    }
+                //end sweetalert message
+
+            }
+        })
+      }
+      //remove items from minicart end
 
   </script>
 
