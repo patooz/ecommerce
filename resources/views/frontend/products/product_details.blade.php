@@ -124,7 +124,7 @@
 						<div class="product-info">
 
 
-							<h1 class="name">@if (session()->get('language') == 'Kiswahili'){{$product->product_name_swa}} @else {{$product->product_name_en}} @endif</h1>
+							<h1 class="name" id="pname">@if (session()->get('language') == 'Kiswahili'){{$product->product_name_swa}} @else {{$product->product_name_en}} @endif</h1>
 
 							<div class="rating-reviews m-t-20">
 								<div class="row">
@@ -205,7 +205,7 @@
                                     <div class="form-group">
                                         <label class="info-title control-label">Choose Color </label>
 
-                                        <select class="form-control unicase-form-control selectpicker">
+                                        <select class="form-control unicase-form-control selectpicker" style="display: none;" id="color">
                                             <option selected="" disabled="">Choose Color</option>
                                             @foreach ($product_color_en as $color)
                                             <option value="$color">{{ucwords($color)}}</option>
@@ -221,8 +221,13 @@
                                     <div class="col-sm-6">
 
                                     <div class="form-group">
+                                        @if ($product->product_size_en == null)
+
+                                        @else
+
+
                                         <label class="info-title control-label">Choose Size </label>
-                                        <select class="form-control unicase-form-control selectpicker">
+                                        <select class="form-control unicase-form-control selectpicker" style="display: none;" id="size">
                                             <option selected="" disabled="">Choose Size</option>
 
 
@@ -231,6 +236,7 @@
                                             @endforeach
 
                                         </select>
+                                        @endif
                                     </div>
                                     {{-- end form group  --}}
 
@@ -267,8 +273,10 @@
 							            </div>
 									</div>
 
+                                    <input type="hidden" id="productId" value="{{ $product->id }}" min="1">
+
 									<div class="col-sm-7">
-										<a href="#" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</a>
+										<button type="submit" onclick="addToCart()" class="btn btn-primary"><i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART</button>
 									</div>
 
 
