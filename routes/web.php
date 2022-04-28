@@ -167,6 +167,9 @@ Route::prefix('slider')->group(function(){
     //Add to cart store data
     Route::post('/store/cart/data/{id}', [CartController::class, 'AddToCart']);
 
+    //get mini cart data
+    Route::get('/product/mini/cart', [CartController::class, 'MiniCart']);
+
 
 
 
