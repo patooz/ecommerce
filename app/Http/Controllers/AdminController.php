@@ -70,6 +70,7 @@ class AdminController extends Controller
             Alert::toast('Logged In Successfully!', 'success');
             return app(LoginResponse::class);
 
+
         });
 
     }

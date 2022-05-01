@@ -375,6 +375,323 @@
 
   </script>
 
+
+{{-- add to wishlist start--}}
+
+<script>
+    function addToWishList(productId) {
+        $.ajax({
+            type: 'POST',
+            url: '/add-to-wishlist/'+productId,
+            dataType: 'json',
+
+            success: function (data) {
+
+                //start sweetalert message
+
+                const Toast=Swal.mixin({
+                        // toast: true,
+                        position: 'center',
+
+                        showConfirmButton: true,
+
+                    })
+
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+
+                    }
+                //end sweetalert message
+
+                redire
+
+            }
+
+        })
+
+    }
+</script>
+
+{{-- add to wishlist end--}}
+
+{{-- load wishlist data start --}}
+
+<script>
+    function Wishlist() {
+          $.ajax({
+              type: 'GET',
+              url: '/user/get-wishlist-item',
+              dataType: 'json',
+              success: function (response) {
+                //   console.log(response);
+
+                var rows=''
+                $.each(response, function (key,value) {
+                    rows += `<tr>
+					<td class="col-md-2"><img src="/${value.product.product_thumbnail}" alt="imga"></td>
+					<td class="col-md-7">
+						<div class="product-name"><a href="#">${value.product.product_name_en}</a></div>
+
+						<div class="price">
+
+                            ${value.product.discount_price == null
+                                ? `Ksh ${value.product.selling_price }`
+                                :
+                                `Ksh ${value.product.discount_price }
+                                <span>Ksh ${value.product.selling_price }</span>
+                                `
+                            }
+
+						</div>
+					</td>
+					<td class="col-md-2">
+
+                        <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="${value.product_id}" onclick="productView(this.id)">  <i class="fa fa-shopping-cart"></i> ADD TO CART </button>
+					</td>
+					<td class="col-md-1 close-btn">
+						<button type="submit" id="${value.id}" onClick="RemoveWishlistItem(this.id)" class="btn btn-danger"><i class="fa fa-times"></i></button>
+					</td>
+				</tr>`
+
+
+                });
+                $('#wishlist').html(rows);
+
+              }
+          })
+
+      }
+
+      Wishlist();
+
+      //remove wishlist item start
+
+      function RemoveWishlistItem(id) {
+        $.ajax({
+            type: 'GET',
+            url: '/user/remove-wishlist-item/'+id,
+            dataType: 'json',
+            success: function (data) {
+                Wishlist();
+
+                //start sweetalert message
+
+                const Toast=Swal.mixin({
+                        // toast: true,
+                        position: 'center',
+                        showConfirmButton: true,
+
+                    })
+
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+
+                    }
+                //end sweetalert message
+
+            }
+        })
+      }
+      //remove wishlist item end
+
+
+
+</script>
+
+
+{{-- end wishlist data --}}
+
+
+
+{{-- load my cart data start --}}
+
+<script>
+    function cart() {
+          $.ajax({
+              type: 'GET',
+              url: '/user/get-cart-item',
+              dataType: 'json',
+              success: function (response) {
+                //   console.log(response);
+
+                var rows=''
+                $.each(response.cart, function (key,value) {
+                    rows += `<tr>
+					<td class="col-md-2"><img src="/${value.options.image}" alt="imga" style="width: 100px; height: 100px;"></td>
+					<td class="col-md-2">
+						<div class="product-name"><a href="#">${value.name}</a></div>
+
+						<div class="price">
+
+
+                               Ksh ${value.price }
+
+
+
+						</div>
+					</td>
+
+
+                    <td class="col-md-2">
+                        <strong>${value.options.color }</strong>
+
+					</td>
+
+                    <td class="col-md-2">
+                        ${value.options.size == null
+                            ?`<span></span>`
+                            : `<strong>${value.options.size }</strong>`
+                         }
+
+					</td>
+
+                    <td class="col-md-2">
+                        ${value.qty > 1
+                            ? `<button type="submit" class="btn btn-warning btn sm" id="${value.rowId}" onClick="decreaseCart(this.id)">-</button>`
+
+                            : `<button type="submit" class="btn btn-warning btn sm" disabled>-</button>`
+                         }
+
+
+
+
+                        <input type="text" value="${value.qty }" min="1" max="100" disabled="" style="width:25px; height:25px;">
+                        <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" onClick="increaseCart(this.id)">+</button>
+
+					</td>
+
+                    <td class="col-md-2 price">
+                        Ksh  ${value.subtotal}
+
+					</td>
+
+
+					<td class="col-md-1 close-btn">
+						<button type="submit" id="${value.rowId}" onClick="RemoveCart(this.id)" class="btn btn-danger btn-sm"><i class="fa fa-times"></i></button>
+					</td>
+				</tr>`
+
+
+                });
+                $('#cartPage').html(rows);
+
+              }
+          })
+
+      }
+
+      cart();
+
+      //remove cart item start
+
+      function RemoveCart(id) {
+        $.ajax({
+            type: 'GET',
+            url: '/user/remove-cart-item/'+id,
+            dataType: 'json',
+            success: function (data) {
+                cart();
+                miniCart();
+
+                //start sweetalert message
+
+                const Toast=Swal.mixin({
+                        // toast: true,
+                        position: 'center',
+                        showConfirmButton: true,
+
+
+                    })
+
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+
+                    }
+                //end sweetalert message
+
+            }
+        })
+      }
+      //remove cart item end
+
+
+      //increase cart start
+
+      function increaseCart(rowId) {
+          $.ajax({
+            type: 'GET',
+            url: '/user/increase-cart/'+rowId,
+            dataType: 'json',
+            success:function(data){
+                cart();
+                miniCart();
+
+            }
+          })
+      }
+
+
+      //increase cart end
+
+
+      //decrease cart start
+
+      function decreaseCart(rowId) {
+          $.ajax({
+            type: 'GET',
+            url: '/user/decrease-cart/'+rowId,
+            dataType: 'json',
+            success:function(data){
+                cart();
+                miniCart();
+
+            }
+          })
+      }
+
+
+      //decrease cart end
+
+
+
+</script>
+
+
+{{-- end my cart data --}}
+
 </body>
 </html>
 

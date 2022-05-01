@@ -13,6 +13,8 @@ use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\TagsController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\User\WishListController;
+use App\Http\Controllers\User\CartPageController;
 use App\Models\User;
 
 
@@ -57,7 +59,7 @@ Route::post('update/admin/password', [AdminProfileController::class, 'UpdateAdmi
 
 
 
-Route::middleware(['auth:sanctum,web', 'verified'])->get('/web/dashboard', function () {
+Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     $id=Auth::user()->id;
     $user=User::find($id);
     return view('dashboard', compact('user'));
@@ -172,6 +174,45 @@ Route::prefix('slider')->group(function(){
 
     //remove items from minicart
     Route::get('/mini/cart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCartItems']);
+
+    //Add to wishlist
+    Route::post('add-to-wishlist/{productId}', [CartController::class, 'AddToWishList']);
+
+    Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'], function(){
+
+        //wishlist page
+    Route::get('/wishlist', [WishListController::class, 'ViewWishlist'])->name('wishlist');
+
+    //get wishlist product
+    Route::get('/get-wishlist-item', [WishListController::class, 'GetwishlistItem']);
+
+    //remove wishlist item
+    Route::get('/remove-wishlist-item/{id}', [WishListController::class, 'RemoveWishlistItem']);
+
+
+    });
+
+    //my cart page
+    Route::get('/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
+
+     //get my cart ajax products
+     Route::get('/user/get-cart-item', [CartPageController::class, 'GetCartItem']);
+
+     //remove cart item
+    Route::get('/user/remove-cart-item/{rowId}', [CartPageController::class, 'RemoveCart']);
+
+     //increase cart
+     Route::get('/user/increase-cart/{rowId}', [CartPageController::class, 'increaseCart']);
+
+     //derease cart
+     Route::get('/user/decrease-cart/{rowId}', [CartPageController::class, 'decreaseCart']);
+
+
+
+
+
+
+
 
 
 

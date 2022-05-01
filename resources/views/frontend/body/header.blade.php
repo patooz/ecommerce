@@ -15,7 +15,7 @@
             <li><a href="#"><i class="icon fa fa-user"></i>
 @if (session()->get('language') == 'Kiswahili') Akaunti Yangu @else My Account @endif
                 </a></li>
-            <li><a href="#"><i class="icon fa fa-heart"></i>
+            <li><a href="{{ route('wishlist') }}"><i class="icon fa fa-heart"></i>
                 @if (session()->get('language') == 'Kiswahili')
                 Matamanio
 
@@ -23,7 +23,7 @@
                 Wishlist
                 @endif
                 </a></li>
-            <li><a href="#"><i class="icon fa fa-shopping-cart"></i>
+            <li><a href="{{ route('mycart') }}"><i class="icon fa fa-shopping-cart"></i>
  @if (session()->get('language') == 'Kiswahili')Mkokoteni Wangu @else My Cart @endif
                 </a></li>
             <li><a href="#"><i class="icon fa fa-check"></i>
@@ -31,7 +31,7 @@
                 </a></li>
 
             @auth
-            <li><a href="{{ route('login') }}"><i class="icon fa fa-user"></i>
+            <li><a href="{{ route('user.profile') }}"><i class="icon fa fa-user"></i>
                 @if (session()->get('language') == 'Kiswahili')
                 Wasifu Wangu
 
