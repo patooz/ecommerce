@@ -10,6 +10,8 @@ use App\Http\Controllers\Backend\SubCategoryController;
 use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\CouponController;
+use App\Http\Controllers\Backend\ShippingAreaController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\TagsController;
 use App\Http\Controllers\Frontend\CartController;
@@ -206,6 +208,32 @@ Route::prefix('slider')->group(function(){
 
      //derease cart
      Route::get('/user/decrease-cart/{rowId}', [CartPageController::class, 'decreaseCart']);
+
+
+     //Admin coupon Routes
+Route::prefix('coupon')->group(function(){
+    Route::get('/view', [CouponController::class, 'ViewCoupon'])->name('manage.coupon');
+    Route::post('/store', [CouponController::class, 'StoreCoupon'])->name('store.coupon');
+    Route::get('/edit/{id}', [CouponController::class, 'EditCoupon'])->name('edit.coupon');
+    Route::post('/update/{id}', [CouponController::class, 'UpdateCoupon'])->name('update.coupon');
+    Route::get('/delete/{id}', [CouponController::class, 'DeleteCoupon'])->name('delete.coupon');
+    Route::get('/inactive/{id}', [SliderController::class, 'InactiveSlider'])->name('inactive.slider');
+    Route::get('/active/{id}', [SliderController::class, 'ActiveSlider'])->name('active.slider');
+
+});
+
+
+ //shipping area Routes
+ Route::prefix('shipping')->group(function(){
+    Route::get('/county/view', [ShippingAreaController::class, 'ViewCounty'])->name('manage.county');
+    Route::post('/county/store', [ShippingAreaController::class, 'StoreCounty'])->name('store.county');
+    Route::get('/edit/county/{id}', [ShippingAreaController::class, 'EditCounty'])->name('edit.county');
+    Route::post('/update/county{id}', [ShippingAreaController::class, 'UpdateCounty'])->name('update.county');
+    Route::get('/delete/county/{id}', [ShippingAreaController::class, 'DeleteCounty'])->name('delete.county');
+    Route::get('/inactive/{id}', [SliderController::class, 'InactiveSlider'])->name('inactive.slider');
+    Route::get('/active/{id}', [SliderController::class, 'ActiveSlider'])->name('active.slider');
+
+});
 
 
 

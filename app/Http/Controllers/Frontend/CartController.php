@@ -97,6 +97,8 @@ class CartController extends Controller
         } else {
              return response()->json(['error'=> 'You Must Login to Add Items to Wishlist']);
 
+
+
         }
 
     }
