@@ -11,7 +11,9 @@ use App\Http\Controllers\Backend\SubSubCategoryController;
 use App\Http\Controllers\Backend\ProductController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CouponController;
-use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\Backend\ShippingCountyController;
+use App\Http\Controllers\Backend\ShippingSubCountyController;
+use App\Http\Controllers\Backend\ShippingWardController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\TagsController;
 use App\Http\Controllers\Frontend\CartController;
@@ -217,21 +219,38 @@ Route::prefix('coupon')->group(function(){
     Route::get('/edit/{id}', [CouponController::class, 'EditCoupon'])->name('edit.coupon');
     Route::post('/update/{id}', [CouponController::class, 'UpdateCoupon'])->name('update.coupon');
     Route::get('/delete/{id}', [CouponController::class, 'DeleteCoupon'])->name('delete.coupon');
-    Route::get('/inactive/{id}', [SliderController::class, 'InactiveSlider'])->name('inactive.slider');
-    Route::get('/active/{id}', [SliderController::class, 'ActiveSlider'])->name('active.slider');
+
 
 });
 
 
  //shipping area Routes
  Route::prefix('shipping')->group(function(){
-    Route::get('/county/view', [ShippingAreaController::class, 'ViewCounty'])->name('manage.county');
-    Route::post('/county/store', [ShippingAreaController::class, 'StoreCounty'])->name('store.county');
-    Route::get('/edit/county/{id}', [ShippingAreaController::class, 'EditCounty'])->name('edit.county');
-    Route::post('/update/county{id}', [ShippingAreaController::class, 'UpdateCounty'])->name('update.county');
-    Route::get('/delete/county/{id}', [ShippingAreaController::class, 'DeleteCounty'])->name('delete.county');
-    Route::get('/inactive/{id}', [SliderController::class, 'InactiveSlider'])->name('inactive.slider');
-    Route::get('/active/{id}', [SliderController::class, 'ActiveSlider'])->name('active.slider');
+
+    //shipping county Routes
+    Route::get('/county/view', [ShippingCountyController::class, 'ViewCounty'])->name('manage.county');
+    Route::post('/county/store', [ShippingCountyController::class, 'StoreCounty'])->name('store.county');
+    Route::get('/edit/county/{id}', [ShippingCountyController::class, 'EditCounty'])->name('edit.county');
+    Route::post('/update/county{id}', [ShippingCountyController::class, 'UpdateCounty'])->name('update.county');
+    Route::get('/delete/county/{id}', [ShippingCountyController::class, 'DeleteCounty'])->name('delete.county');
+
+
+    //shipping subcounty Routes
+    Route::get('/subcounty/view', [ShippingSubCountyController::class, 'ViewSubCounty'])->name('manage.subcounty');
+    Route::post('/subcounty/store', [ShippingSubCountyController::class, 'StoreSubCounty'])->name('store.subcounty');
+    Route::get('/edit/subcounty/{id}', [ShippingSubCountyController::class, 'EditSubCounty'])->name('edit.subcounty');
+    Route::post('/update/subcounty/{id}', [ShippingSubCountyController::class, 'UpdateSubCounty'])->name('update.subcounty');
+    Route::get('/delete/subcounty/{id}', [ShippingSubCountyController::class, 'DeleteSubCounty'])->name('delete.subcounty');
+
+
+    //shipping wart Routes
+    Route::get('/ward/view', [ShippingWardController::class, 'ViewWard'])->name('manage.ward');
+    Route::post('/ward/store', [ShippingWardController::class, 'StoreWard'])->name('store.ward');
+    Route::get('/edit/ward/{id}', [ShippingWardController::class, 'EditWard'])->name('edit.ward');
+    Route::post('/update/ward/{id}', [ShippingWardController::class, 'UpdateWard'])->name('update.ward');
+    Route::get('/delete/ward/{id}', [ShippingWardController::class, 'DeleteWard'])->name('delete.ward');
+    Route::get('/subcounty/ajax/{county_id}', [ShippingWardController::class, 'GetSubCounty']);
+
 
 });
 

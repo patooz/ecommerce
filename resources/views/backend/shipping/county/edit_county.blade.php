@@ -45,7 +45,7 @@
 
 
                            <div class="text-xs-right">
-                               <input type="submit" value="Add Category" class="btn btn-rounded btn-primary mb-5" >
+                               <input type="submit" value="Update County" class="btn btn-rounded btn-primary mb-5" >
                            </div>
                        </form>
 

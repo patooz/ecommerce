@@ -9,7 +9,7 @@ use Carbon\Carbon;
 use Alert;
 // use Illuminate\Support\Str;
 
-class ShippingAreaController extends Controller
+class ShippingCountyController extends Controller
 {
     public function ViewCounty()
     {
@@ -27,9 +27,9 @@ class ShippingAreaController extends Controller
             'county_name.unique'=>'This County already exists in the Database',
 
         ]);
-
+  
         ShipCounty::insert([
-            'county_name'=> ucfirst($request->county_name),
+            'county_name'=> ucwords($request->county_name),
             'created_at'=> Carbon::now(),
 
         ]);

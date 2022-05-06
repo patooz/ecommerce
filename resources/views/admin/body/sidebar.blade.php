@@ -58,7 +58,9 @@
           </a>
           <ul class="treeview-menu">
             <li class="{{($route=='all.categories') ? 'active' : ''}}"><a href="{{route('all.categories')}}"><i class="ti-more"></i>All Categories</a></li>
+
             <li class="{{($route=='all.subcategories') ? 'active' : ''}}"><a href="{{route('all.subcategories')}}"><i class="ti-more"></i>All Subcategories</a></li>
+
             <li class="{{($route=='all.subsubcategories') ? 'active' : ''}}"><a href="{{route('all.subsubcategories')}}"><i class="ti-more"></i>Sub Subcategories</a></li>
 
           </ul>
@@ -121,7 +123,15 @@
 
               <li class="{{($route=='manage.county') ? 'active' : ''}}"><a href="{{route ('manage.county')}}"><i class="ti-more"></i>County</a></li>
 
+
+              <li class="{{($route=='manage.subcounty') ? 'active' : ''}}"><a href="{{route ('manage.subcounty')}}"><i class="ti-more"></i>Subcounty</a></li>
+
+
+              <li class="{{($route=='manage.ward') ? 'active' : ''}}"><a href="{{route ('manage.ward')}}"><i class="ti-more"></i>Ward</a></li>
+
             </ul>
+
+
           </li>
 
         <li class="header nav-small-cap">User Interface</li>

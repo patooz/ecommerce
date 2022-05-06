@@ -75,6 +75,11 @@
 	<script src="{{asset ('backend/js/pages/dashboard.js')}}"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{{asset ('frontend/assets/js/jquery.min.js')}}"></script>
+
 
 
 <script>
@@ -108,7 +113,7 @@
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script type="text/javascript">
-    $(function(){
+    $(document).ready(function(){
         $(document).on('click', '#delete',function(e){
             e.preventDefault();
             var link = $(this).attr("href");
