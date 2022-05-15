@@ -6,15 +6,20 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Wishlist;
+use App\Models\Coupon;
 use Alert;
 use Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
     public function AddToCart(Request $request, $id)
     {
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
         $product=Product::findOrFail($id);
 
         if ($product->discount_price == null) {
@@ -97,9 +102,80 @@ class CartController extends Controller
         } else {
              return response()->json(['error'=> 'You Must Login to Add Items to Wishlist']);
 
-
-
         }
+
+    }
+
+    public function ApplyCoupon(Request $request)
+    {
+        $coupon=Coupon::where('coupon_name',$request->coupon_name)->where('coupon_validity','>=',Carbon::now()->format('Y-m-d'))->first();
+        if ($coupon) {
+            Session::put('coupon',[
+                'coupon_name'=>$coupon->coupon_name,
+                'coupon_discount'=>$coupon->coupon_discount,
+                'discount_amount'=>round(Cart::total() * $coupon->coupon_discount/100),
+                'total_amount'=>round(Cart::total()-Cart::total() * $coupon->coupon_discount/100)
+
+            ]);
+
+            return response()->json(array(
+                'success'=> 'Success! Coupon Applied'
+            ));
+
+
+        } else {
+            return response()->json(['error'=> 'Erro! Invalid Coupon']);
+        }
+
+    }
+
+    public function CouponCalculation()
+    {
+        if (Session::has('coupon')) {
+            return response()->json(array(
+                'sub_total'=>Cart::total(),
+                'coupon_name'=>session()->get('coupon')['coupon_name'],
+                'coupon_disount'=>session()->get('coupon')['coupon_discount'],
+                'discount_amount'=>session()->get('coupon')['discount_amount'],
+                'total_amount'=>session()->get('coupon')['total_amount']
+            ));
+        } else {
+           return response()->json(array(
+               'total'=>Cart::total()
+           ));
+        }
+
+    }
+
+
+    public function removeCoupon()
+    {
+        Session::forget('coupon');
+
+        return response()->json(['success'=>'Coupon Removed successfully!']);
+    }
+
+    public function Checkout()
+    {
+       if (Auth::check()) {
+           if (Cart::total() >0) {
+            $carts=Cart::content();
+            $cartQty=Cart::count();
+            $cartTotal=Cart::total();
+
+            return view('frontend.checkout.view_checkout', compact('carts','cartQty','cartTotal'));
+
+           }else{
+
+            Alert::error('Error', 'No item in your Cart');
+            return redirect()->to('/');
+
+           }
+       } else {
+
+        Alert::error('Error', 'Kindly Login first to proceed to Checkout');
+        return redirect()->route('login');
+       }
 
     }
 }

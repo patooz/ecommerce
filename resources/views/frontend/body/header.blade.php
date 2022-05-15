@@ -26,7 +26,7 @@
             <li><a href="{{ route('mycart') }}"><i class="icon fa fa-shopping-cart"></i>
  @if (session()->get('language') == 'Kiswahili')Mkokoteni Wangu @else My Cart @endif
                 </a></li>
-            <li><a href="#"><i class="icon fa fa-check"></i>
+            <li><a href="{{route('chekout')}}"><i class="icon fa fa-check"></i>
 @if (session()->get('language') == 'Kiswahili') Lipa @else Checkout @endif
                 </a></li>
 
@@ -49,7 +49,7 @@
                 @endif
             </a></li>
 
-            <li><a href="{{ route('admin.login') }}" target="_blank"><i class="icon fa fa-user" ></i>
+            <li><a href="{{ route('admin.login') }}" target="_blank"><i class="icon fa fa-key" ></i>
                 @if (session()->get('language') == 'Kiswahili')
                 Kiingilio Cha Wakubwa
 

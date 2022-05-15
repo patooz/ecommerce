@@ -254,6 +254,21 @@ Route::prefix('coupon')->group(function(){
 
 });
 
+//fronten coupon option
+Route::post('/apply-coupon', [CartController::class, 'ApplyCoupon']);
+
+//fronten coupon option
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
+
+//remove coupon
+Route::get('/remove-coupon', [CartController::class, 'removeCoupon']);
+
+
+//remove coupon
+Route::get('/chekout', [CartController::class, 'Checkout'])->name('chekout');
+
+
+
 
 
 
