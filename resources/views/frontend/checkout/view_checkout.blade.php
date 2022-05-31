@@ -4,6 +4,9 @@
 @section('title')
 Checkout
 @endsection
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{asset ('frontend/assets/js/jquery.min.js')}}"></script>
+
 
 
 <div class="breadcrumb">
@@ -35,51 +38,100 @@ Checkout
 	    <div class="panel-body">
 			<div class="row">
 
-				<!-- guest-login -->
-				<div class="col-md-6 col-sm-6 guest-login">
-					<h4 class="checkout-subtitle">Guest or Register Login</h4>
-					<p class="text title-tag-line">Register with us for future convenience:</p>
-
-					<!-- radio-form  -->
-					<form class="register-form" role="form">
-					    <div class="radio radio-checkout-unicase">
-					        <input id="guest" type="radio" name="text" value="guest" checked>
-					        <label class="radio-button guest-check" for="guest">Checkout as Guest</label>
-					          <br>
-					        <input id="register" type="radio" name="text" value="register">
-					        <label class="radio-button" for="register">Register</label>
-					    </div>
-					</form>
-					<!-- radio-form  -->
-
-					<h4 class="checkout-subtitle outer-top-vs">Register and save time</h4>
-					<p class="text title-tag-line ">Register with us for future convenience:</p>
-
-					<ul class="text instruction inner-bottom-30">
-						<li class="save-time-reg">- Fast and easy check out</li>
-						<li>- Easy access to your order history and status</li>
-					</ul>
-
-					<button type="submit" class="btn-upper btn btn-primary checkout-page-button checkout-continue ">Continue</button>
-				</div>
-				<!-- guest-login -->
 
 				<!-- already-registered-login -->
 				<div class="col-md-6 col-sm-6 already-registered-login">
-					<h4 class="checkout-subtitle">Already registered?</h4>
-					<p class="text title-tag-line">Please log in below:</p>
-					<form class="register-form" role="form">
-						<div class="form-group">
-					    <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
-					    <input type="email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="">
-					  </div>
-					  <div class="form-group">
-					    <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
-					    <input type="password" class="form-control unicase-form-control text-input" id="exampleInputPassword1" placeholder="">
-					    <a href="#" class="forgot-password">Forgot your Password?</a>
-					  </div>
+					{{-- <h4 class="checkout-subtitle"><b>Shipping Address</b></h4> --}}
+
+            <form class="register-form" action="{{ route('store-checkout') }}" method="POST">
+                @csrf
+                <div class="form-group">
+                <label class="info-title" for="exampleInputEmail1"><b> Shipping Address Name</b> <span>*</span></label>
+                <input type="text" name="shipping_name" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="Full Name" value="{{Auth::user()->name }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="info-title" for="exampleInputEmail1"><b> Shipping Address Email</b> <span>*</span></label>
+                    <input type="email" name="shipping_email" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="Email" value="{{Auth::user()->email  }}" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="info-title" for="exampleInputEmail1"><b> Shipping Address Phone Number</b> <span>*</span></label>
+                        <input type="number" name="shipping_phone" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="Phone Number" value="{{Auth::user()->phone  }}" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="info-title" for="exampleInputEmail1"><b> Postal Code</b> </label>
+                            <input type="text" name="postal_code" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="Postal Code">
+                            </div>
+
+
+
+
+
+        </div>
+				<!-- already-registered-login -->
+
+				<!-- already-registered-login -->
+				<div class="col-md-6 col-sm-6 already-registered-login">
+
+
+
+                    <div class="form-group">
+                        <label class="info-title" for="exampleInputEmail1"><b> Select County</b> <span>*</span></label>
+                        <div class="controls">
+                            <select name="county_id"  class="form-control" required data-validation-required-message="This field is required">
+                                <option value="" selected="" disabled="" >Select County</option>
+                                @foreach ($counties as $item )
+                                <option value="{{$item->id}}">{{$item->county_name}}</option>
+                                @endforeach
+                            </select>
+                            @error('county_id')
+                                    <span class="text-danger">{{ $message }}</span>
+
+                                    @enderror
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="info-title" for="exampleInputEmail1"><b> Select Subcounty</b> <span>*</span></label>
+                        <div class="controls">
+                            <select name="subcounty_id"  class="form-control" required data-validation-required-message="This field is required">
+                                <option value="" selected="" disabled="" >Select Subcounty</option>
+
+                            </select>
+                            @error('subcounty_id')
+                                    <span class="text-danger">{{ $message }}</span>
+
+                                    @enderror
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="info-title" for="exampleInputEmail1"><b> Select Ward</b> <span>*</span></label>
+                        <div class="controls">
+                            <select name="ward_id"  class="form-control" required data-validation-required-message="This field is required">
+                                <option value="" selected="" disabled="" >Select Ward</option>
+
+                            </select>
+                            @error('ward_id')
+                                    <span class="text-danger">{{ $message }}</span>
+
+                                    @enderror
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="info-title" for="exampleInputEmail1">Notes<span class="text-danger">*</span> </label>
+                       <textarea class="form-control" name="notes" id="" cols="30" rows="5" placeholder="Notes"></textarea>
+                        </div>
+
+
 					  <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
-					</form>
+
 				</div>
 				<!-- already-registered-login -->
 
@@ -153,6 +205,67 @@ Checkout
 	</div>
 </div>
 <!-- checkout-progress-sidebar -->				</div>
+
+
+
+<div class="col-md-4">
+    <!-- checkout-progress-sidebar -->
+<div class="checkout-progress-sidebar ">
+<div class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<h4 class="unicase-checkout-title">Select Payment Method</h4>
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <input type="radio" name="payment_method" value="stripe">
+        <img src="{{ asset('frontend/assets/images/payments/stripe.png') }}" alt="">
+
+    </div> {{-- col-md-4 --}}
+
+   
+
+    <div class="col-md-4">
+
+        <input type="radio" name="payment_method" value="card">
+        <img src="{{ asset('frontend/assets/images/payments/visa.png') }}" alt="">
+
+        </div> {{-- col-md-4 --}}
+
+    
+
+    <div class="col-md-4">
+        <input type="radio" name="payment_method" value="cash">
+        <label for="">Cash</label>
+
+        {{-- <img src="{{ asset('frontend/assets/images/payments/stripe.png') }}" alt=""> --}}
+
+    </div> {{-- col-md-4 --}}
+
+</div> {{-- end row --}}
+<hr>
+<button type="submit" class="btn-upper btn btn-primary checkout-page-button">Proceed to Payment</button>
+
+
+</div>
+</div>
+</div>
+<!-- checkout-progress-sidebar -->				</div>
+</form>
+
+
+
+
+
+
+
+
+
+
 			</div><!-- /.row -->
 		</div><!-- /.checkout-box -->
 		<!-- ========================== BRANDS CAROUSEL ============== -->
@@ -161,6 +274,58 @@ Checkout
 
 <!--============= BRANDS CAROUSEL : END ============== -->	</div><!-- /.container -->
 </div><!-- /.body-content -->
+
+
+
+<script type="text/javascript" >
+    $(document).ready(function(){
+        $('select[name="county_id"]').on('change', function(){
+            var county_id = $(this).val();
+            if (county_id) {
+                $.ajax({
+                    url: "{{ url('/get-subcounty/ajax') }}/"+county_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data){
+                        $('select[name="ward_id"]').empty();
+
+                        var d =$('select[name="subcounty_id"]').empty();
+                        $.each(data, function(key, value){
+                            $('select[name="subcounty_id"]').append('<option value="'+ value.id +'">' + value.subcounty_name + '</option>');
+                        });
+                    },
+                });
+
+            } else {
+                alert('danger');
+
+            }
+        });
+
+
+
+        $('select[name="subcounty_id"]').on('change', function(){
+            var subcounty_id = $(this).val();
+            if (subcounty_id) {
+                $.ajax({
+                    url: "{{ url('/get-ward/ajax') }}/"+subcounty_id,
+                    type:"GET",
+                    dataType:"json",
+                    success:function(data){
+                        var d =$('select[name="ward_id"]').empty();
+                        $.each(data, function(key, value){
+                            $('select[name="ward_id"]').append('<option value="'+ value.id +'">' + value.ward_name + '</option>');
+                        });
+                    },
+                });
+
+            } else {
+                alert('danger');
+
+            }
+        });
+    });
+</script>
 
 
 

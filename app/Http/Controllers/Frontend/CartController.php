@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Wishlist;
+use App\Models\ShipCounty;
 use App\Models\Coupon;
 use Alert;
 use Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+
 
 class CartController extends Controller
 {
@@ -162,8 +164,9 @@ class CartController extends Controller
             $carts=Cart::content();
             $cartQty=Cart::count();
             $cartTotal=Cart::total();
+            $counties=ShipCounty::orderBy('county_name','ASC')->get();
 
-            return view('frontend.checkout.view_checkout', compact('carts','cartQty','cartTotal'));
+            return view('frontend.checkout.view_checkout', compact('carts','cartQty','cartTotal','counties'));
 
            }else{
 

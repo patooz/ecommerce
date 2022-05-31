@@ -19,6 +19,8 @@ use App\Http\Controllers\Frontend\TagsController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishListController;
 use App\Http\Controllers\User\CartPageController;
+use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\StripeController;
 use App\Models\User;
 
 
@@ -193,6 +195,9 @@ Route::prefix('slider')->group(function(){
     //remove wishlist item
     Route::get('/remove-wishlist-item/{id}', [WishListController::class, 'RemoveWishlistItem']);
 
+    //Stripe order
+    Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
+
 
     });
 
@@ -266,6 +271,15 @@ Route::get('/remove-coupon', [CartController::class, 'removeCoupon']);
 
 //remove coupon
 Route::get('/chekout', [CartController::class, 'Checkout'])->name('chekout');
+
+//get subcounty ajax
+Route::get('/get-subcounty/ajax/{county_id}', [CheckoutController::class, 'GetSubcounty'])->name('get-subcounty');
+
+//get ward ajax
+Route::get('/get-ward/ajax/{subcounty_id}', [CheckoutController::class, 'GetWard']);
+
+//store checkout
+Route::post('/store/checkout', [CheckoutController::class, 'StoreCheckout'])->name('store-checkout');
 
 
 
