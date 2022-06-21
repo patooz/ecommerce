@@ -122,7 +122,16 @@ Stripe Payment
                     @csrf
                 <div class="form-row">
                 <label for="card-element">
-                Credit or debit card
+                Credit or Debit Card
+
+                <input type="hidden" name="name" value="{{$data['shipping_name']}}">
+                <input type="hidden" name="email" value="{{$data['shipping_email']}}">
+                <input type="hidden" name="phone" value="{{$data['shipping_phone']}}">
+                <input type="hidden" name="postal_code" value="{{$data['postal_code']}}">
+                <input type="hidden" name="county_id" value="{{$data['county_id']}}">
+                <input type="hidden" name="subcounty_id" value="{{$data['subcounty_id']}}">
+                <input type="hidden" name="ward_id" value="{{$data['ward_id']}}">
+                <input type="hidden" name="notes" value="{{$data['notes']}}">
                 </label>
 
                 <div id="card-element">

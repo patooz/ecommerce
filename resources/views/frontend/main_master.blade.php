@@ -709,7 +709,13 @@ function applyCoupon(params) {
         url: "{{url('/apply-coupon') }}",
         success: function (data) {
             couponCalc();
-            $('#couponField').hide();
+            if (data.validity==true) {
+                $('#couponField').hide();
+
+        
+
+            }
+
 
 
             //start sweetalert message

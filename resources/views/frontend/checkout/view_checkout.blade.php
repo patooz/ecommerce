@@ -130,7 +130,7 @@ Checkout
                         </div>
 
 
-					  <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button>
+					  {{-- <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Login</button> --}}
 
 				</div>
 				<!-- already-registered-login -->
@@ -164,7 +164,7 @@ Checkout
                         <img src="{{asset ($item->options->image)}}" style="height: 50px; width:50px;" alt="">
                     </li>
 
-                    <hr>
+
 					<li>
                         <strong>Qty:</strong>
                        {{$item->qty }}
@@ -227,7 +227,7 @@ Checkout
 
     </div> {{-- col-md-4 --}}
 
-   
+
 
     <div class="col-md-4">
 
@@ -236,7 +236,7 @@ Checkout
 
         </div> {{-- col-md-4 --}}
 
-    
+
 
     <div class="col-md-4">
         <input type="radio" name="payment_method" value="cash">
