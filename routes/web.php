@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingCountyController;
 use App\Http\Controllers\Backend\ShippingSubCountyController;
 use App\Http\Controllers\Backend\ShippingWardController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\TagsController;
 use App\Http\Controllers\Frontend\CartController;
@@ -21,6 +22,8 @@ use App\Http\Controllers\User\WishListController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\User\AllUserController;
+use App\Http\Controllers\User\CashController;
 use App\Models\User;
 
 
@@ -198,6 +201,18 @@ Route::prefix('slider')->group(function(){
     //Stripe order
     Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
 
+    //Cash order
+    Route::post('/ash/order', [CashController::class, 'CashOrder'])->name('cash.order');
+
+    //my orders
+    Route::get('/my/orders', [AllUserController::class, 'Myorders'])->name('my.orders');
+
+    //order details
+    Route::get('/order_details/{order_id}', [AllUserController::class, 'OrderDetails']);
+
+    //download invoice
+    Route::get('/download-invoice/{order_id}', [AllUserController::class, 'DownloadInvoice']);
+
 
     });
 
@@ -280,6 +295,22 @@ Route::get('/get-ward/ajax/{subcounty_id}', [CheckoutController::class, 'GetWard
 
 //store checkout
 Route::post('/store/checkout', [CheckoutController::class, 'StoreCheckout'])->name('store-checkout');
+
+//Admin order routes
+Route::prefix('orders')->group(function(){
+    Route::get('/pending/orders', [OrderController::class, 'PendingOrders'])->name('pending.orders');
+    Route::get('/pending/order/details/{order_id}', [OrderController::class, 'PendingorderDetails'])->name('pending.order.details');
+    Route::get('/confirmed/orders', [OrderController::class, 'ConfirmedOrders'])->name('confirmed.orders');
+    Route::get('/processing/orders', [OrderController::class, 'ProcessingOrders'])->name('processing.orders');
+    Route::get('/picked/orders', [OrderController::class, 'Pickedorders'])->name('picked.orders');
+    Route::get('/shipped/orders', [OrderController::class, 'ShippedOrders'])->name('shipped.orders');
+    Route::get('/delivered/orders', [OrderController::class, 'DeliveredOrders'])->name('delivered.orders');
+    Route::get('/canceled/orders', [OrderController::class, 'CanceledOrders'])->name('canceled.orders');
+
+
+
+});
+
 
 
 

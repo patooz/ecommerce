@@ -9,5 +9,5 @@
 		  </li>
 		</ul>
     </div>
-	  &copy; 2020 <a href="#">Ndony Wholesales Limited</a>. All Rights Reserved.
+	  &copy; 2020 <a href="#">Ndony Online Shop</a>. All Rights Reserved.
   </footer>

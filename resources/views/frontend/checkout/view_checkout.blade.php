@@ -223,6 +223,7 @@ Checkout
     <div class="col-md-4">
 
         <input type="radio" name="payment_method" value="stripe">
+        <label for="">Stripe</label>
         <img src="{{ asset('frontend/assets/images/payments/stripe.png') }}" alt="">
 
     </div> {{-- col-md-4 --}}
@@ -232,6 +233,7 @@ Checkout
     <div class="col-md-4">
 
         <input type="radio" name="payment_method" value="card">
+        <label for="">Card</label>
         <img src="{{ asset('frontend/assets/images/payments/visa.png') }}" alt="">
 
         </div> {{-- col-md-4 --}}
@@ -242,7 +244,7 @@ Checkout
         <input type="radio" name="payment_method" value="cash">
         <label for="">Cash</label>
 
-        {{-- <img src="{{ asset('frontend/assets/images/payments/stripe.png') }}" alt=""> --}}
+        <img src="{{ asset('frontend/assets/images/payments/6.png') }}" alt="">
 
     </div> {{-- col-md-4 --}}
 

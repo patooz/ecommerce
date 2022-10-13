@@ -6,20 +6,23 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class OrderMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $data;
+    public $data,$data1;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($data,$data1)
     {
         $this->data=$data;
+        $this->data1=$data1;
+
     }
 
     /**
@@ -30,6 +33,14 @@ class OrderMail extends Mailable
     public function build()
     {
         $order=$this->data;
-        return $this->from('support@ndonyoshop.co.ke')->view('mail.order_mail',compact('order'))->subject('Order Email From Ndonyo Online Shop');
+        $order1=$this->data1;
+        $carts=Cart::content();
+
+
+        return $this->from('support@ndonyoshop.co.ke')->view('mail.order_mail',compact('order','order1','carts'))->subject('Order Email From Ndonyo Online Shop');
     }
+
+
+
+
 }
