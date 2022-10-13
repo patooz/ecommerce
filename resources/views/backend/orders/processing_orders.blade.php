@@ -48,9 +48,11 @@
 
 
                               <td width="20%">
-                                  <a href="{{ route('edit.coupon',$item->id) }}" class="btn btn-info btn-sm" title="Edit Category" ><i class="fa fa-pencil"></i></a>
-                                  <a href="{{ route('delete.coupon',$item->id) }}" id="delete" class="btn btn-danger btn-sm" title="Delete Category"
-                                    ><i class="fa fa-trash" ></i></a>
+                                  <a href="{{ route('pending.order.details',$item->id) }}" class="btn btn-info btn-sm" title="View Order" ><i class="fa fa-eye"></i></a>
+                                  <a target="_blank" href="{{ route('download_invoice',$item->id) }}" class="btn btn-primary btn-sm" title="Download Invoice" ><i class="fa fa-download"></i></a>
+
+                                  <a href="{{ route('cancel_Order',$item->id) }}" id="cancel" class="btn btn-danger btn-sm" title="Cancel order"
+                                    ><i class="fa fa-close" ></i></a>
                               </td>
 
                           </tr>

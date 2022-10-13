@@ -20,7 +20,7 @@
 
            <div class="box">
               <div class="box-header with-border">
-                <h3 class="box-title">Sub-Subcategory List</h3>
+                <h3 class="box-title">Total Sub-subcategories <span class="badge badge-pill badge-info">{{count($subsubcategory)}}</span></h3>
               </div>
 <!-- /.box-header -->
 <div class="box-body">

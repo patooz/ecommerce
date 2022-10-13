@@ -67,8 +67,36 @@
                                 </td>
 
                                 <td class="col-md-1">
-                                    <span class="badge badge-pill badge-warning" style="background: #418DB9">{{$order->status}}</span>
-                                    <label for=""></label>
+                                    <label for="">
+                                        @if($order->status == 'Pending')
+                                    <span class="badge badge-pill badge-warning" style="background: #800080">Pending</span>
+
+                                    @elseif ($order->status == 'Confirmed')
+                                    <span class="badge badge-pill badge-warning" style="background: #0000FF">Confirmed</span>
+
+                                    @elseif ($order->status == 'Processing')
+                                    <span class="badge badge-pill badge-warning" style="background: #FFA500">Processing</span>
+
+                                    @elseif ($order->status == 'Picked')
+                                    <span class="badge badge-pill badge-warning" style="background: #808000">Picked</span>
+
+                                    @elseif ($order->status == 'Shipped')
+                                    <span class="badge badge-pill badge-warning" style="background: #FFA500">Shipped</span>
+
+                                     @elseif ($order->status == 'Delivered')
+                                    <span class="badge badge-pill badge-warning" style="background: #008000">Delivered</span>
+
+                                    @if($order->returned_order == 1)
+                                    <span class="badge badge-pill badge-warning" style="background: #418DB9">Return Requested</span>
+                                    @endif
+
+                                     @else 
+                                    <span class="badge badge-pill badge-warning" style="background: #FF0000">Canceled</span>
+
+
+
+                                    @endif
+                                    </label>
                                 </td>
 
                                 <td class="col-md-3">

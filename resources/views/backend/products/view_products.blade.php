@@ -17,7 +17,7 @@
 
            <div class="box">
               <div class="box-header with-border">
-                <h3 class="box-title">Product List</h3>
+                <h3 class="box-title">Total Products <span class="badge badge-pill badge-info">{{count($products)}}</span></h3>
               </div>
     <!-- /.box-header -->
     <div class="box-body">
@@ -39,7 +39,7 @@
 
 
 <tr>
-    <td><img src="{{asset($item->product_thumbnail)}}" style="width: 80px; height: 100px; ">  </i></span>  </td>
+    <td><img src="{{asset($item->product_thumbnail)}}" style="width: 80px; height: 80px; ">  </i></span>  </td>
     <td>{{$item->product_name_en}}</td>
     <td>Ksh {{$item->selling_price}}</td>
     <td>{{$item->product_qty}} Pcs</td>
@@ -73,17 +73,17 @@
     </td>
 
 
-    <td width="25%">
-        <a href="{{ route('view.product',$item->id) }}" class="btn btn-info" title="View Product" ><i class="fa fa-eye"></i></a>
-        <a href="{{ route('edit.product',$item->id) }}" class="btn btn-primary" title="Edit Product" ><i class="fa fa-pencil"></i></a>
-        <a href="{{ route('delete.product',$item->id) }}" id="delete" class="btn btn-danger" title="Delete Product"
+    <td width="20%">
+        <a href="{{ route('view.product',$item->id) }}" class="btn btn-info btn-sm" title="View Product" ><i class="fa fa-eye"></i></a>
+        <a href="{{ route('edit.product',$item->id) }}" class="btn btn-primary btn-sm" title="Edit Product" ><i class="fa fa-pencil"></i></a>
+        <a href="{{ route('delete.product',$item->id) }}" id="delete" class="btn btn-danger btn-sm" title="Delete Product"
         ><i class="fa fa-trash" ></i></a>
 
         @if ($item->status == 1)
-        <a href="{{ route('inactive.product',$item->id) }}" class="btn btn-danger" title="Inactivate" ><i class="fa fa-arrow-down"></i></a>
+        <a href="{{ route('inactive.product',$item->id) }}" class="btn btn-danger btn-sm" title="Inactivate" ><i class="fa fa-arrow-down"></i></a>
 
         @else
-        <a href="{{ route('active.product',$item->id) }}" class="btn btn-success" title="Activate" ><i class="fa fa-arrow-up"></i></a>
+        <a href="{{ route('active.product',$item->id) }}" class="btn btn-success btn-sm" title="Activate" ><i class="fa fa-arrow-up"></i></a>
 
         @endif
 

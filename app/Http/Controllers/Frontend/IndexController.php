@@ -14,12 +14,17 @@ use App\Models\Slider;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\MultiImg;
+use App\Models\Blog\BlogPostCategory;
+use App\Models\Blog\BlogPost;
+use App\Models\Review;
+
 
 
 class IndexController extends Controller
 {
     public function index()
     {
+        $blogPost=BlogPost::latest()->get();
         $categories=Category::orderBy('category_name_en','ASC')->get();
         $sliders=Slider::where('status',1)->orderBy('id','DESC')->limit(3)->get();
         $products=Product::where('status',1)->orderBy('id','DESC')->limit(6) ->get();
@@ -42,7 +47,7 @@ class IndexController extends Controller
         // return $skip_category->id;
         // die();
 
-        return view('frontend.index',compact('categories','sliders','products','featured','hotdeals','specialoffer','specialdeals','skip_category_0','skip_product_0','skip_category_1','skip_product_1','skip_brand_1','skip_brand_product_1'));
+        return view('frontend.index',compact('categories','sliders','products','featured','hotdeals','specialoffer','specialdeals','skip_category_0','skip_product_0','skip_category_1','skip_product_1','skip_brand_1','skip_brand_product_1','blogPost'));
     }
 
     public function UserLogout()
@@ -127,9 +132,11 @@ class IndexController extends Controller
        $catId=$product->category_id;
        $relatedProducts=Product::where('category_id',$catId)->where('id','!=',$id)->orderBy('id','DESC')->get();
 
+       $reviews= Review::where('product_id', $id)->latest()->limit(5)->get();
+
 
        $multimg=MultiImg::where('product_id',$id)->get();
-       return view('frontend.products.product_details',compact('product','multimg','product_color_en','product_color_swa','product_size_en','product_size_swa','relatedProducts'));
+       return view('frontend.products.product_details',compact('product','multimg','product_color_en','product_color_swa','product_size_en','product_size_swa','relatedProducts', 'reviews'));
 
     }
 
@@ -150,6 +157,28 @@ class IndexController extends Controller
            'size'=>$product_size,
 
        ));
+    }
+
+    public function productSearch(Request $request)
+    {
+        $request->validate(['search' => 'required']);
+        $search=$request->search;
+
+        // echo "$product";
+        $categories=Category::orderBy('category_name_en','ASC')->get();
+        $products=Product::where('product_name_en', 'LIKE', "%$search%")->get();
+        return view('frontend.products.search_results', compact('products','categories'));
+    }
+
+    public function advancedProductSearch(Request $request)
+    {
+        $request->validate(['search' => 'required']);
+        $search=$request->search;
+
+        
+        
+        $products=Product::where('product_name_en', 'LIKE', "%$search%")->select('product_name_en', 'product_thumbnail', 'selling_price', 'id', 'product_slug_en')->limit(10)->get();
+        return view('frontend.products.search_product', compact('products'));
     }
 
 

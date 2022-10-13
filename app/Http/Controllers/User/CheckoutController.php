@@ -51,7 +51,11 @@ class CheckoutController extends Controller
 
         }elseif ($request->payment_method == 'cash') {
             return view('frontend.payments.cash', compact('data','cartTotal'));
+
+        }elseif ($request->payment_method == 'mpesa') {
+            return view('frontend.payments.mpesa_payment', compact('data','cartTotal'));
         }
+
 
 
 

@@ -52,8 +52,9 @@
                                 <div class="form-group">
                                     <h5>Profile Image <span class="text-danger">*</span></h5>
                                     <div class="controls">
-                                        <input type="file" name="profile_photo_path" class="form-control"
-                                        required="" id="image" >
+                            <input type="hidden" name="old_image" value="{{ $editData->profile_photo_path}}">
+                            <input type="file" name="profile_photo_path" class="form-control"
+                             id="image" >
                                     </div>
                                 </div>
 
@@ -88,20 +89,7 @@
     <!-- /.content -->
   </div>
 
-  <script type="text/javasctipt">
-    $(document).ready(function(){
-        $('#image').change(function(e){
-            var reader = new FileReader();
-            reader.onload=function(e){
-                $('#showImage').attr('src', e.target.result);
-            }
-            reader.readAsDataURL(e.target.files['0']);
-
-        });
-
-    });
-
-  </script>
+  
 
 
   @endsection

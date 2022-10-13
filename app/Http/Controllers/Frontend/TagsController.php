@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Subcategory;
+use App\Models\SubSubCategory;
 
 class TagsController extends Controller
 {
@@ -24,15 +26,17 @@ class TagsController extends Controller
    {
     $products=Product::where('status',1)->where('subcategory_id',$subcatId)->paginate(6);
     $categories=Category::orderBy('category_name_en','ASC')->get();
+    $subCatBreadCrum=SubCategory::with('category')->where('id', $subcatId)->get();
 
-    return view('frontend.products.subcat_view',compact('products','categories'));
+    return view('frontend.products.subcat_view',compact('products','categories', 'subCatBreadCrum'));
    }
 
    public function SubSubCatWiseProducts($subsubcatId,$slug)
    {
     $products=Product::where('status',1)->where('subsubcategory_id',$subsubcatId)->paginate(6);
     $categories=Category::orderBy('category_name_en','ASC')->get();
+    $subSubCatBreadCrum=SubSubCategory::with(['category','subcategory'])->where('id', $subsubcatId)->get();
 
-    return view('frontend.products.subsubcat_view',compact('products','categories'));
+    return view('frontend.products.subsubcat_view',compact('products','categories', 'subSubCatBreadCrum'));
    }
 }

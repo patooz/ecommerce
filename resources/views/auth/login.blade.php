@@ -29,9 +29,9 @@
     <form method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">
             @csrf
         <div class="form-group">
-            <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
+            <label class="info-title" for="exampleInputEmail1">User Name <span>*</span></label>
             <input type="email" id="email" name="email" class="form-control unicase-form-control text-input">
-            @error('name')
+            @error('email')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
@@ -39,7 +39,9 @@
         </div>
         <div class="form-group">
             <label class="info-title" for="exampleInputPassword1">Password <span>*</span></label>
+            <i class="fa fa-eye" id="togglePassword"></i>
             <input type="password" id="password" class="form-control unicase-form-control text-input" name="password" >
+
             @error('password')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

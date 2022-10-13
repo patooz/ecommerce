@@ -451,6 +451,15 @@
             'reference' => 'daa11c43729510b3700bc34d414664966b03bffe',
             'dev_requirement' => false,
         ),
+        'kabangi/mpesa' => array(
+            'pretty_version' => 'v3.0.3',
+            'version' => '3.0.3.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../kabangi/mpesa',
+            'aliases' => array(),
+            'reference' => 'd6d476afe79c44b4b97d68ed3633545c6e334cbc',
+            'dev_requirement' => false,
+        ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(

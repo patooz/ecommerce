@@ -248,6 +248,14 @@ Checkout
 
     </div> {{-- col-md-4 --}}
 
+    <div class="col-md-4">
+        <input type="radio" name="payment_method" value="mpesa">
+        <label for="">Mpesa </label>
+
+        <img src="{{ asset('frontend/assets/images/payments/mpesa.png') }}" alt="">
+
+    </div> {{-- col-md-4 --}}
+
 </div> {{-- end row --}}
 <hr>
 <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Proceed to Payment</button>

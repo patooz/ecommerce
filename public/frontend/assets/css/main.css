@@ -88,6 +88,14 @@ body {
   background-color: #f3f3f3;
 }
 
+form i {
+    margin-left: 520px;
+    margin-bottom: -1000px;
+    cursor: pointer;
+    color: blue;
+}
+
+
 .cnt-home {background-color: #f3f3f3;}
 
 ul {

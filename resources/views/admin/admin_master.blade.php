@@ -27,9 +27,10 @@
 <div class="wrapper">
 
     @include('admin.body.header')
+    @include('admin.body.sidebar')
     @include('sweetalert::alert')
 
-    @include('admin.body.sidebar')
+
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -63,8 +64,10 @@
 	<script src="{{ asset('../assets/vendor_components/apexcharts-bundle/dist/apexcharts.js') }}"></script>
 
 
-  <script src="{{asset ('frontend/assets/js/jquery.min.js')}}"></script>
+  {{-- <script src="{{asset ('frontend/assets/js/jquery.min.js')}}"></script>
   <script src="{{ asset('backend/js/pages/jquery-ui.min.js') }}"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script type="text/javascript" src="{{asset('backend/js/jquery.slimscroll.min.js')}}"></script> --}}
   <script src="{{ asset('../assets/vendor_components/datatable/datatables.min.js') }}"></script>
   <script src="{{ asset('backend/js/pages/data-table.js') }}"></script>
 
@@ -88,24 +91,28 @@
 
 
 
+
+
+
+
 <script>
   @if (Session::has('message'))
   var type="{{Session::get('alert-type', 'info') }}"
     switch (type){
       case 'info':
-      toaster.info("{{ Session::get('message') }}");
+      toastr.info("{{ Session::get('message') }}");
       break;
 
       case 'success':
-      toaster.success("{{ Session::get('message') }}");
+      toastr.success("{{ Session::get('message') }}");
       break;
 
       case 'warning':
-      toaster.warning("{{ Session::get('message') }}");
+      toastr.warning("{{ Session::get('message') }}");
       break;
 
       case 'error':
-      toaster.error("{{ Session::get('message') }}");
+      toastr.error("{{ Session::get('message') }}");
       break;
 
     }
@@ -118,38 +125,7 @@
 </script>
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script type="text/javascript">
-    $(document).ready(function(){
-        $(document).on('click', '#delete',function(e){
-            e.preventDefault();
-            var link = $(this).attr("href");
-
-                Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = link
-                    Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                    )
-                }
-                })
-
-
-
-
-        });
-    });
-
-</script>
+<script src="{{ asset('backend/js/code.js') }}"></script>
 
 
 </body>

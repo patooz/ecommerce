@@ -334,12 +334,19 @@ Ndonyo Online Shop
             <div class="cart clearfix animate-effect">
                 <div class="action">
                 <ul class="list-unstyled">
-                    <li class="add-cart-button btn-group">
-                    <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
-                    <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                    </li>
-                    <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                    <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+
+            <li class="add-cart-button btn-group">
+              <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{$product->id}}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
+             <button class="btn btn-primary cart-btn" type="button" >Add to cart</button>
+            </li>
+                            
+                   
+            <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart"  title="Wishlist" id="{{$product->id}}" onclick="addToWishList(this.id)"> <i class="icon fa fa-heart"></i> </a>
+             </li>
+
+             <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a>
+              </li>
+
                 </ul>
                 </div>
                 <!-- /.action -->
@@ -555,10 +562,8 @@ Ndonyo Online Shop
 
                             <button class="btn btn-primary cart-btn" type="button" >Add to cart</button>
                             </li>
-                            <li class="lnk wishlist">
-                                <button class="btn btn-primary icon" type="button" title="Wishlist" id="{{$product->id}}" onclick="addToWishList(this.id)"> <i class="fa fa-heart"></i> </button>
-
-                                </li>
+                            <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart"  title="Wishlist" id="{{$product->id}}" onclick="addToWishList(this.id)"> <i class="icon fa fa-heart"></i> </a>
+                            </li>
                             <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                         </ul>
                         </div>
@@ -643,11 +648,14 @@ Ndonyo Online Shop
                   <div class="action">
                   <ul class="list-unstyled">
                       <li class="add-cart-button btn-group">
-                      <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
-                      <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                      </li>
-                      <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                      <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+
+                            <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{$product->id}}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
+
+                            <button class="btn btn-primary cart-btn" type="button" >Add to cart</button>
+                            </li>
+                            <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart"  title="Wishlist" id="{{$product->id}}" onclick="addToWishList(this.id)"> <i class="icon fa fa-heart"></i> </a>
+                            </li>
+                            <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                   </ul>
                   </div>
                   <!-- /.action -->
@@ -729,11 +737,14 @@ Ndonyo Online Shop
                   <div class="action">
                   <ul class="list-unstyled">
                       <li class="add-cart-button btn-group">
-                      <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
-                      <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                      </li>
-                      <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                      <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+
+                            <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{$product->id}}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
+
+                            <button class="btn btn-primary cart-btn" type="button" >Add to cart</button>
+                            </li>
+                            <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart"  title="Wishlist" id="{{$product->id}}" onclick="addToWishList(this.id)"> <i class="icon fa fa-heart"></i> </a>
+                            </li>
+                            <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                   </ul>
                   </div>
                   <!-- /.action -->
@@ -856,11 +867,14 @@ Ndonyo Online Shop
                   <div class="action">
                   <ul class="list-unstyled">
                       <li class="add-cart-button btn-group">
-                      <button data-toggle="tooltip" class="btn btn-primary icon" type="button" title="Add Cart"> <i class="fa fa-shopping-cart"></i> </button>
-                      <button class="btn btn-primary cart-btn" type="button">Add to cart</button>
-                      </li>
-                      <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Wishlist"> <i class="icon fa fa-heart"></i> </a> </li>
-                      <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+
+                            <button class="btn btn-primary icon" type="button" title="Add Cart" data-toggle="modal" data-target="#exampleModal" id="{{$product->id}}" onclick="productView(this.id)"> <i class="fa fa-shopping-cart"></i> </button>
+
+                            <button class="btn btn-primary cart-btn" type="button" >Add to cart</button>
+                            </li>
+                            <li class="lnk wishlist"> <a data-toggle="tooltip" class="add-to-cart"  title="Wishlist" id="{{$product->id}}" onclick="addToWishList(this.id)"> <i class="icon fa fa-heart"></i> </a>
+                            </li>
+                            <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="detail.html" title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
                   </ul>
                   </div>
                   <!-- /.action -->
@@ -1146,18 +1160,20 @@ Ndonyo Online Shop
           <h3 class="section-title">latest form blog</h3>
           <div class="blog-slider-container outer-top-xs">
             <div class="owl-carousel blog-slider custom-carousel">
+
+              @foreach ($blogPost as $item)
               <div class="item">
                 <div class="blog-post">
                   <div class="blog-post-image">
-                    <div class="image"> <a href="blog.html"><img src="{{asset('frontend/assets/images/blog-post/post1.jpg')}}" alt=""></a> </div>
+                    <div class="image"> <a href="{{route('blog_post_details', $item->id)}}"><img src="{{asset($item->post_image)}}" alt=""></a> </div>
                   </div>
                   <!-- /.blog-post-image -->
 
                   <div class="blog-post-info text-left">
-                    <h3 class="name"><a href="#">Voluptatem accusantium doloremque laudantium</a></h3>
-                    <span class="info">By Jone Doe &nbsp;|&nbsp; 21 March 2016 </span>
-                    <p class="text">Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                    <a href="#" class="lnk btn btn-primary">Read more</a> </div>
+                    <h3 class="name"><a href="{{route('blog_post_details', $item->id)}}">@if (session()->get('language') == 'Kiswahili'){{$item->post_title_swa}} @else {{$item->post_title_en}} @endif</a></h3>
+                    <span class="info">By Jone Doe &nbsp;|&nbsp; {{Carbon\Carbon::parse($item->created_at)->diffForHumans()}} </span>
+                    <p class="text">@if (session()->get('language') == 'Kiswahili'){!!Str::limit($item->post_details_swa, 300)!!} @else {!!Str::limit($item->post_details_en, 300)!!} @endif</p>
+                    <a href="{{route('blog_post_details', $item->id)}}" class="lnk btn btn-primary">Read more</a> </div>
                   <!-- /.blog-post-info -->
 
                 </div>
@@ -1165,83 +1181,14 @@ Ndonyo Online Shop
               </div>
               <!-- /.item -->
 
-              <div class="item">
-                <div class="blog-post">
-                  <div class="blog-post-image">
-                    <div class="image"> <a href="blog.html"><img src="{{asset('frontend/assets/images/blog-post/post2.jpg')}}" alt=""></a> </div>
-                  </div>
-                  <!-- /.blog-post-image -->
+              @endforeach
 
-                  <div class="blog-post-info text-left">
-                    <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                    <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                    <p class="text">Sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>
-                    <a href="#" class="lnk btn btn-primary">Read more</a> </div>
-                  <!-- /.blog-post-info -->
+              
 
-                </div>
-                <!-- /.blog-post -->
-              </div>
-              <!-- /.item -->
 
-              <!-- /.item -->
+             
 
-              <div class="item">
-                <div class="blog-post">
-                  <div class="blog-post-image">
-                    <div class="image"> <a href="blog.html"><img src="{{asset('frontend/assets/images/blog-post/post1.jpg')}}" alt=""></a> </div>
-                  </div>
-                  <!-- /.blog-post-image -->
-
-                  <div class="blog-post-info text-left">
-                    <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                    <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                    <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
-                    <a href="#" class="lnk btn btn-primary">Read more</a> </div>
-                  <!-- /.blog-post-info -->
-
-                </div>
-                <!-- /.blog-post -->
-              </div>
-              <!-- /.item -->
-
-              <div class="item">
-                <div class="blog-post">
-                  <div class="blog-post-image">
-                    <div class="image"> <a href="blog.html"><img src="{{asset('frontend/assets/images/blog-post/post2.jpg')}}" alt=""></a> </div>
-                  </div>
-                  <!-- /.blog-post-image -->
-
-                  <div class="blog-post-info text-left">
-                    <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                    <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                    <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
-                    <a href="#" class="lnk btn btn-primary">Read more</a> </div>
-                  <!-- /.blog-post-info -->
-
-                </div>
-                <!-- /.blog-post -->
-              </div>
-              <!-- /.item -->
-
-              <div class="item">
-                <div class="blog-post">
-                  <div class="blog-post-image">
-                    <div class="image"> <a href="blog.html"><img src="{{asset('frontend/assets/images/blog-post/post1.jpg')}}" alt=""></a> </div>
-                  </div>
-                  <!-- /.blog-post-image -->
-
-                  <div class="blog-post-info text-left">
-                    <h3 class="name"><a href="#">Dolorem eum fugiat quo voluptas nulla pariatur</a></h3>
-                    <span class="info">By Saraha Smith &nbsp;|&nbsp; 21 March 2016 </span>
-                    <p class="text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium</p>
-                    <a href="#" class="lnk btn btn-primary">Read more</a> </div>
-                  <!-- /.blog-post-info -->
-
-                </div>
-                <!-- /.blog-post -->
-              </div>
-              <!-- /.item -->
+              
 
             </div>
             <!-- /.owl-carousel -->

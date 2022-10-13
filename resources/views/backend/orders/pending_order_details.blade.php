@@ -127,6 +127,41 @@
                         <th><span class="badge badge-pill badge-warning" style="background: #418DB9">{{$order->status}}</span></th>
                     </tr>
 
+                    <tr>
+
+                        <th>
+                            @if ($order->status == 'Canceled')
+                            <a class="btn btn-block btn-danger" href="{{route('cancel_Order',$order->id)}}" id="cancel">Delete Order</a>
+                            @endif
+                        </th>
+                            
+                            
+                        <th>
+                            @if ($order->status == 'Pending')
+                            <a class="btn btn-block btn-success" href="{{route('confirm_pending',$order->id)}}" id="confirm">Confirm Order</a>
+
+                            @elseif ($order->status == 'Confirmed')
+                            <a class="btn btn-block btn-success" href="{{route('process_confirmed',$order->id)}}" id="processing">Process Order</a>
+
+                            @elseif ($order->status == 'Processing')
+                            <a class="btn btn-block btn-success" href="{{route('picked_order',$order->id)}}" id="picked">Picked Order</a>
+
+                            @elseif ($order->status == 'Picked')
+                            <a class="btn btn-block btn-success" href="{{route('ship_order',$order->id)}}" id="shipped">Ship Order</a>
+
+                             @elseif ($order->status == 'Shipped')
+                            <a class="btn btn-block btn-success" href="{{route('delivered_order',$order->id)}}" id="delivered">Delivered Order</a>
+
+                            @elseif ($order->status == 'Canceled')
+                            <a class="btn btn-block btn-primary" href="{{route('restore_to_pending',$order->id)}}" id="restore">Restore to Pending</a>
+
+                            
+
+                            @endif
+                            
+                        </th>
+                    </tr>
+
 
 
                 </table>
@@ -216,7 +251,7 @@
 
                         @endforeach
                     </tbody>
-                    </tbody>
+                    
                 </table>
 				</div>
 			  </div>

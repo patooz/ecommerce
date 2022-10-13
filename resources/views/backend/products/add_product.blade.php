@@ -423,7 +423,7 @@
     <div class="col-md-6">
 
             <div class="form-group">
-                <h5>Product Short Desccription in Swahili <span class="text-danger">*</span></h5>
+                <h5>Product Short Description in Swahili <span class="text-danger">*</span></h5>
                 <div class="controls">
                     <div class="controls">
                         <textarea name="short_description_swa" id="textarea" class="form-control" required data-validation-required-message="This field is required" required placeholder="Maelezo Fupi"></textarea>
@@ -446,7 +446,7 @@
             <div class="row"> {{-- start 8th row  --}}
                 <div class="col-md-6">
         <div class="form-group">
-            <h5>Product Long Desccription in English <span class="text-danger">*</span></h5>
+            <h5>Product Long Description in English <span class="text-danger">*</span></h5>
             <div class="controls">
                 <div class="controls">
                     <textarea id="editor1" name="long_description_en" rows="10" required data-validation-required-message="This field is required" cols="80"   >
@@ -462,7 +462,7 @@
     <div class="col-md-6">
 
             <div class="form-group">
-                <h5>Product Long Desccription in Swahili <span class="text-danger">*</span></h5>
+                <h5>Product Long Description in Swahili <span class="text-danger">*</span></h5>
                 <div class="controls">
                     <div class="controls">
                         <textarea id="editor2" name="long_description_swa" required data-validation-required-message="This field is required" rows="10" cols="80"  >

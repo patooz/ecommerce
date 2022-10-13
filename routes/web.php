@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Backend\BrandController;
@@ -14,16 +15,23 @@ use App\Http\Controllers\Backend\CouponController;
 use App\Http\Controllers\Backend\ShippingCountyController;
 use App\Http\Controllers\Backend\ShippingSubCountyController;
 use App\Http\Controllers\Backend\ShippingWardController;
+use App\Http\Controllers\Backend\ReportsController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\SiteSettingsController;
+use App\Http\Controllers\Backend\ReturnOrderController;
+use App\Http\Controllers\Backend\AdminUsersController;
 use App\Http\Controllers\Frontend\LanguageController;
 use App\Http\Controllers\Frontend\TagsController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\HomeBlogController;
 use App\Http\Controllers\User\WishListController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CashController;
+use App\Http\Controllers\User\ReviewController;
 use App\Models\User;
 
 
@@ -140,6 +148,8 @@ Route::prefix('product')->group(function(){
     Route::get('/delete/{id}', [ProductController::class, 'DeleteProduct'])->name('delete.product');
 
 
+
+
     });
 
 
@@ -187,6 +197,7 @@ Route::prefix('slider')->group(function(){
     //Add to wishlist
     Route::post('add-to-wishlist/{productId}', [CartController::class, 'AddToWishList']);
 
+//user must login
     Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'], function(){
 
         //wishlist page
@@ -204,6 +215,9 @@ Route::prefix('slider')->group(function(){
     //Cash order
     Route::post('/ash/order', [CashController::class, 'CashOrder'])->name('cash.order');
 
+    //Mpesa Online order
+    Route::post('/mpesa/order', [TransactionController::class, 'stkPushRequest'])->name('mpesa.order');
+
     //my orders
     Route::get('/my/orders', [AllUserController::class, 'Myorders'])->name('my.orders');
 
@@ -212,6 +226,18 @@ Route::prefix('slider')->group(function(){
 
     //download invoice
     Route::get('/download-invoice/{order_id}', [AllUserController::class, 'DownloadInvoice']);
+
+    //return reason
+    Route::post('/return/order/{order_id}', [AllUserController::class, 'returnOrder'])->name('return_order');
+
+    //returned orders list
+    Route::get('/returned/orders', [AllUserController::class, 'returnedOrdersList'])->name('returned_orders_list');
+
+    //canceled orders list
+    Route::get('/canceled/orders/list', [AllUserController::class, 'canceledOrdersList'])->name('canceled_orders_list');
+
+    //track order
+    Route::post('/track/order', [AllUserController::class, 'trackOrder'])->name('track_order');
 
 
     });
@@ -296,7 +322,7 @@ Route::get('/get-ward/ajax/{subcounty_id}', [CheckoutController::class, 'GetWard
 //store checkout
 Route::post('/store/checkout', [CheckoutController::class, 'StoreCheckout'])->name('store-checkout');
 
-//Admin order routes
+//Order order routes
 Route::prefix('orders')->group(function(){
     Route::get('/pending/orders', [OrderController::class, 'PendingOrders'])->name('pending.orders');
     Route::get('/pending/order/details/{order_id}', [OrderController::class, 'PendingorderDetails'])->name('pending.order.details');
@@ -306,11 +332,156 @@ Route::prefix('orders')->group(function(){
     Route::get('/shipped/orders', [OrderController::class, 'ShippedOrders'])->name('shipped.orders');
     Route::get('/delivered/orders', [OrderController::class, 'DeliveredOrders'])->name('delivered.orders');
     Route::get('/canceled/orders', [OrderController::class, 'CanceledOrders'])->name('canceled.orders');
+    Route::get('/trashed/orders', [OrderController::class, 'trashedOrders'])->name('trashed.orders');
 
+    //update order status
+    Route::get('/confirm/pending/order/{order_id}', [OrderController::class, 'confirmPendindOrder'])->name('confirm_pending');
+
+    Route::get('/process/confirmed/order/{order_id}', [OrderController::class, 'processConfirmedOrder'])->name('process_confirmed');
+
+    Route::get('/picked/order/{order_id}', [OrderController::class, 'pickedOrder'])->name('picked_order');
+
+    Route::get('/ship/order/{order_id}', [OrderController::class, 'shipOrder'])->name('ship_order');
+
+    Route::get('/delivered/order/{order_id}', [OrderController::class, 'deliveredOrder'])->name('delivered_order');
+
+
+    Route::get('/cancel/order/{order_id}', [OrderController::class, 'cancelOrder'])->name('cancel_Order');
+
+    Route::get('/restore/canceled/order/{order_id}', [OrderController::class, 'restoreCanceledOrder'])->name('restore_canceled_order');
+
+
+     Route::get('/restore/deleted/order/{order_id}', [OrderController::class, 'restoreDeleted'])->name('restore_deleted_order');
+
+
+     Route::get('/delete/order/{order_id}', [OrderController::class, 'softDeleteOrder'])->name('soft_delete_order');
+
+
+     Route::get('/download/invoice/{order_id}', [OrderController::class, 'adminDownloadInvoice'])->name('download_invoice');
+
+});
+
+//Admin Reports routes
+Route::prefix('reports')->group(function(){
+
+    Route::get('/view', [ReportsController::class, 'viewReports'])->name('view_reports');
+    Route::post('search/by/date', [ReportsController::class, 'reportsByDate'])->name('search_by_date');
+    Route::post('search/by/month', [ReportsController::class, 'reportsByMonth'])->name('search_by_month');
+    Route::post('search/by/year', [ReportsController::class, 'reportsByYear'])->name('search_by_year');
 
 
 });
 
+//Admin Reports routes
+Route::prefix('users')->group(function(){
+
+    Route::get('/view', [AdminProfileController::class, 'viewUsers'])->name('view_users');
+    
+
+});
+
+//blog routes
+Route::prefix('blog')->group(function(){
+
+    Route::get('/category', [BlogController::class, 'blogCategory'])->name('blog_category');
+    Route::post('/category/store', [BlogController::class, 'storeBlogCategory'])->name('store_blog_category');
+    Route::get('/category/edit/{blog_id}', [BlogController::class, 'editBlogCategory'])->name('edit_blog_category');
+    Route::post('/category/update/{blog_id}', [BlogController::class, 'updateBlogCategory'])->name('update_blog_category');
+    Route::get('/category/delete/{blog_id}', [BlogController::class, 'deleteBlogCategory'])->name('delete_blog_category');
+
+    //admin view blog
+    Route::get('/view/blog/post', [BlogController::class, 'viewBlogPost'])->name('view_blog_post');
+
+    //admin add blog
+    Route::get('/add/blog/post', [BlogController::class, 'addBlogPost'])->name('add_blog_post');
+
+    //admin store blog
+    Route::post('/store/blog/post', [BlogController::class, 'storeBlogPost'])->name('store_blog_post');
+
+    //admin edit blog
+    Route::get('/edit/blog/post/{post_id}', [BlogController::class, 'editBlogPost'])->name('edit_blog_post');
+
+    //admin update blog
+    Route::post('/update/blog/post/{post_id}', [BlogController::class, 'updateBlogPost'])->name('update_blog_post');
+
+    //admin update blog
+    Route::get('/delete/blog/post/{post_id}', [BlogController::class, 'deleteBlogPost'])->name('delete_blog_post');
+
+});
+
+//admin update blog
+Route::get('/blog', [HomeBlogController::class, 'frontBlog'])->name('front_blog');
+
+// blog post details
+Route::get('/blog/details/{id}', [HomeBlogController::class, 'blogPostDetails'])->name('blog_post_details');
+
+// blog post category
+Route::get('/blog/post/category/{id}', [HomeBlogController::class, 'blogPostCategory'])->name('blog_post_category');
+
+// site settings routes
+Route::prefix('settings')->group(function(){
+
+    Route::get('/site/settings', [SiteSettingsController::class, 'siteSettings'])->name('site_setting');
+    Route::post('/update/site/settings/{setting_id}', [SiteSettingsController::class, 'updatSiteSettings'])->name('update_site_setting');
+
+    Route::get('/seo/settings', [SiteSettingsController::class, 'seoSettings'])->name('seo_setting');
+    Route::post('/update/seo/settings/{seo_id}', [SiteSettingsController::class, 'updateSeoSettings'])->name('update_seo_setting');
+
+});
+
+
+// admin return order routes
+Route::prefix('return')->group(function(){
+
+    Route::get('/all/requests', [ReturnOrderController::class, 'allRequests'])->name('all_requests');
+
+    Route::get('/approved/returned/requests', [ReturnOrderController::class, 'approvedReturnedRequests'])->name('approved_returned_requests');
+
+    Route::get('/approve/returned/requests/{request_id}', [ReturnOrderController::class, 'approveReturnedRequests'])->name('approve_returned_requests');
+
+
+});
+
+//frontend product review
+Route::post('add/product/review/{product_id}', [ReviewController::class, 'addProductReview'])->name('add_product_review');
+
+// admin review  routes
+Route::prefix('review')->group(function(){
+
+    Route::get('/pending/reviews', [ReviewController::class, 'pendingReviews'])->name('pending_reviews');
+
+    Route::get('/approve/review/{review_id}', [ReviewController::class, 'approvedReview'])->name('approve_review');
+
+    Route::get('/approved/reviews', [ReviewController::class, 'approvedReviews'])->name('approved_reviews');
+
+    Route::get('/delete/review/{review_id}', [ReviewController::class, 'deletedReview'])->name('delete_review');
+
+
+});
+
+// admin review  routes
+Route::prefix('stock')->group(function(){
+
+    Route::get('/product', [ProductController::class, 'productStock'])->name('product_stock');
+
+});
+
+// admin users role
+Route::prefix('adminroles')->group(function(){
+
+    Route::get('admin/users', [AdminUsersController::class, 'adminUsers'])->name('admin_users');
+    Route::get('add/admin/user', [AdminUsersController::class, 'addAdminUser'])->name('add_admin_user');
+    Route::post('store/admin/user', [AdminUsersController::class, 'storeAdminUser'])->name('store_admin_user');
+    Route::get('edit/admin/user/{user_id}', [AdminUsersController::class, 'editAdminUser'])->name('edit_admin_user');
+    Route::post('update/admin/user/{user_id}', [AdminUsersController::class, 'updateAdminUser'])->name('update_admin_user');
+    Route::get('delete/admin/user/{user_id}', [AdminUsersController::class, 'deleteAdminUser'])->name('delete_admin_user');
+});
+
+//front end product search
+Route::post('product/search', [IndexController::class, 'productSearch'])->name('product_search');
+
+//front end advanced product search
+Route::post('advanced/product/search', [IndexController::class, 'advancedProductSearch'])->name('advanced_product_search');
 
 
 

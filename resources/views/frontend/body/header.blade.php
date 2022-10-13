@@ -30,6 +30,10 @@
 @if (session()->get('language') == 'Kiswahili') Lipa @else Checkout @endif
                 </a></li>
 
+                <li><a href="" type="button" data-toggle="modal" data-target="#trackOrder" ><i class="fa fa-map-marker" aria-hidden="true"></i>
+@if (session()->get('language') == 'Kiswahili') Fuatilia Oda @else Track Order @endif
+                </a></li>
+
             @auth
             <li><a href="{{ route('user.profile') }}"><i class="icon fa fa-user"></i>
                 @if (session()->get('language') == 'Kiswahili')
@@ -108,8 +112,18 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
+
+
+          @php
+
+          $sitesettings=App\Models\SiteSettings::find(1);
+
+          @endphp
+
+
+
           <!-- ============================================================= LOGO ============================================================= -->
-          <div class="logo"> <a href="{{url('/')}}"> <img src="{{asset('frontend/assets/images/logo.png')}}" alt="logo"> </a> </div>
+          <div class="logo"> <a href="{{url('/')}}"> <img src="{{asset($sitesettings->logo)}}" alt="logo"> </a> </div>
           <!-- /.logo -->
           <!-- ============================================================= LOGO : END ============================================================= --> </div>
         <!-- /.logo-holder -->
@@ -118,7 +132,8 @@
           <!-- /.contact-row -->
           <!-- ============================================================= SEARCH AREA ============================================================= -->
           <div class="search-area">
-            <form>
+            <form method="post" action="{{route('product_search')}}">
+              @csrf
               <div class="control-group">
                 <ul class="categories-filter animate-dropdown">
                   <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="category.html">Categories <b class="caret"></b></a>
@@ -131,9 +146,10 @@
                     </ul>
                   </li>
                 </ul>
-                <input class="search-field" placeholder="Search here..." />
-                <a class="search-button" href="#" ></a> </div>
+                <input class="search-field" onfocus="show_search_results()" onblur="hide_search_results()" id="search" name="search" placeholder="Search here..." />
+               <button class="search-button" type="submit"></button> </div>
             </form>
+            <div id="searchProduct"></div>
           </div>
           <!-- /.search-area -->
           <!-- ============================================================= SEARCH AREA : END ============================================================= --> </div>
@@ -270,6 +286,8 @@
     @endforeach
 
     <li class="dropdown  navbar-right special-menu"> <a href="#">Todays offer</a> </li>
+
+     <li class="dropdown  navbar-right special-menu"> <a href="{{route('front_blog')}}">Blog</a> </li>
               </ul>
               <!-- /.navbar-nav -->
               <div class="clearfix"></div>
@@ -289,6 +307,60 @@
   <!-- /.header-nav -->
   <!-- ============================================== NAVBAR : END ============================================== -->
 
+  <!--Order tracking Modal -->
+<div class="modal fade" id="trackOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Track Your Order</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="{{route('track_order')}}">
+          @csrf
+          <div class="modal-body">
+            <label>Input Invoice Number</label>
+            <input type="text" name="invoice_number" required="" class="form-control" placeholder="Invoice Number">
+          </div>
+        
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+        <button type="submit" class="btn btn-primary">Track Order</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 </header>
 
 <!-- ============================================== HEADER : END ============================================== -->
+
+<style>
+  .search-area{
+    position: relative;
+  }
+  #searchProduct {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    z-index: 999;
+    border-radius: 8px;
+    margin-top: 5px;
+  }
+</style>
+
+<script type="text/javascript">
+  function show_search_results() {
+    $("#searchProduct").slideDown();
+  }
+
+  function hide_search_results() {
+    $("#searchProduct").slideUp();
+  }
+</script>

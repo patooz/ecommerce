@@ -10,7 +10,19 @@ Sub subcategory Products
       <div class="breadcrumb-inner">
         <ul class="list-inline list-unstyled">
           <li><a href="{{url('/')}}">Home</a></li>
-          <li class='active'>Handbags</li>
+
+          @foreach ($subSubCatBreadCrum as $item)
+          <li class='active'>{{$item->category->category_name_en}}</li>
+          @endforeach
+
+          @foreach ($subSubCatBreadCrum as $item)
+          <li class='active'>{{$item->subcategory->subcategory_name_en}}</li>
+          @endforeach
+
+          @foreach ($subSubCatBreadCrum as $item)
+          <li class='active'>{{$item->subsubcategory_name_en}}</li>
+          @endforeach
+          
         </ul>
       </div>
       <!-- /.breadcrumb-inner -->
@@ -182,6 +194,21 @@ Sub subcategory Products
               <!-- /.container-fluid -->
             </div>
           </div>
+
+          @foreach ($subSubCatBreadCrum as $item)
+          
+          <span class="badge badge-primary" style="background-color: #800000">{{$item->category->category_name_en}}</span>
+          @endforeach
+
+          @foreach ($subSubCatBreadCrum as $item)
+          <span class="badge badge-primary" style="background-color: #A52A2A">{{$item->subcategory->subcategory_name_en}}</span>
+          
+          @endforeach
+
+          @foreach ($subSubCatBreadCrum as $item)
+          <span class="badge badge-primary" style="background-color: #FFA500">{{$item->subsubcategory_name_en}}</span>
+          
+          @endforeach
 
 
           <div class="clearfix filters-container m-t-10">

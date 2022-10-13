@@ -358,7 +358,7 @@
             <div class="row"> {{-- start 7th row  --}}
                 <div class="col-md-6">
         <div class="form-group">
-            <h5>Product Short Desccription in English <span class="text-danger">*</span></h5>
+            <h5>Product Short Description in English <span class="text-danger">*</span></h5>
             <div class="controls">
                 <div class="controls">
                     <textarea name="short_description_en" id="textarea" class="form-control" required data-validation-required-message="This field is required" required placeholder="Short Description">
@@ -374,7 +374,7 @@
     <div class="col-md-6">
 
             <div class="form-group">
-                <h5>Product Short Desccription in Swahili <span class="text-danger">*</span></h5>
+                <h5>Product Short Description in Swahili <span class="text-danger">*</span></h5>
                 <div class="controls">
                     <div class="controls">
                         <textarea name="short_description_swa" id="textarea" class="form-control" required data-validation-required-message="This field is required" required placeholder="Maelezo Fupi">

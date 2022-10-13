@@ -99,6 +99,12 @@ body {
   body.layout-boxed {
     height: 100%; }
 
+  form i {
+    margin-left: -30px;
+    cursor: pointer;
+    color: blue;
+}
+
 .wrapper {
   height: 100%;
   overflow-x: hidden;

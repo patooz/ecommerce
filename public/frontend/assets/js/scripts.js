@@ -330,7 +330,39 @@ jQuery(function () {
 /*===================================================================================*/
 /*  TOOLTIP 
 /*===================================================================================*/
-jQuery("[data-toggle='tooltip']").tooltip(); 
+jQuery("[data-toggle='tooltip']").tooltip();
+    const site_url = "http://127.0.0.1:8000/";
+
+    $("body").on("keyup", "#search", function(){
+        let text = $("#search").val();
+        // console.log('text: ', text);
+
+        if (text.length > 0) {
+
+            $.ajax({
+            data: {search: text},
+            url: site_url + "advanced/product/search",
+            method: "post",
+            beforSend: function(request){
+                return request.setReuestHeader('X-CSRF-Token', ("meta[name='csrf_token']"))
+
+            },
+            success: function(result){
+                $("#searchProduct").html(result);
+
+            }
+
+        });
+
+        } 
+
+            if (text.length< 1) $("#searchProduct").html("");
+
+        
+
+        
+
+    }); 
 
 
 

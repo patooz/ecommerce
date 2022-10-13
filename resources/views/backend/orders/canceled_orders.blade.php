@@ -48,8 +48,9 @@
 
 
                               <td width="20%">
-                                  <a href="{{ route('edit.coupon',$item->id) }}" class="btn btn-info btn-sm" title="Edit Category" ><i class="fa fa-pencil"></i></a>
-                                  <a href="{{ route('delete.coupon',$item->id) }}" id="delete" class="btn btn-danger btn-sm" title="Delete Category"
+                                  <a href="{{ route('pending.order.details',$item->id) }}" class="btn btn-info btn-sm" title="View Order" ><i class="fa fa-eye"></i></a>
+                                  <a href="{{ route('restore_canceled_order',$item->id) }}" class="btn btn-primary btn-sm" title="Restore To Pending" id="restoreToPending" ><i class="fa fa-cloud-upload"></i></a>
+                                  <a href="{{ route('soft_delete_order',$item->id) }}" id="softDeleteOrder" class="btn btn-danger btn-sm" title="Delete Order"
                                     ><i class="fa fa-trash" ></i></a>
                               </td>
 

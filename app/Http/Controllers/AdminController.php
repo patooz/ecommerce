@@ -119,5 +119,6 @@ class AdminController extends Controller
         Alert::toast('Logged Out Successfully!', 'success');
 
         return app(LogoutResponse::class);
+        
     }
 }
