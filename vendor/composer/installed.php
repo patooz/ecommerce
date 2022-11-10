@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '26894369be6dbdb0f1b73bebb2220fb5d52d8dc1',
+        'reference' => '5542e21ab439fa35b965f39bf36c2a1d0a8883c9',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -499,7 +499,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '26894369be6dbdb0f1b73bebb2220fb5d52d8dc1',
+            'reference' => '5542e21ab439fa35b965f39bf36c2a1d0a8883c9',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -945,6 +945,15 @@
             'install_path' => __DIR__ . '/../psy/psysh',
             'aliases' => array(),
             'reference' => '7f7da640d68b9c9fec819caae7c744a213df6514',
+            'dev_requirement' => false,
+        ),
+        'rachidlaasri/laravel-installer' => array(
+            'pretty_version' => '4.1.0',
+            'version' => '4.1.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../rachidlaasri/laravel-installer',
+            'aliases' => array(),
+            'reference' => 'b751b4c23dba893e9a4a12f881a6fd8fa921d228',
             'dev_requirement' => false,
         ),
         'ralouphie/getallheaders' => array(

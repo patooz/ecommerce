@@ -306,6 +306,15 @@
   </div>
   <!-- /.header-nav -->
   <!-- ============================================== NAVBAR : END ============================================== -->
+  <?php 
+    
+    $order=App\Models\Order::orderBy('id', 'DESC')->get();
+
+   ?>
+
+
+
+
 
   <!--Order tracking Modal -->
 <div class="modal fade" id="trackOrder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -318,11 +327,20 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="{{route('track_order')}}">
+        <?php foreach ($order as $item): ?>
+            
+           
+        
+        <form method="post" action="{{route('track_order', $item->id)}}">
+           <?php endforeach ?> 
           @csrf
           <div class="modal-body">
+ 
             <label>Input Invoice Number</label>
+            
+             
             <input type="text" name="invoice_number" required="" class="form-control" placeholder="Invoice Number">
+            
           </div>
         
       </div>

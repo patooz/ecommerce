@@ -306,19 +306,31 @@ Track Order
             </div>
 
             <hr>
-            <ul class="row">
+            
+            <ul class="row">   
                 <li class="col-md-4">
-                    <figure class="itemside mb-3">
+               
+                        
+                        
+                    <figure class="itemside mb-3">  
+
                         <div class="aside"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1571751108/Ecommerce/laptop-dell-xps-15-computer-monitors-laptops.jpg" class="img-sm border"></div>
                         <figcaption class="info align-self-center">
                             <p class="title">Dell Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$950 </span>
-                        </figcaption>
+                        </figcaption> 
+                        
+
                     </figure>
-                </li>
-               
+
+                    
+                         
+                </li>  
             </ul>
+
             <hr><br><br>
+
             <a href="{{route('my.orders')}}" class="btn btn-primary" data-abc="true"> <i class="fa fa-chevron-left"></i> Back to Orders</a>
+
         </div>
     </article>
 </div><br>

@@ -175,8 +175,8 @@ class IndexController extends Controller
         $request->validate(['search' => 'required']);
         $search=$request->search;
 
-        
-        
+
+
         $products=Product::where('product_name_en', 'LIKE', "%$search%")->select('product_name_en', 'product_thumbnail', 'selling_price', 'id', 'product_slug_en')->limit(10)->get();
         return view('frontend.products.search_product', compact('products'));
     }

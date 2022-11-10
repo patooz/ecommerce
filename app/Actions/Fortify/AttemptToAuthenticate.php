@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\StatefulGuard;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\LoginRateLimiter;
+use Alert;
 
 class AttemptToAuthenticate
 {
@@ -73,6 +74,7 @@ class AttemptToAuthenticate
 
         if (! $user) {
             $this->fireFailedEvent($request);
+            Alert::success('success', 'Logged in successfully');
 
             return $this->throwFailedAuthenticationException($request);
         }

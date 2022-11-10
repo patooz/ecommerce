@@ -79,22 +79,29 @@ class AllUserController extends Controller
         return view('frontend.user.orders.canceled_orders',compact('orders'));
     }
 
-    public function trackOrder(Request $request)
+    public function trackOrder(Request $request, $track_id)
     {
         $invoice = $request->invoice_number;
-        $track =Order::where('invoce_no', $invoice)->first();
-        // $order=Order::where('id', $track)->get();
-        // $orderItem=OrderItem::where('id', $order)->get();
+        
+        $order_id=$request->order_id;
+        $track =Order::where('invoce_no',  $invoice)->first();
+        
+        $order=Order::where('id', $track_id)->get();
+        $order_id=OrderItem::where('order_id', $order)->get();
+        $orderItem=OrderItem::with('products')->where( 'product_id', $order);
+
+        // dd($orderItem);
 
         if ($track) {
-            // echo "<prev>";
-            // print_r($order);
+        //     echo "<prev>";
+        //     print_r($order_id);
 
-            return view('frontend.order_tracking.track_order', compact('track'));
-        } else {
-             Alert::error('Error', 'Invoice not Found. Please Try Again');
-             return redirect()->back();
-        }
+            return view('frontend.order_tracking.track_order', compact('track', 'orderItem' ));
+        } 
+        // else {
+        //      Alert::error('Error', 'Invoice not Found. Please Try Again');
+        //      return redirect()->back();
+        // }
         
     }
 

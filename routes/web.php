@@ -237,7 +237,7 @@ Route::prefix('slider')->group(function(){
     Route::get('/canceled/orders/list', [AllUserController::class, 'canceledOrdersList'])->name('canceled_orders_list');
 
     //track order
-    Route::post('/track/order', [AllUserController::class, 'trackOrder'])->name('track_order');
+    Route::post('/track/order/{track_id}', [AllUserController::class, 'trackOrder'])->name('track_order');
 
 
     });
@@ -376,7 +376,7 @@ Route::prefix('reports')->group(function(){
 Route::prefix('users')->group(function(){
 
     Route::get('/view', [AdminProfileController::class, 'viewUsers'])->name('view_users');
-    
+
 
 });
 
