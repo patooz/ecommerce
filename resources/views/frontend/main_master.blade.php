@@ -177,7 +177,7 @@
         // alert(id)
         $.ajax({
             type:'GET',
-            url:'/product/view/modal/'+id,
+            url:'/ecomm/product/view/modal/'+id,
             dataType:'json',
             success: function (data) {
                 // console.log(data);
@@ -266,7 +266,7 @@
             data: {
                 color:color, size:size, quantity:quantity, product_name:product_name
             },
-            url: "/store/cart/data/"+id,
+            url: "/ecomm/store/cart/data/"+id,
             success:function (data) {
                 miniCart()
                 $('#closeModel').click();
@@ -314,7 +314,7 @@
       function miniCart() {
           $.ajax({
               type: 'GET',
-              url: '/product/mini/cart',
+              url: '/ecomm/product/mini/cart',
               dataType: 'json',
               success: function (response) {
                 //   console.log(response);
@@ -356,7 +356,7 @@
       function removeMiniCart(rowId) {
         $.ajax({
             type: 'GET',
-            url: '/mini/cart/product-remove/'+rowId,
+            url: '/ecomm/mini/cart/product-remove/'+rowId,
             dataType: 'json',
             success: function (data) {
                 miniCart();
@@ -400,7 +400,7 @@
     function addToWishList(productId) {
         $.ajax({
             type: 'POST',
-            url: '/add-to-wishlist/'+productId,
+            url: '/ecomm/add-to-wishlist/'+productId,
             dataType: 'json',
 
             success: function (data) {
@@ -449,7 +449,7 @@
     function Wishlist() {
           $.ajax({
               type: 'GET',
-              url: '/user/get-wishlist-item',
+              url: '/ecomm/user/get-wishlist-item',
               dataType: 'json',
               success: function (response) {
                 //   console.log(response);
@@ -498,7 +498,7 @@
       function RemoveWishlistItem(id) {
         $.ajax({
             type: 'GET',
-            url: '/user/remove-wishlist-item/'+id,
+            url: '/ecomm/user/remove-wishlist-item/'+id,
             dataType: 'json',
             success: function (data) {
                 Wishlist();
@@ -549,7 +549,7 @@
     function cart() {
           $.ajax({
               type: 'GET',
-              url: '/user/get-cart-item',
+              url: '/ecomm/user/get-cart-item',
               dataType: 'json',
               success: function (response) {
                 //   console.log(response);
@@ -627,7 +627,7 @@
       function RemoveCart(id) {
         $.ajax({
             type: 'GET',
-            url: '/user/remove-cart-item/'+id,
+            url: '/ecomm/user/remove-cart-item/'+id,
             dataType: 'json',
             success: function (data) {
                 couponCalc();
@@ -674,7 +674,7 @@
       function increaseCart(rowId) {
           $.ajax({
             type: 'GET',
-            url: '/user/increase-cart/'+rowId,
+            url: '/ecomm/user/increase-cart/'+rowId,
             dataType: 'json',
             success:function(data){
                 couponCalc();
@@ -694,7 +694,7 @@
       function decreaseCart(rowId) {
           $.ajax({
             type: 'GET',
-            url: '/user/decrease-cart/'+rowId,
+            url: '/ecomm/user/decrease-cart/'+rowId,
             dataType: 'json',
             success:function(data){
                 couponCalc();
@@ -722,7 +722,7 @@ function applyCoupon(params) {
         type: 'POST',
         dataType: 'json',
         data: {coupon_name:coupon_name},
-        url: "{{url('/apply-coupon') }}",
+        url: "{{url('/ecomm/apply-coupon') }}",
         success: function (data) {
             couponCalc();
             if (data.validity==true) {
@@ -768,7 +768,7 @@ function applyCoupon(params) {
 function couponCalc() {
     $.ajax({
         type: 'GET',
-        url: "{{ url('/coupon-calculation') }}",
+        url: "{{ url('/ecomm/coupon-calculation') }}",
         dataType : 'json',
         success: function (data) {
 
@@ -833,7 +833,7 @@ couponCalc();
     function removeCoupon() {
         $.ajax({
         type: 'GET',
-        url: "{{ url('/remove-coupon') }}",
+        url: "{{ url('/ecomm/remove-coupon') }}",
         dataType : 'json',
         success: function (data) {
             couponCalc();
