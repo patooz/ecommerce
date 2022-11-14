@@ -70,13 +70,13 @@
 
         <div class="cnt-block">
           <ul class="list-unstyled list-inline">
-            <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">USD </span><b class="caret"></b></a>
+            {{-- <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">USD </span><b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><a href="#">USD</a></li>
                 <li><a href="#">INR</a></li>
                 <li><a href="#">GBP</a></li>
               </ul>
-            </li>
+            </li> --}}
             <li class="dropdown dropdown-small"> <a href="#" class="dropdown-toggle" data-hover="dropdown" data-toggle="dropdown"><span class="value">
                 @if (session()->get('language') == 'Kiswahili')
                 Lugha
@@ -185,7 +185,7 @@
                     <span class="sign"><strong>Ksh</strong> </span> <span class='price' id="cartSubtotal"> </span>
                  </div>
                   <div class="clearfix"></div>
-                  <a href="checkout.html" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
+                  <a href="{{route('chekout')}}" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
                  </div>
                 <!-- /.cart-total-->
 
@@ -306,8 +306,8 @@
   </div>
   <!-- /.header-nav -->
   <!-- ============================================== NAVBAR : END ============================================== -->
-  <?php 
-    
+  <?php
+
     $order=App\Models\Order::orderBy('id', 'DESC')->get();
 
    ?>
@@ -328,21 +328,21 @@
       </div>
       <div class="modal-body">
         <?php foreach ($order as $item): ?>
-            
-           
-        
+
+
+
         <form method="post" action="{{route('track_order', $item->id)}}">
-           <?php endforeach ?> 
+           <?php endforeach ?>
           @csrf
           <div class="modal-body">
- 
+
             <label>Input Invoice Number</label>
-            
-             
+
+
             <input type="text" name="invoice_number" required="" class="form-control" placeholder="Invoice Number">
-            
+
           </div>
-        
+
       </div>
       <div class="modal-footer">
         <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
