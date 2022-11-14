@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SubSubCategory;
-use App\Models\SubCategory;
+use App\Models\Subcategory;
 use App\Models\Category;
 use App\Models\Brand;
 use App\Models\Product;
@@ -105,7 +105,7 @@ class ProductController extends Controller
         $categories=Category::latest()->get();
         $multi_imgs=MultiImg::where('product_id',$id)->get();
         $brands=Brand::latest()->get();
-        $subcategories=SubCategory::latest()->get();
+        $subcategories=Subcategory::latest()->get();
         $subsubcategories=SubSubCategory::latest()->get();
         $products=Product::findOrFail($id);
 
