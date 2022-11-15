@@ -215,8 +215,7 @@ Route::prefix('slider')->group(function(){
     //Cash order
     Route::post('/ash/order', [CashController::class, 'CashOrder'])->name('cash.order');
 
-    //Mpesa Online order
-    Route::post('/mpesa/order', [TransactionController::class, 'stkPushRequest'])->name('mpesa.order');
+
 
     //my orders
     Route::get('/my/orders', [AllUserController::class, 'Myorders'])->name('my.orders');

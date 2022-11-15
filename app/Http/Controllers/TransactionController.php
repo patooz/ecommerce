@@ -15,6 +15,12 @@ class TransactionController extends Controller
     //Initiate STK Push
     public function stkPushRequest(Request $request){
 
+         if (Session::has('coupon')) {
+            $total_amount=Session::get('coupon')['total_amount'];
+        } else {
+            $total_amount=round(Cart::total());
+        }
+
         $accountReference='Transaction#'.Str::random(10);
 
         $amount= $request->amount;
@@ -30,8 +36,17 @@ class TransactionController extends Controller
 
             return back();
         }
+        Mail::to($request->email)->send(new OrderMail($data,$data1));
 
-        return redirect('/confirm/'.encrypt($accountReference));
+        if (Session::has('coupon')) {
+            Session::forget('coupon');
+        }
+        Cart::destroy();
+
+        Alert::success('Success', 'Order placed Successfully!');
+        return redirect()->route('dashboard'.encrypt($accountReference));
+
+
     }
 
     public function checkTransactionStatus($transactionCode){
