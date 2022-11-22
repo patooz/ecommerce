@@ -188,7 +188,7 @@
                 $('#pcat').text(data.product.categories.category_name_en);
                 $('#pbrand').text(data.product.brands.brand_name_en);
                 $('#pstock').text(data.product.product_qty);
-                $('#pimage').attr('src','/ecomm/'+data.product.product_thumbnail);
+                $('#pimage').attr('src','/'+data.product.product_thumbnail);
 
 
                 $('#productId').val(id);

@@ -45,6 +45,10 @@ Checkout
 
             <form class="register-form" action="{{ route('store-checkout') }}" method="POST">
                 @csrf
+                @php
+                 $cartTotal= Gloudemans\Shoppingcart\Facades\Cart::total();
+                @endphp
+                <input type="hidden" name="cartTotal" value="{{$cartTotal}}">
                 <div class="form-group">
                 <label class="info-title" for="exampleInputEmail1"><b> Shipping Address Name</b> <span>*</span></label>
                 <input type="text" name="shipping_name" class="form-control unicase-form-control text-input" id="exampleInputEmail1" placeholder="Full Name" value="{{Auth::user()->name }}" required>

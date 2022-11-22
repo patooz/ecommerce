@@ -86,7 +86,7 @@ Lipa Na Mpesa Online Confirmation
 </div>
 
 
-        <form action="{{route('mpesa.order')}}" method="post" id="payment-form">
+        <form action="{{route('stk_push')}}" method="post" id="payment-form">
                     @csrf
                 <div class="form-row">
                     <img src="{{ asset('frontend/assets/images/payments/mpesa_online.jpg') }}">
@@ -102,6 +102,8 @@ Lipa Na Mpesa Online Confirmation
                 <input type="hidden" name="subcounty_id" value="{{$data['subcounty_id']}}">
                 <input type="hidden" name="ward_id" value="{{$data['ward_id']}}">
                 <input type="hidden" name="notes" value="{{$data['notes']}}">
+                <input type="hidden" name="cartTotal" value="{{$data['cartTotal']}}">
+                <input type="hidden" name="user" value="{{$data['user']}}">
                 </label>
 
                 <!-- Used to display form errors. -->

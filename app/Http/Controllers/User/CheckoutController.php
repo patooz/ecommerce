@@ -9,6 +9,7 @@ use App\Models\ShipSubcounty;
 use App\Models\ShipWard;
 use Carbon\Carbon;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Auth;
 
 class CheckoutController extends Controller
 {
@@ -38,9 +39,12 @@ class CheckoutController extends Controller
         $data['subcounty_id'] = $request->subcounty_id;
         $data['ward_id'] = $request->ward_id;
         $data['notes'] = $request->notes;
+        $data['cartTotal'] = Cart::total();
+        $data['user'] = Auth::id();
         $data['created_at'] = Carbon::now();
 
-        $cartTotal=Cart::total();
+        $cartTotal= Cart::total();
+         // dd($data);
 
 
         if ($request->payment_method == 'stripe') {
@@ -53,6 +57,7 @@ class CheckoutController extends Controller
             return view('frontend.payments.cash', compact('data','cartTotal'));
 
         }elseif ($request->payment_method == 'mpesa') {
+            
             return view('frontend.payments.mpesa_payment', compact('data','cartTotal'));
         }
 

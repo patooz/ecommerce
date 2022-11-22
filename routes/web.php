@@ -183,22 +183,22 @@ Route::prefix('slider')->group(function(){
     Route::get('/product/subsubcat/{subsubcatId}/{slug}', [TagsController::class, 'SubSubCatWiseProducts']);
 
     //Product View Modal with Ajax
-    Route::get('/product/view/modal/{id}', [IndexController::class, 'AjaxProductsView']);
+    Route::get('ecomm/product/view/modal/{id}', [IndexController::class, 'AjaxProductsView']);
 
     //Add to cart store data
-    Route::post('/store/cart/data/{id}', [CartController::class, 'AddToCart']);
+    Route::post('ecomm/store/cart/data/{id}', [CartController::class, 'AddToCart']);
 
     //get mini cart data
-    Route::get('/product/mini/cart', [CartController::class, 'MiniCart']);
+    Route::get('ecomm/product/mini/cart', [CartController::class, 'MiniCart']);
 
     //remove items from minicart
-    Route::get('/mini/cart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCartItems']);
+    Route::get('ecomm/mini/cart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCartItems']);
 
     //Add to wishlist
-    Route::post('add-to-wishlist/{productId}', [CartController::class, 'AddToWishList']);
+    Route::post('ecomm/add-to-wishlist/{productId}', [CartController::class, 'AddToWishList']);
 
 //user must login
-    Route::group(['prefix'=>'user','middleware'=>['user','auth'],'namespace'=>'User'], function(){
+    Route::group(['prefix'=>'ecomm/user','middleware'=>['user','auth'],'namespace'=>'User'], function(){
 
         //wishlist page
     Route::get('/wishlist', [WishListController::class, 'ViewWishlist'])->name('wishlist');
@@ -245,16 +245,16 @@ Route::prefix('slider')->group(function(){
     Route::get('/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
 
      //get my cart ajax products
-     Route::get('/user/get-cart-item', [CartPageController::class, 'GetCartItem']);
+     Route::get('ecomm/user/get-cart-item', [CartPageController::class, 'GetCartItem']);
 
      //remove cart item
-    Route::get('/user/remove-cart-item/{rowId}', [CartPageController::class, 'RemoveCart']);
+    Route::get('ecomm/user/remove-cart-item/{rowId}', [CartPageController::class, 'RemoveCart']);
 
      //increase cart
-     Route::get('/user/increase-cart/{rowId}', [CartPageController::class, 'increaseCart']);
+     Route::get('ecomm/user/increase-cart/{rowId}', [CartPageController::class, 'increaseCart']);
 
      //derease cart
-     Route::get('/user/decrease-cart/{rowId}', [CartPageController::class, 'decreaseCart']);
+     Route::get('ecomm/user/decrease-cart/{rowId}', [CartPageController::class, 'decreaseCart']);
 
 
      //Admin coupon Routes
@@ -300,16 +300,16 @@ Route::prefix('coupon')->group(function(){
 });
 
 //fronten coupon option
-Route::post('/apply-coupon', [CartController::class, 'ApplyCoupon']);
+Route::post('ecomm/apply-coupon', [CartController::class, 'ApplyCoupon']);
 
 //fronten coupon option
-Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
+Route::get('ecomm/coupon-calculation', [CartController::class, 'CouponCalculation']);
 
 //remove coupon
-Route::get('/remove-coupon', [CartController::class, 'removeCoupon']);
+Route::get('ecomm/remove-coupon', [CartController::class, 'removeCoupon']);
 
 
-//remove coupon
+//checkout
 Route::get('/chekout', [CartController::class, 'Checkout'])->name('chekout');
 
 //get subcounty ajax

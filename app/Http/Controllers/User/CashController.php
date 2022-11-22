@@ -24,8 +24,9 @@ class CashController extends Controller
         if (Session::has('coupon')) {
             $total_amount=Session::get('coupon')['total_amount'];
         } else {
-            $total_amount=round(Cart::total());
+            $total_amount=Cart::total();
         }
+        $var = intval(preg_replace('/[^\d.]/', '', $total_amount));
 
 
 
@@ -113,9 +114,10 @@ class CashController extends Controller
             Session::forget('coupon');
         }
         Cart::destroy();
+        dd($var);
 
-        Alert::success('Success', 'Order placed Successfully!');
-        return redirect()->route('dashboard');
+        // Alert::success('Success', 'Order placed Successfully!');
+        // return redirect()->route('dashboard');
 
 
     }

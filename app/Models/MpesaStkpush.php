@@ -15,7 +15,6 @@ class MpesaStkpush extends Model
     protected $amount;
     protected $accountReference;
     protected $phone;
-    protected $Timestamp;
     protected $env;
     protected $short_code;
     protected $parent_short_code;
@@ -26,14 +25,13 @@ class MpesaStkpush extends Model
 
         $this->short_code = '7854001';
         $this->parent_short_code='5868111';
-        $this->consumer_key="SbObIsSM9ZtX9RCg5ExuxBR8IwOrRPUD "; //Your Consumer key
-        $this->consumer_secret=" WKXbUc13Ac72QVJP"; //Your Secret key
-        $this->passkey = "bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919 "; //Your Passkey
-        $this->CallBackURL = " "; //Your callback URL
+        $this->consumer_key=env('MPESA_CONSUMER_KEY'); //Your Consumer key
+        $this->consumer_secret=env('MPESA_CONSUMER_SECRET'); //Your Secret key
+        $this->passkey = env('MPESA_PASS_KEY'); //Your Passkey
+        $this->CallBackURL = "https://coded.rf.gd/ecomm/"; //Your callback URL
         $this->env = "sandbox"; //Your Environment sandbox or Live
         $this->initiatorName = "testapi"; //Username of your choice
         $this->initiatorPassword = "Safaricom978!"; //Password of your choice
-        $this->Timestamp = Carbon::now()->format('YmdHms'); //Password of your choice
 
     }
 
@@ -52,8 +50,7 @@ class MpesaStkpush extends Model
         $this->accountReference=$accountReference;
 
         $Password = MpesaStkpush::getPassword();
-
-        $Timestamp= Carbon::now()->format('YmdHms');
+         $Timestamp = Carbon::now()->format('YmdHms');
 
         $headers = ['Content-Type:application/json; charset=utf8'];
 
@@ -109,8 +106,8 @@ class MpesaStkpush extends Model
         $command = "TransactionStatusQuery";
         $remarks = "Transaction Status Query";
         $occasion = "Transaction Status Query";
-        $results_url = "https://mydomain.com/TransactionStatus/result/"; //Endpoint to receive results Body
-        $timeout_url = "https://mydomain.com/TransactionStatus/queue/"; //Endpoint to to go to on timeout
+        $results_url = "https://coded.rf.gd/ecomm/TransactionStatus/result/"; //Endpoint to receive results Body
+        $timeout_url = "https://coded.rf.gd/ecomm/TransactionStatus/queue/"; //Endpoint to to go to on timeout
 
         $access_token = ($this->env == "live") ? "https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials" : "https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials";
         $credentials = base64_encode($this->consumer_key . ':' . $this->consumer_secret);
@@ -168,5 +165,7 @@ class MpesaStkpush extends Model
         $result = json_decode($response);
 
         return $result;
-    }
+
+}
+
 }
