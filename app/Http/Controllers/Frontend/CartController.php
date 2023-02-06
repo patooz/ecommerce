@@ -8,8 +8,8 @@ use App\Models\Product;
 use App\Models\Wishlist;
 use App\Models\ShipCounty;
 use App\Models\Coupon;
-use Alert;
-use Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
@@ -127,7 +127,7 @@ class CartController extends Controller
 
 
         } else {
-            return response()->json(['error'=> 'Erro! Invalid Coupon']);
+            return response()->json(['error'=> 'Error! Invalid Coupon']);
         }
 
     }
@@ -165,9 +165,13 @@ class CartController extends Controller
             $carts=Cart::content();
             $cartQty=Cart::count();
             $cartTotal=Cart::total();
+            $vat = round(str_replace(',', '',$cartTotal) * 16/100);
+            $vat_format = number_format($vat);
+            $grand_total = str_replace(',', '',$cartTotal) + $vat;
+            $grand_total_format = number_format($grand_total, 2 );
             $counties=ShipCounty::orderBy('county_name','ASC')->get();
 
-            return view('frontend.checkout.view_checkout', compact('carts','cartQty','cartTotal','counties'));
+            return view('frontend.checkout.view_checkout', compact('carts','cartQty','cartTotal','counties', 'vat_format', 'grand_total_format'));
 
            }else{
 

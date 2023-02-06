@@ -49,6 +49,7 @@ Lipa Na Mpesa Online Confirmation
                         @if (Session::has('coupon'))
 
 						<strong>Subtotal:</strong> Ksh{{$cartTotal}} <hr>
+                        <strong>VAT(16%):</strong> Ksh{{$vat_format}} <hr>
                         <strong>Coupon:</strong> {{session()->get('coupon')['coupon_name']}}
 						<strong class="text-danger">(-{{session()->get('coupon')['coupon_discount']}}%)</strong>  <hr>
                         <strong>Coupon Discount:</strong> Ksh {{session()->get('coupon')['discount_amount']}} <hr>
@@ -57,7 +58,8 @@ Lipa Na Mpesa Online Confirmation
 
                         @else
                         <strong>Subtotal:</strong> Ksh{{$cartTotal}} <hr>
-                        <strong>Grand Total:</strong> Ksh{{$cartTotal}} <hr>
+                        <strong>VAT(16%):</strong> Ksh{{$vat_format}} <hr>
+                        <strong>Grand Total:</strong> Ksh{{$grand_total_format}} <hr>
 
 
 

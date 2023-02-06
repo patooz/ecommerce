@@ -14,7 +14,7 @@ Track Order
  }
 
  .container {
-     
+
  }
 
  .card {
@@ -167,7 +167,7 @@ Track Order
     <article class="card">
         <header class="card-header"> My Orders / Tracking </header>
         <div class="card-body">
-            
+
 
 
             <div class="row" style="margin-left: 30px; margin-top: 20px;">
@@ -175,9 +175,9 @@ Track Order
                 <b>Invoice Number</b>
                 {{$track->invoce_no}}
               </div>
-            
 
-            
+
+
               <div class="col-md-2">
                 <b>Order Date</b><br>
                 {{$track->order_date}}
@@ -189,20 +189,20 @@ Track Order
                 {{$track->county->county_name}},
                 {{$track->subcounty->subcounty_name}}
               </div>
-            
 
-            
+
+
               <div class="col-md-2">
                 <b>Order Date</b>
                 {{$track->invoce_no}}
               </div>
-            
- 
+
+
               <div class="col-md-2">
                 <b>Invoice Number</b>
                 {{$track->invoce_no}}
               </div>
-            
+
 
               <div class="col-md-2">
                 <b>Invoice Number</b>
@@ -216,7 +216,7 @@ Track Order
 
 
 
-           
+
             <div class="track">
               @if($track->status == 'Pending')
               <div class="step active"> <span class="icon"> <i class="fa fa-check"></i> </span> <span class="text">Order Pending</span> </div>
@@ -228,7 +228,7 @@ Track Order
                 <div class="step"> <span class="icon"> <i class="fa fa-product-hunt"></i> </span> <span class="text">Ready for Pickup</span> </div>
 
                 <div class="step"> <span class="icon"> <i class="fa fa-truck"></i> </span> <span class="text"> On the Way </span> </div>
-                
+
                 <div class="step"> <span class="icon"> <i class="fas fa-medal"></i> </span> <span class="text">Order Delivered</span> </div>
 
                 <div class="step"> <span class="icon"> <i class="fas fa-medal"></i> </span> <span class="text"> Order Delivered </span> </div>
@@ -298,33 +298,50 @@ Track Order
 
                 <div class="step active"> <span class="icon"> <i class="fas fa-medal"></i> </span> <span class="text"> Order Delivered </span> </div>
               @endif
-                
 
-               
 
-                
+
+
+
             </div>
 
             <hr>
-            
-            <ul class="row">   
-                <li class="col-md-4">
-               
-                        
-                        
-                    <figure class="itemside mb-3">  
 
-                        <div class="aside"><img src="https://res.cloudinary.com/dxfq3iotg/image/upload/v1571751108/Ecommerce/laptop-dell-xps-15-computer-monitors-laptops.jpg" class="img-sm border"></div>
+            <ul class="row">
+                <li class="col-md-4">
+
+
+                    @foreach ($order_item as $item)
+
+
+                    @php
+                    $amount=$item->products->selling_price - $item->products->discount_price;
+                    $discount=($amount/$item->products->selling_price)*100;
+                     @endphp
+
+
+                    <figure class="itemside mb-3">
+
+                        <div class="aside"><img src="{{asset($item->products->product_thumbnail)}}" class="img-sm border"></div>
                         <figcaption class="info align-self-center">
-                            <p class="title">Dell Laptop with 500GB HDD <br> 8GB RAM</p> <span class="text-muted">$950 </span>
-                        </figcaption> 
-                        
+                            <p class="title">@if (session()->get('language') == 'Kiswahili'){{ $item->products->product_name_swa}} @else {{ $item->products->product_name_en }} @endif</p> <span class="text-muted">@if ($item->products->discount_price == NULL)
+                                <strong>Ksh {{$item->products->selling_price}}</strong>
+
+
+                            @else
+                            <strong> Ksh {{$item->products->discount_price}}</strong>
+
+
+                            @endif </span>
+                        </figcaption>
+
 
                     </figure>
+                    @endforeach
 
-                    
-                         
-                </li>  
+
+
+                </li>
             </ul>
 
             <hr><br><br>

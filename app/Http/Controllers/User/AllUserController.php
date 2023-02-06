@@ -11,10 +11,10 @@ use Alert;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\OrderItem;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Mail\OrderMail;
-use PDF;
+use Barryvdh\DomPDF\PDF;
 
 class AllUserController extends Controller
 {
@@ -74,7 +74,7 @@ class AllUserController extends Controller
     }
 
     public function canceledOrdersList()
-    { 
+    {
         $orders=Order::where('user_id',Auth::id())->where('status','Canceled')->orderBy('id','DESC')->get();
         return view('frontend.user.orders.canceled_orders',compact('orders'));
     }
@@ -82,27 +82,24 @@ class AllUserController extends Controller
     public function trackOrder(Request $request, $track_id)
     {
         $invoice = $request->invoice_number;
-        
-        $order_id=$request->order_id;
+        $cart = Cart::total();
         $track =Order::where('invoce_no',  $invoice)->first();
-        
-        $order=Order::where('id', $track_id)->get();
-        $order_id=OrderItem::where('order_id', $order)->get();
-        $orderItem=OrderItem::with('products')->where( 'product_id', $order);
+        $order_item=OrderItem::with('products')->where('order_id', $track->id)->get();
 
-        // dd($orderItem);
+
+        //  dd($order_item);
 
         if ($track) {
         //     echo "<prev>";
         //     print_r($order_id);
 
-            return view('frontend.order_tracking.track_order', compact('track', 'orderItem' ));
-        } 
+            return view('frontend.order_tracking.track_order', compact('track', 'order_item', 'cart' ));
+        }
         // else {
         //      Alert::error('Error', 'Invoice not Found. Please Try Again');
         //      return redirect()->back();
         // }
-        
+
     }
 
 }
