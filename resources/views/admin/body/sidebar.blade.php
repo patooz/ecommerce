@@ -53,6 +53,8 @@
         $settings = (auth()->guard('admin')->user()->settings == 1);
         $adminuser = (auth()->guard('admin')->user()->adminuser == 1);
         $shipping = (auth()->guard('admin')->user()->shipping == 1);
+        $testimonials = (auth()->guard('admin')->user()->testimonials == 1);
+
 
         @endphp
 
@@ -130,6 +132,25 @@
           @else
         @endif
 
+
+        @if($testimonials == true)
+        <li class="treeview {{ ($prefix=='/testimonials' ? 'active' : '') }}">
+            <a href="#">
+              <i data-feather="file"></i>
+              <span>Testimonials</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-right pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+
+              <li class="{{($route=='view_testimonials') ? 'active' : ''}}"><a href="{{route ('view_testimonials')}}"><i class="ti-more"></i>View Testimonials</a></li>
+
+            </ul>
+          </li>
+          @else
+        @endif
+
         @if($coupons == true)
           <li class="treeview {{ ($prefix=='/coupons' ? 'active' : '') }}">
             <a href="#">
@@ -192,7 +213,7 @@
                <li class="{{($route=='add_blog_post') ? 'active' : ''}}"><a href="{{route ('add_blog_post')}}"><i class="ti-more"></i>Add Blog Post </a></li>
 
 
-               
+
 
             </ul>
 
@@ -200,6 +221,8 @@
           </li>
           @else
           @endif
+
+
 
 
         <li class="header nav-small-cap">User Interface</li>
@@ -394,7 +417,7 @@
           @endif
 
 
-      
+
 
 
       </ul>

@@ -65,23 +65,23 @@
                                 <h5>Password <span class="text-danger">*</span></h5>
                                 <div class="controls">
 
-                                  
-                                   
+
+
                                     <input type="password" name="password" id="password" >
                                     <i class="fa fa-eye" id="togglePassword"></i>
-                                
-  
+
+
                                      <div class="help-block">
-                                         
+
                                      </div>
                                  </div>
 
                             </div>
                             <div class="form-group">
 
-        
-       
-        
+
+
+
     </div>
 
        </div>
@@ -226,7 +226,7 @@
         $('#image').change(function(e){
             var reader = new FileReader();
             reader.onload = function(e){
-             $('#showImage').attr('src',e.target.result);   
+             $('#showImage').attr('src',e.target.result);
             }
             reader.readAsDataURL(e.target.files['0']);
         });

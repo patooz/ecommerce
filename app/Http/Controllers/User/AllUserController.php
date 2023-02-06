@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Session;
-use Alert;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\Coupon;
 use App\Models\Order;
 use App\Models\OrderItem;
@@ -95,10 +95,10 @@ class AllUserController extends Controller
 
             return view('frontend.order_tracking.track_order', compact('track', 'order_item', 'cart' ));
         }
-        // else {
-        //      Alert::error('Error', 'Invoice not Found. Please Try Again');
-        //      return redirect()->back();
-        // }
+        else {
+             Alert::error('Error', 'Invoice not Found. Please Try Again');
+             return redirect()->back();
+        }
 
     }
 

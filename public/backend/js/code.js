@@ -221,6 +221,34 @@ $(function(){
     });
 });
 
+/// Delete Admin User ///
+$(function(){
+    $(document).on('click', '#deleteTestimonial',function(e){
+        e.preventDefault();
+        var link = $(this).attr("href");
+
+            Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Delete Testimonial'
+            }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = link
+                Swal.fire(
+                'Deleted!',
+                'Testimonial Deleted',
+                'success'
+                )
+            }
+            })
+
+    });
+});
+
 
 /// restore deleted order ///
 $(function(){
@@ -311,13 +339,16 @@ $(function(){
 //toggle password
     const togglePassword = document.querySelector('#togglePassword');
     const password = document.querySelector('#password');
+    if (togglePassword) {
+
+
     togglePassword.addEventListener('click', function (e) {
     // toggle the type attribute
     const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
     password.setAttribute('type', type);
     // toggle the eye / eye slash icon
     this.classList.toggle('fa-eye-slash');
-        });
+        })};
 // prevent form submit
     // const form = document.querySelector("form");
     // form.addEventListener('submit', function (e) {
@@ -329,11 +360,24 @@ $(function(){
         $('#image').change(function(e){
             var reader = new FileReader();
             reader.onload = function(e){
-             $('#showImage').attr('src',e.target.result);   
+             $('#showImage').attr('src',e.target.result);
+            }
+            reader.readAsDataURL(e.target.files['0']);
+        });
+
+        $('#ima').change(function(e){
+            var reader = new FileReader();
+            reader.onload = function(e){
+             $('#showIma').attr('src',e.target.result);
             }
             reader.readAsDataURL(e.target.files['0']);
         });
     });
+
+
+
+
+
 
 
 

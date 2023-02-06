@@ -17,6 +17,7 @@ use App\Models\Blog\BlogPostCategory;
 use App\Models\Blog\BlogPost;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Testimonials;
 
 
 
@@ -44,6 +45,7 @@ class IndexController extends Controller
 
         $skip_brand_1=Brand::skip(8)->first();
         $skip_brand_product_1=Product::where('status',1)->where('brand_id',$skip_brand_1->id)->orderBy('id','DESC' )->get();
+        $testimonials = Testimonials::latest()->get();
 
         // return $skip_category->id;
         // die();

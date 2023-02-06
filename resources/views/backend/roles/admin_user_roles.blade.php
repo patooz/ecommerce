@@ -18,7 +18,7 @@
 
            <div class="box">
               <div class="box-header with-border">
-                <h3 class="box-title">All Amin Users</h3>
+                <h3 class="box-title">All Admin Users</h3>
                 <a href="{{route('add_admin_user')}}" class="btn btn-info" style="float: right;" >Add Admin User</a>
               </div>
               <!-- /.box-header -->
@@ -50,12 +50,12 @@
 
                                 @if($item->brand == 1)
                                 <span class="badge badge-primary">Brand</span>
-                                @else                                
+                                @else
                                 @endif
 
                                 @if($item->brand == 1)
                                 <span class="badge badge-success">Brand</span>
-                                @else                               
+                                @else
                                 @endif
 
                                 @if($item->brand == 1)
@@ -65,17 +65,17 @@
 
                                 @if($item->brand == 1)
                                 <span class="badge badge-secondary">Brand</span>
-                                @else                                
+                                @else
                                 @endif
 
                                 @if($item->category == 1)
                                 <span class="badge badge-danger">Category</span>
-                                @else                                
+                                @else
                                 @endif
 
                                 @if($item->product == 1)
                                 <span class="badge badge-warning">Product</span>
-                                @else                                
+                                @else
                                 @endif
 
                                 @if($item->slider == 1)
@@ -85,7 +85,7 @@
 
                                 @if($item->coupons == 1)
                                 <span class="badge badge-dark">Coupons</span>
-                                @else                                
+                                @else
                                 @endif
 
                                 @if($item->shipping == 1)
@@ -95,7 +95,7 @@
 
                                 @if($item->blog == 1)
                                 <span class="badge badge-secondary">Blog</span>
-                                @else 
+                                @else
                                 @endif
 
                                 @if($item->orders == 1)
@@ -142,17 +142,22 @@
                                 <span class="badge badge-success">Orders</span>
                                 @else
                                 @endif
-                                
-                                
+
+                                @if($item->testimonials == 1)
+                                <span class="badge badge-warning">Testimonials</span>
+                                @else
+                                @endif
+
+
                               </td>
-                              
+
 
 
 
                               <td width="20%">
                                   <a href="{{ route('edit_admin_user',$item->id) }}" class="btn btn-info" title="Edit User" ><i class="fa fa-pencil"></i></a>
 
-                                   
+
 
                                   <a href="{{ route('delete_admin_user',$item->id) }}" id="deleteAdminUser" class="btn btn-danger" title="Delete User"
                                     ><i class="fa fa-trash" ></i></a>

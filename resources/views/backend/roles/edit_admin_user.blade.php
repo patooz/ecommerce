@@ -29,7 +29,7 @@
                             <div class="form-group">
                                 <h5>Admin Username <span class="text-danger">*</span></h5>
                                 <div class="controls">
-                                    <input type="text" name="name" class="form-control" value="{{$adminUser->name}}" 
+                                    <input type="text" name="name" class="form-control" value="{{$adminUser->name}}"
 
                                      aria-invalid="false"> <div class="help-block"></div></div>
                             </div>
@@ -60,7 +60,7 @@
 
                            </div>
 
-                          
+
 
 
 
@@ -70,18 +70,18 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <h5>Profile Image <span class="text-danger">*</span></h5>
+                    <h5>Change Profile Image <span class="text-danger">*</span></h5>
                     <div class="controls">
-                        
+
                         <input type="hidden" name="old_image" value="{{ $adminUser->profile_photo_path }}">
-                        <input type="file" name="profile_photo_path" class="form-control" value=" " id="image" >
+                        <input type="file" name="profile_photo_path" class="form-control" id="image11" >
                     </div>
                 </div>
 
             </div>
 
            <div class="col-md-6">
-                <img id="showImage" src=" {{url('upload/no_image.jpg')}} "
+                <img id="showImage11" src=" {{asset($adminUser->profile_photo_path)}} "
                      style="width: 100px; height:100px;">
 
             </div>
@@ -114,8 +114,12 @@
             <label for="checkbox_5">Slider</label>
         </fieldset>
         <fieldset>
-            <input type="checkbox" id="checkbox_6" name="coupons" value="1" {{$adminUser->coupons == 1 ? 'checked' : '' }}>
-            <label for="checkbox_6">Coupons</label>
+            <input type="checkbox" id="checkbox_6" name="testimonials" value="1" {{$adminUser->testimonials == 1 ? 'checked' : '' }}>
+            <label for="checkbox_6">Testimonials</label>
+        </fieldset>
+        <fieldset>
+            <input type="checkbox" id="checkbox_7" name="coupons" value="1" {{$adminUser->coupons == 1 ? 'checked' : '' }}>
+            <label for="checkbox_7">Coupons</label>
         </fieldset>
         </div>
     </div>
@@ -126,24 +130,24 @@
 
         <div class="controls">
         <fieldset>
-            <input type="checkbox" id="checkbox_7" name="shipping" value="1" {{$adminUser->shipping == 1 ? 'checked' : '' }}>
-            <label for="checkbox_7">Shipping</label>
+            <input type="checkbox" id="checkbox_8" name="shipping" value="1" {{$adminUser->shipping == 1 ? 'checked' : '' }}>
+            <label for="checkbox_8">Shipping</label>
         </fieldset>
         <fieldset>
-            <input type="checkbox" id="checkbox_8" name="blog" value="1" {{$adminUser->blog == 1 ? 'checked' : '' }}>
-            <label for="checkbox_8">Blog</label>
+            <input type="checkbox" id="checkbox_9" name="blog" value="1" {{$adminUser->blog == 1 ? 'checked' : '' }}>
+            <label for="checkbox_9">Blog</label>
         </fieldset>
         <fieldset>
-            <input type="checkbox" id="checkbox_9" name="orders" value="1" {{$adminUser->orders == 1 ? 'checked' : '' }}>
-            <label for="checkbox_9">Orders</label>
+            <input type="checkbox" id="checkbox_10" name="orders" value="1" {{$adminUser->orders == 1 ? 'checked' : '' }}>
+            <label for="checkbox_10">Orders</label>
         </fieldset>
         <fieldset>
-            <input type="checkbox" id="checkbox_10" name="stock" value="1" {{$adminUser->stock == 1 ? 'checked' : '' }}>
-            <label for="checkbox_10">Stock</label>
+            <input type="checkbox" id="checkbox_11" name="stock" value="1" {{$adminUser->stock == 1 ? 'checked' : '' }}>
+            <label for="checkbox_11">Stock</label>
         </fieldset>
         <fieldset>
-            <input type="checkbox" id="checkbox_11" name="reports" value="1" {{$adminUser->reports == 1 ? 'checked' : '' }}>
-            <label for="checkbox_11">Reports</label>
+            <input type="checkbox" id="checkbox_12" name="reports" value="1" {{$adminUser->reports == 1 ? 'checked' : '' }}>
+            <label for="checkbox_12">Reports</label>
         </fieldset>
         </div>
     </div>
@@ -200,10 +204,10 @@
 
   <script type="text/javascript">
     $(document).ready(function(){
-        $('#image').change(function(e){
+        $('#image11').change(function(e){
             var reader = new FileReader();
             reader.onload = function(e){
-             $('#showImage').attr('src',e.target.result);   
+             $('#showImage11').attr('src',e.target.result);
             }
             reader.readAsDataURL(e.target.files['0']);
         });

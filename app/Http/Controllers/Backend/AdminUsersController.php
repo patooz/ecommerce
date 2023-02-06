@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use Carbon\Carbon;
-use Image;
+use Intervention\Image\Image;
 use Auth;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -17,7 +17,7 @@ class AdminUsersController extends Controller
     {
         $adminuser=Admin::where('type', 2)->latest()->get();
         return view('backend.roles.admin_user_roles',compact('adminuser'));
-        
+
     }
 
     public function addAdminUser()
@@ -88,7 +88,7 @@ class AdminUsersController extends Controller
 
     public function updateAdminUser(Request $request, $user_id)
     {
-        
+
         $old_image=$request->old_image;
 
         if ($request->file('profile_photo_path')) {
@@ -103,11 +103,12 @@ class AdminUsersController extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'profile_photo_path'=>$save_url,
-            
+
             'phone'=>$request->phone,
             'category'=>$request->category,
             'product'=>$request->product,
             'slider'=>$request->slider,
+            'testimonials'=>$request->testimonials,
             'coupons'=>$request->coupons,
             'shipping'=>$request->shipping,
             'blog'=>$request->blog,
@@ -129,12 +130,13 @@ class AdminUsersController extends Controller
             Admin::findOrFail($user_id)->update([
             'name'=>$request->name,
             'email'=>$request->email,
-           
-            
+
+
             'phone'=>$request->phone,
             'category'=>$request->category,
             'product'=>$request->product,
             'slider'=>$request->slider,
+            'testimonials'=>$request->testimonials,
             'coupons'=>$request->coupons,
             'shipping'=>$request->shipping,
             'blog'=>$request->blog,

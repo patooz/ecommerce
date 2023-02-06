@@ -32,8 +32,10 @@ use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\AllUserController;
 use App\Http\Controllers\User\CashController;
 use App\Http\Controllers\User\ReviewController;
+use App\Http\Controllers\Frontend\TestimonialsController;
+
 use App\Models\User;
-use Illuminate\Support\Facades\Auth; 
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -161,6 +163,20 @@ Route::prefix('slider')->group(function(){
     Route::get('/edit/{id}', [SliderController::class, 'EditSlider'])->name('edit.slider');
     Route::post('/update', [SliderController::class, 'UpdateSlider'])->name('slider.update');
     Route::get('/delete/{id}', [SliderController::class, 'DeleteSlider'])->name('delete.slider');
+    Route::get('/inactive/{id}', [SliderController::class, 'InactiveSlider'])->name('inactive.slider');
+    Route::get('/active/{id}', [SliderController::class, 'ActiveSlider'])->name('active.slider');
+
+
+    });
+
+    //Testimonials Routes
+Route::prefix('testimonials')->group(function(){
+    Route::get('/view', [TestimonialsController::class, 'viewTestimonials'])->name('view_testimonials');
+    Route::get('/add', [TestimonialsController::class, 'addTestomonial'])->name('add_testimonial');
+    Route::post('/store', [TestimonialsController::class, 'storeTestimonial'])->name('store_testimonial');
+    Route::get('/edit/{id}', [TestimonialsController::class, 'editTestimonial'])->name('edit_testimonial');
+    Route::post('/update/{id}', [TestimonialsController::class, 'updateTestimonial'])->name('update_testimonial');
+    Route::get('/delete/{id}', [TestimonialsController::class, 'deleteTestimonial'])->name('delete_testimonial');
     Route::get('/inactive/{id}', [SliderController::class, 'InactiveSlider'])->name('inactive.slider');
     Route::get('/active/{id}', [SliderController::class, 'ActiveSlider'])->name('active.slider');
 

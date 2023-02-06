@@ -79,6 +79,7 @@ Ndonyo Online Shop
 
 
         <!-- ======================== PRODUCT TAGS ======================= -->
+        
         @include('frontend.common.product_tags')
         <!-- =========== PRODUCT TAGS : END========================= -->
 
