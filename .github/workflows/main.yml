@@ -14,4 +14,4 @@ jobs:
         server: ftp.coded.rf.gd
         username: ${{ secrets.INFINITY_FREE_FTP_USER_NAME }}
         password: ${{ secrets.INFINITY_FREE_FTP_PASSWORD }}
-        server-dir: ecomm1.epizy.com/htdocs/
+        server-dir: htdocs/
