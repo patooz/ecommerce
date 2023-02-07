@@ -11,7 +11,7 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@4.3.3
       with:
-        server: ${{ secrets.INFINITY_FREE_FTP_SERVER }}
+        server: ftp://ftp.coded.rf.gd:21/htdocs
         username: ${{ secrets.INFINITY_FREE_FTP_USER_NAME }}
         password: ${{ secrets.INFINITY_FREE_FTP_PASSWORD }}
 
