@@ -257,6 +257,8 @@
 
                <li class="{{($route=='trashed.orders') ? 'active' : ''}}"><a href="{{route ('trashed.orders')}}"><i class="ti-more"></i>Trashed Orders</a></li>
 
+               <li class="{{($route=='trashed.orders') ? 'active' : ''}}"><a href="{{route ('trashed.orders')}}"><i class="ti-more"></i>Trashed Orders</a></li>
+
 
 
             </ul>

@@ -2,6 +2,8 @@
  $categories=App\Models\Category::orderBy('category_name_en','ASC')->get();
 @endphp
 
+
+
 <div class="side-menu animate-dropdown outer-bottom-xs">
     <div class="head"><i class="icon fa fa-align-justify fa-fw"></i>
 @if (session()->get('language') == 'Kiswahili')Kategoria @else Categories @endif
