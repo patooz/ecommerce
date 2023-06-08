@@ -1,5 +1,5 @@
 {
-    "private": true,
+    "public": true,
     "scripts": {
         "dev": "npm run development",
         "development": "mix",
@@ -27,6 +27,6 @@
         "vercel-php": "^0.6.0"
     },
     "publishConfig": {
-        "registry": "https://npm.pkg.github.com/patooz/ecommerce"
-      }
+        "registry":"https://npm.pkg.github.com/@PATOOZ"
+    }
 }
