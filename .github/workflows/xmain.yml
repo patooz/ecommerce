@@ -37,3 +37,7 @@ jobs:
           server-dir: ${{ secrets.X_DIR }}
           username: ${{ secrets.X_USERNAME }}
           password: ${{ secrets.X_PASSWORD }}
+          exclude: |
+                  **/.git*
+                  **/.git*/**
+                  **/node_modules/**
