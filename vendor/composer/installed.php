@@ -76,6 +76,15 @@
                 0 => '*',
             ),
         ),
+        'davidgrzyb/deploy-laravel-on-vercel' => array(
+            'pretty_version' => 'v0.1.0',
+            'version' => '0.1.0.0',
+            'reference' => '27fc75e9419603c1da79c228b8347c75d1b5ca6c',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../davidgrzyb/deploy-laravel-on-vercel',
+            'aliases' => array(),
+            'dev_requirement' => true,
+        ),
         'dflydev/dot-access-data' => array(
             'pretty_version' => 'v3.0.1',
             'version' => '3.0.1.0',

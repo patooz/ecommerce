@@ -185,6 +185,7 @@ class ComposerStaticInit5651a5316387495f687822a097597a0f
             'Doctrine\\Common\\Lexer\\' => 22,
             'Dflydev\\DotAccessData\\' => 22,
             'DeepCopy\\' => 9,
+            'DavidGrzyb\\DeployLaravelOnVercel\\' => 33,
             'Database\\Seeders\\' => 17,
             'Database\\Factories\\' => 19,
             'DASPRiD\\Enum\\' => 13,
@@ -572,6 +573,10 @@ class ComposerStaticInit5651a5316387495f687822a097597a0f
         array (
             0 => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy',
         ),
+        'DavidGrzyb\\DeployLaravelOnVercel\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/davidgrzyb/deploy-laravel-on-vercel/src',
+        ),
         'Database\\Seeders\\' => 
         array (
             0 => __DIR__ . '/../..' . '/database/seeders',
@@ -908,6 +913,10 @@ class ComposerStaticInit5651a5316387495f687822a097597a0f
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\AdminsTableSeeder' => __DIR__ . '/../..' . '/database/seeders/AdminsTableSeeder.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'DavidGrzyb\\DeployLaravelOnVercel\\Console\\InstallPackageCommand' => __DIR__ . '/..' . '/davidgrzyb/deploy-laravel-on-vercel/src/Console/InstallPackageCommand.php',
+        'DavidGrzyb\\DeployLaravelOnVercel\\DeployLaravelOnVercel' => __DIR__ . '/..' . '/davidgrzyb/deploy-laravel-on-vercel/src/DeployLaravelOnVercel.php',
+        'DavidGrzyb\\DeployLaravelOnVercel\\DeployLaravelOnVercelFacade' => __DIR__ . '/..' . '/davidgrzyb/deploy-laravel-on-vercel/src/DeployLaravelOnVercelFacade.php',
+        'DavidGrzyb\\DeployLaravelOnVercel\\DeployLaravelOnVercelServiceProvider' => __DIR__ . '/..' . '/davidgrzyb/deploy-laravel-on-vercel/src/DeployLaravelOnVercelServiceProvider.php',
         'DeepCopy\\DeepCopy' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/DeepCopy.php',
         'DeepCopy\\Exception\\CloneException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/CloneException.php',
         'DeepCopy\\Exception\\PropertyException' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/Exception/PropertyException.php',
