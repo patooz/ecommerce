@@ -874,7 +874,7 @@ couponCalc();
 
 {{-- remove coupon end: --}}
 
-<script src="{{ asset('frontend/assets/js/code.js') }}"></script>
+<script src="{{ asset('/frontend/assets/js/code.js') }}"></script>
 </body>
 </html>
 
