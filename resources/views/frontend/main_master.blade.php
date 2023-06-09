@@ -24,29 +24,29 @@
 <title>@yield('title')</title>
 
 <!-- Bootstrap Core CSS -->
-<link rel="stylesheet" href="{{asset ('frontend/assets/css/bootstrap.min.css')}}">
 
 <!-- Customizable CSS -->
-<link rel="stylesheet" href="{{asset ('frontend/assets/css/main.css')}}">
-<link rel="stylesheet" href="{{asset ('frontend/assets/css/blue.css')}}">
-<link rel="stylesheet" href="{{asset ('frontend/assets/css/owl.carousel.css')}}">
-<link rel="stylesheet" href="{{asset ('frontend/assets/css/owl.transitions.css')}}">
-<link rel="stylesheet" href="{{asset ('frontend/assets/css/animate.min.css')}}">
-<link rel="stylesheet" href="{{asset ('frontend/assets/css/rateit.css')}}">
+<link rel="stylesheet" href="{{asset ('/frontend/assets/css/blue.css')}}">
+<link rel="stylesheet" href="{{asset ('/frontend/assets/css/owl.carousel.css')}}">
+<link rel="stylesheet" href="{{asset ('/frontend/assets/css/owl.transitions.css')}}">
+<link rel="stylesheet" href="{{asset ('/frontend/assets/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset ('/frontend/assets/css/animate.min.css')}}">
+<link rel="stylesheet" href="{{asset ('/frontend/assets/css/rateit.css')}}">
+<link rel="stylesheet" href="{{asset ('/frontend/assets/css/main.css')}}">
 
-<link rel="stylesheet" href="{{asset ('frontend/assets/css/bootstrap-select.min.css')}}">
+<link rel="stylesheet" href="{{asset ('/frontend/assets/css/bootstrap-select.min.css')}}">
 
 <!-- Icons/Glyphs -->
-<link rel="stylesheet" href="{{asset ('frontend/assets/css/font-awesome.css')}}">
+<link rel="stylesheet" href="{{asset ('/frontend/assets/css/font-awesome.css')}}">
 
 <!-- Fonts -->
-<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,800' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<link href='http://fonts.googleapis.com//css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.co/m/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,800' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.co/m/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://us/e.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
-<script src="https://js.stripe.com/v3/"></script>
+<link rel='stylesheet' href='https://cd/njs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+<script src="https://js.stripe.com/v3/"/></script>
 </head>
 <body class="cnt-home">
 @include('frontend.body.header')
@@ -61,21 +61,21 @@
 <!-- For demo purposes – can be removed on production : End -->
 
 <!-- JavaScripts placed at the end of the document so the pages load faster -->
-<script src="{{asset ('frontend/assets/js/jquery-1.11.1.min.js')}}"></script>
-<script src="{{asset ('frontend/assets/js/v3.js')}}"></script>
-<script src="{{asset ('frontend/assets/js/bootstrap.min.js')}}"></script>
-<script src="{{asset ('frontend/assets/js/bootstrap-hover-dropdown.min.js')}}"></script>
-<script src="{{asset ('frontend/assets/js/owl.carousel.min.js')}}"></script>
-<script src="{{asset ('frontend/assets/js/echo.min.js')}}"></script>
-<script src="{{asset ('frontend/assets/js/jquery.easing-1.3.min.js')}}"></script>
-<script src="{{asset ('frontend/assets/js/bootstrap-slider.min.js')}}"></script>
-<script src="{{asset ('frontend/assets/js/jquery.rateit.min.js')}}"></script>
-<script type="{{asset ('frontend/text/javascript')}}"></script>
-<script src="{{asset ('frontend/assets/js/lightbox.min.js')}}"></script>
-<script src="{{asset ('frontend/assets/js/bootstrap-select.min.js')}}"></script>
-<script src="{{asset ('frontend/assets/js/wow.min.js')}}"></script>
-<script src="{{asset ('frontend/assets/js/scripts.js')}}"></script>
-<script src="{{asset ('frontend/assets/js/sweetalert2.all.min.js')}}"></script>
+<script src="{{asset ('/frontend/assets/js/jquery-1.11.1.min.js')}}"></script>
+<script src="{{asset ('/frontend/assets/js/v3.js')}}"></script>
+<script src="{{asset ('/frontend/assets/js/bootstrap.min.js')}}"></script>
+<script src="{{asset ('/frontend/assets/js/bootstrap-hover-dropdown.min.js')}}"></script>
+<script src="{{asset ('/frontend/assets/js/owl.carousel.min.js')}}"></script>
+<script src="{{asset ('/frontend/assets/js/echo.min.js')}}"></script>
+<script src="{{asset ('/frontend/assets/js/jquery.easing-1.3.min.js')}}"></script>
+<script src="{{asset ('/frontend/assets/js/bootstrap-slider.min.js')}}"></script>
+<script src="{{asset ('/frontend/assets/js/jquery.rateit.min.js')}}"></script>
+<script type="{{asset ('/frontend/text/javascript')}}"></script>
+<script src="{{asset ('/frontend/assets/js/lightbox.min.js')}}"></script>
+<script src="{{asset ('/frontend/assets/js/bootstrap-select.min.js')}}"></script>
+<script src="{{asset ('/frontend/assets/js/wow.min.js')}}"></script>
+<script src="{{asset ('/frontend/assets/js/scripts.js')}}"></script>
+<script src="{{asset ('/frontend/assets/js/sweetalert2.all.min.js')}}"></script>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
